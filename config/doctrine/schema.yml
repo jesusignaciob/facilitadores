@@ -4,10 +4,7 @@ AreasFormacion:
   columns:
     nombre_area:
       type: string(50)
-      fixed: false
-      unsigned: false
-      notnull: false
-      primary: false
+      notnull: true
   relations:
     AreasFormacionFacilitador:
       local: id
@@ -19,22 +16,13 @@ AreasFormacionFacilitador:
   columns:
     id_identificacion:
       type: integer(4)
-      fixed: false
-      unsigned: false
-      notnull: false
-      primary: false
+      notnull: true
     id_area_formacion:
       type: integer(4)
-      fixed: false
-      unsigned: false
-      notnull: false
-      primary: false
+      notnull: true
     estatus:
       type: string(20)
-      fixed: false
-      unsigned: false
-      notnull: false
-      primary: false
+      notnull: true
   relations:
     AreasFormacion:
       local: id_area_formacion
@@ -58,19 +46,28 @@ BitacoraFormacionFacilitador:
   columns:
     id_area_formacion_facilitador:
       type: integer(4)
-      fixed: false
-      unsigned: false
-      notnull: false
-      primary: false
+      notnull: true
     fecha:
       type: date(25)
-      fixed: false
-      unsigned: false
-      notnull: false
-      primary: false
+      notnull: true
   relations:
     AreasFormacionFacilitador:
       local: id_area_formacion_facilitador
+      foreign: id
+      type: one
+BitacoraSecciones:
+  connection: doctrine
+  tableName: bitacora_secciones
+  columns:
+    id_secciones:
+      type: integer(4)
+      notnull: true
+    fecha:
+      type: date(25)
+      notnull: true
+  relations:
+    Secciones:
+      local: id_secciones
       foreign: id
       type: one
 Correos:
@@ -79,16 +76,10 @@ Correos:
   columns:
     id_identificacion:
       type: integer(4)
-      fixed: false
-      unsigned: false
-      notnull: false
-      primary: false
+      notnull: true
     correo:
       type: string(50)
-      fixed: false
-      unsigned: false
       notnull: true
-      primary: false
   relations:
     Identificacion:
       local: id_identificacion
@@ -100,16 +91,10 @@ DisponibilidadDias:
   columns:
     id_identificacion:
       type: integer(4)
-      fixed: false
-      unsigned: false
-      notnull: false
-      primary: false
+      notnull: true
     dia:
       type: string(20)
-      fixed: false
-      unsigned: false
-      notnull: false
-      primary: false
+      notnull: true
   relations:
     Identificacion:
       local: id_identificacion
@@ -125,28 +110,16 @@ DisponibilidadTrasladoEstado:
   columns:
     id_identificacion:
       type: integer(4)
-      fixed: false
-      unsigned: false
-      notnull: false
-      primary: false
+      notnull: true
     id_estado:
       type: integer(4)
-      fixed: false
-      unsigned: false
-      notnull: false
-      primary: false
+      notnull: true
     id_municipio:
       type: integer(4)
-      fixed: false
-      unsigned: false
-      notnull: false
-      primary: false
+      notnull: true
     requiere_traslado:
       type: boolean(1)
-      fixed: false
-      unsigned: false
-      notnull: false
-      primary: false
+      notnull: true
   relations:
     Estado:
       local: id_estado
@@ -166,16 +139,10 @@ DisponibilidadTurnos:
   columns:
     id_disponibilidad_dia:
       type: integer(4)
-      fixed: false
-      unsigned: false
-      notnull: false
-      primary: false
+      notnull: true
     turno:
       type: string(20)
-      fixed: false
-      unsigned: false
-      notnull: false
-      primary: false
+      notnull: true
   relations:
     DisponibilidadDias:
       local: id_disponibilidad_dia
@@ -187,28 +154,16 @@ Ente:
   columns:
     nombre_ente:
       type: string(50)
-      fixed: false
-      unsigned: false
-      notnull: false
-      primary: false
+      notnull: true
     id_estado:
       type: integer(4)
-      fixed: false
-      unsigned: false
-      notnull: false
-      primary: false
+      notnull: true
     id_municipio:
       type: integer(4)
-      fixed: false
-      unsigned: false
-      notnull: false
-      primary: false
+      notnull: true
     id_parroquia:
       type: integer(4)
-      fixed: false
-      unsigned: false
-      notnull: false
-      primary: false
+      notnull: true
   relations:
     Estado:
       local: id_estado
@@ -232,10 +187,7 @@ Estado:
   columns:
     nombre_estado:
       type: string(20)
-      fixed: false
-      unsigned: false
       notnull: true
-      primary: false
   relations:
     Identificacion:
       local: id
@@ -259,10 +211,7 @@ Estudios:
   columns:
     nombre_estudio:
       type: string(50)
-      fixed: false
-      unsigned: false
-      notnull: false
-      primary: false
+      notnull: true
   relations:
     NivelFormacion:
       local: id
@@ -274,71 +223,38 @@ Identificacion:
   columns:
     nombre:
       type: string(50)
-      fixed: false
-      unsigned: false
       notnull: true
-      primary: false
     apellido:
       type: string(50)
-      fixed: false
-      unsigned: false
-      notnull: false
-      primary: false
+      notnull: true
     cedula_pasaporte:
       type: integer(4)
-      fixed: false
-      unsigned: false
-      unique: true
       notnull: true
-      primary: false
+      unique: true
     nacionalidad:
       type: string(20)
-      fixed: false
-      unsigned: false
-      notnull: false
-      primary: false
+      notnull: true
     direccion:
       type: string(100)
-      fixed: false
-      unsigned: false
-      notnull: false
-      primary: false
+      notnull: true
     sector:
       type: string(100)
-      fixed: false
-      unsigned: false
       notnull: false
-      primary: false
     situacion_laboral:
       type: string(50)
-      fixed: false
-      unsigned: false
-      notnull: false
-      primary: false
+      notnull: true
     formacion_politica:
       type: boolean(1)
-      fixed: false
-      unsigned: false
-      notnull: false
-      primary: false
+      notnull: true
     id_estado:
       type: integer(4)
-      fixed: false
-      unsigned: false
-      notnull: false
-      primary: false
+      notnull: true
     id_municipio:
       type: integer(4)
-      fixed: false
-      unsigned: false
-      notnull: false
-      primary: false
+      notnull: true
     id_parroquia:
       type: integer(4)
-      fixed: false
-      unsigned: false
-      notnull: false
-      primary: false
+      notnull: true
   relations:
     Estado:
       local: id_estado
@@ -394,16 +310,10 @@ Municipio:
   columns:
     nombre_municipio:
       type: string(50)
-      fixed: false
-      unsigned: false
-      notnull: false
-      primary: false
+      notnull: true
     id_estado:
       type: integer(4)
-      fixed: false
-      unsigned: false
-      notnull: false
-      primary: false
+      notnull: true
   relations:
     Estado:
       local: id_estado
@@ -427,16 +337,10 @@ NivelFormacion:
   columns:
     id_identificacion:
       type: integer(4)
-      fixed: false
-      unsigned: false
-      notnull: false
-      primary: false
+      notnull: true
     id_estudios:
       type: integer(4)
-      fixed: false
-      unsigned: false
-      notnull: false
-      primary: false
+      notnull: true
   relations:
     Estudios:
       local: id_estudios
@@ -452,16 +356,10 @@ Ocupacion:
   columns:
     id_identificacion:
       type: integer(4)
-      fixed: false
-      unsigned: false
-      notnull: false
-      primary: false
+      notnull: true
     nombre_ocupacion:
       type: string(50)
-      fixed: false
-      unsigned: false
-      notnull: false
-      primary: false
+      notnull: true
   relations:
     Identificacion:
       local: id_identificacion
@@ -473,16 +371,10 @@ Parroquia:
   columns:
     nombre_parroquia:
       type: string(50)
-      fixed: false
-      unsigned: false
-      notnull: false
-      primary: false
+      notnull: true
     id_municipio:
       type: integer(4)
-      fixed: false
-      unsigned: false
-      notnull: false
-      primary: false
+      notnull: true
   relations:
     Parroquia:
       local: id
@@ -502,16 +394,10 @@ Profesion:
   columns:
     id_identificacion:
       type: integer(4)
-      fixed: false
-      unsigned: false
-      notnull: false
-      primary: false
+      notnull: true
     nombre_profesion:
       type: string(50)
-      fixed: false
-      unsigned: false
-      notnull: false
-      primary: false
+      notnull: true
   relations:
     Identificacion:
       local: id_identificacion
@@ -523,28 +409,16 @@ Secciones:
   columns:
     id_identificacion:
       type: integer(4)
-      fixed: false
-      unsigned: false
-      notnull: false
-      primary: false
+      notnull: true
     id_area_formacion_facilitador:
       type: integer(4)
-      fixed: false
-      unsigned: false
-      notnull: false
-      primary: false
+      notnull: true
     nombre_seccion:
       type: string(50)
-      fixed: false
-      unsigned: false
-      notnull: false
-      primary: false
+      notnull: true
     id_ente:
       type: integer(4)
-      fixed: false
-      unsigned: false
-      notnull: false
-      primary: false
+      notnull: true
   relations:
     AreasFormacionFacilitador:
       local: id_area_formacion_facilitador
@@ -564,16 +438,10 @@ Telefonos:
   columns:
     id_identificacion:
       type: integer(4)
-      fixed: false
-      unsigned: false
-      notnull: false
-      primary: false
+      notnull: true
     numero:
       type: integer(4)
-      fixed: false
-      unsigned: false
-      notnull: false
-      primary: false
+      notnull: true
   relations:
     Identificacion:
       local: id_identificacion
