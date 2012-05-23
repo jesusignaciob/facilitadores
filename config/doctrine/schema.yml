@@ -228,7 +228,7 @@ Identificacion:
       type: string(50)
       notnull: true
     cedula_pasaporte:
-      type: integer(4)
+      type: string(8)
       notnull: true
       unique: true
     nacionalidad:
@@ -376,10 +376,10 @@ Parroquia:
       type: integer(4)
       notnull: true
   relations:
-    Parroquia:
-      local: id
-      foreign: id_municipio
-      type: many
+    Municipio:
+      local: id_municipio
+      foreign: id
+      type: one
     Identificacion:
       local: id
       foreign: id_parroquia
