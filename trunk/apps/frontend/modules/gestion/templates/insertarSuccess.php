@@ -1,7 +1,7 @@
 <button class="back-button" onclick="javascript:parent.location='<?php echo url_for('principal/index'); ?>'">Ir al menú Principal</button>
 <button class="back-button" onclick="javascript:parent.location='<?php echo url_for('gestion/index'); ?>'">Regresar</button>
 <form action="<?php echo url_for('gestion/create'); ?>" method="post">
-<table border=1>
+<table style="border: 0">
 <tr>
 <td><?php echo $form['nombre']->renderLabel(); ?></td>
 <td><?php echo $form['nombre']->render(); ?></td>

@@ -30,18 +30,12 @@ abstract class BaseDisponibilidadTurnos extends sfDoctrineRecord
         $this->setTableName('disponibilidad_turnos');
         $this->hasColumn('id_disponibilidad_dia', 'integer', 4, array(
              'type' => 'integer',
-             'fixed' => 0,
-             'unsigned' => false,
-             'notnull' => false,
-             'primary' => false,
+             'notnull' => true,
              'length' => 4,
              ));
         $this->hasColumn('turno', 'string', 20, array(
              'type' => 'string',
-             'fixed' => 0,
-             'unsigned' => false,
-             'notnull' => false,
-             'primary' => false,
+             'notnull' => true,
              'length' => 20,
              ));
     }

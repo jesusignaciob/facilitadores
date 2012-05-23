@@ -45,13 +45,53 @@ class gestionActions extends sfActions
    }
  }
 
+ public function executeBuscar(sfWebRequest $request)
+ {
+   $this->form = new IdentificacionBuscarForm();
+   $this->buscarProcessForm($request, $this->form);
+   $this->setTemplate('buscar');
+ }
+
+  protected function buscarProcessForm(sfWebRequest $request, sfForm $form)
+  {
+   $form->bind(
+     $request->getParameter($form->getName()),
+     $request->getFiles($form->getName())
+   );
+
+   if ($form->isValid())
+   {
+     $result = $form->save();
+     $this->redirect('gestion/buscar');
+   }
+ }
+
+  public function executeCargarFacilitadores(sfWebRequest $request)
+  {
+    $cedula = $request->getParameter('cedula');
+    $nombre = $request->getParameter('nombre');
+    $apellido = $request->getParameter('apellido');
+    $estado = $request->getParameter('estado');
+    $municipio = $request->getParameter('municipio');
+    $parroquia = $request->getParameter('parroquia');
+
+    $this->facilitadores = Doctrine_Core::getTable('Identificacion')->obtenerFacilitadores($cedula, $nombre, $apellido, $estado, $municipio, $parroquia);
+ 
+    /*if ($request->isXmlHttpRequest())
+    {
+      if ($this->facilitadores)
+        return $this->renderText('No hay registros consultados');
+    }*/
+
+    return $this->renderPartial('gestion/facilitadoresList', array('facilitadores' => $this->facilitadores));
+  }
+
   public function executeCargarMunicipios(sfWebRequest $request)
   {
     $this->forwardUnless($query = $request->getParameter('query'), 'gestion', 'insertar');
 
     if('*' != $query){
-      $querystring = Doctrine_Core::getTable('Municipio')->createQuery()->where('id_estado=?',$query);
-      $this->municipios = $querystring->execute();
+      $this->municipios = Doctrine_Core::getTable('Municipio')->obtenerMunicipiosPorEstado($query);
     }
  
     if ($request->isXmlHttpRequest())
@@ -68,8 +108,7 @@ class gestionActions extends sfActions
     $this->forwardUnless($query = $request->getParameter('query'), 'gestion', 'insertar');
 
     if('*' != $query){
-      $querystring = Doctrine_Core::getTable('Parroquia')->createQuery()->where('id_municipio=?',$query);
-      $this->parroquias = $querystring->execute();
+      $this->parroquias = Doctrine_Core::getTable('Parroquia')->obtenerParroquiaPorMunicipio($query);
     }
  
     if ($request->isXmlHttpRequest())

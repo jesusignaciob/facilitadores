@@ -9,7 +9,7 @@ Doctrine_Manager::getInstance()->bindComponent('Identificacion', 'doctrine');
  * 
  * @property string $nombre
  * @property string $apellido
- * @property integer $cedula_pasaporte
+ * @property string $cedula_pasaporte
  * @property string $nacionalidad
  * @property string $direccion
  * @property string $sector
@@ -33,7 +33,7 @@ Doctrine_Manager::getInstance()->bindComponent('Identificacion', 'doctrine');
  * 
  * @method string              getNombre()                       Returns the current record's "nombre" value
  * @method string              getApellido()                     Returns the current record's "apellido" value
- * @method integer             getCedulaPasaporte()              Returns the current record's "cedula_pasaporte" value
+ * @method string              getCedulaPasaporte()              Returns the current record's "cedula_pasaporte" value
  * @method string              getNacionalidad()                 Returns the current record's "nacionalidad" value
  * @method string              getDireccion()                    Returns the current record's "direccion" value
  * @method string              getSector()                       Returns the current record's "sector" value
@@ -90,91 +90,58 @@ abstract class BaseIdentificacion extends sfDoctrineRecord
         $this->setTableName('identificacion');
         $this->hasColumn('nombre', 'string', 50, array(
              'type' => 'string',
-             'fixed' => 0,
-             'unsigned' => false,
              'notnull' => true,
-             'primary' => false,
              'length' => 50,
              ));
         $this->hasColumn('apellido', 'string', 50, array(
              'type' => 'string',
-             'fixed' => 0,
-             'unsigned' => false,
-             'notnull' => false,
-             'primary' => false,
+             'notnull' => true,
              'length' => 50,
              ));
-        $this->hasColumn('cedula_pasaporte', 'integer', 4, array(
-             'type' => 'integer',
-             'fixed' => 0,
-             'unsigned' => false,
-             'unique' => true,
+        $this->hasColumn('cedula_pasaporte', 'string', 8, array(
+             'type' => 'string',
              'notnull' => true,
-             'primary' => false,
-             'length' => 4,
+             'unique' => true,
+             'length' => 8,
              ));
         $this->hasColumn('nacionalidad', 'string', 20, array(
              'type' => 'string',
-             'fixed' => 0,
-             'unsigned' => false,
-             'notnull' => false,
-             'primary' => false,
+             'notnull' => true,
              'length' => 20,
              ));
         $this->hasColumn('direccion', 'string', 100, array(
              'type' => 'string',
-             'fixed' => 0,
-             'unsigned' => false,
-             'notnull' => false,
-             'primary' => false,
+             'notnull' => true,
              'length' => 100,
              ));
         $this->hasColumn('sector', 'string', 100, array(
              'type' => 'string',
-             'fixed' => 0,
-             'unsigned' => false,
              'notnull' => false,
-             'primary' => false,
              'length' => 100,
              ));
         $this->hasColumn('situacion_laboral', 'string', 50, array(
              'type' => 'string',
-             'fixed' => 0,
-             'unsigned' => false,
-             'notnull' => false,
-             'primary' => false,
+             'notnull' => true,
              'length' => 50,
              ));
         $this->hasColumn('formacion_politica', 'boolean', 1, array(
              'type' => 'boolean',
-             'fixed' => 0,
-             'unsigned' => false,
-             'notnull' => false,
-             'primary' => false,
+             'notnull' => true,
              'length' => 1,
              ));
         $this->hasColumn('id_estado', 'integer', 4, array(
              'type' => 'integer',
-             'fixed' => 0,
-             'unsigned' => false,
-             'notnull' => false,
-             'primary' => false,
+             'notnull' => true,
              'length' => 4,
              ));
         $this->hasColumn('id_municipio', 'integer', 4, array(
              'type' => 'integer',
-             'fixed' => 0,
-             'unsigned' => false,
-             'notnull' => false,
-             'primary' => false,
+             'notnull' => true,
              'length' => 4,
              ));
         $this->hasColumn('id_parroquia', 'integer', 4, array(
              'type' => 'integer',
-             'fixed' => 0,
-             'unsigned' => false,
-             'notnull' => false,
-             'primary' => false,
+             'notnull' => true,
              'length' => 4,
              ));
     }

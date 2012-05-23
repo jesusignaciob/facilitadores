@@ -27,10 +27,7 @@ abstract class BaseEstudios extends sfDoctrineRecord
         $this->setTableName('estudios');
         $this->hasColumn('nombre_estudio', 'string', 50, array(
              'type' => 'string',
-             'fixed' => 0,
-             'unsigned' => false,
-             'notnull' => false,
-             'primary' => false,
+             'notnull' => true,
              'length' => 50,
              ));
     }
