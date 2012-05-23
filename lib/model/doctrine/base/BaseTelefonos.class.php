@@ -30,18 +30,12 @@ abstract class BaseTelefonos extends sfDoctrineRecord
         $this->setTableName('telefonos');
         $this->hasColumn('id_identificacion', 'integer', 4, array(
              'type' => 'integer',
-             'fixed' => 0,
-             'unsigned' => false,
-             'notnull' => false,
-             'primary' => false,
+             'notnull' => true,
              'length' => 4,
              ));
         $this->hasColumn('numero', 'integer', 4, array(
              'type' => 'integer',
-             'fixed' => 0,
-             'unsigned' => false,
-             'notnull' => false,
-             'primary' => false,
+             'notnull' => true,
              'length' => 4,
              ));
     }

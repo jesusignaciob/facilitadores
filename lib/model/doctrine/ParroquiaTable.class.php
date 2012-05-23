@@ -16,4 +16,11 @@ class ParroquiaTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Parroquia');
     }
+
+    public static function obtenerParroquiaPorMunicipio($idMunicipio)
+    {
+        $querystring = Doctrine_Core::getTable('Parroquia')->createQuery()->where('id_municipio=?',$idMunicipio);
+
+        return $querystring->execute();
+    }
 }

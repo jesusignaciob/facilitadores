@@ -27,10 +27,7 @@ abstract class BaseAreasFormacion extends sfDoctrineRecord
         $this->setTableName('areas_formacion');
         $this->hasColumn('nombre_area', 'string', 50, array(
              'type' => 'string',
-             'fixed' => 0,
-             'unsigned' => false,
-             'notnull' => false,
-             'primary' => false,
+             'notnull' => true,
              'length' => 50,
              ));
     }

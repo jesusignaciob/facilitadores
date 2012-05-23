@@ -13,6 +13,7 @@ Doctrine_Manager::getInstance()->bindComponent('Municipio', 'doctrine');
  * @property Doctrine_Collection $Identificacion
  * @property Doctrine_Collection $DisponibilidadTrasladoEstado
  * @property Doctrine_Collection $Ente
+ * @property Doctrine_Collection $Parroquia
  * 
  * @method string              getNombreMunicipio()              Returns the current record's "nombre_municipio" value
  * @method integer             getIdEstado()                     Returns the current record's "id_estado" value
@@ -20,12 +21,14 @@ Doctrine_Manager::getInstance()->bindComponent('Municipio', 'doctrine');
  * @method Doctrine_Collection getIdentificacion()               Returns the current record's "Identificacion" collection
  * @method Doctrine_Collection getDisponibilidadTrasladoEstado() Returns the current record's "DisponibilidadTrasladoEstado" collection
  * @method Doctrine_Collection getEnte()                         Returns the current record's "Ente" collection
+ * @method Doctrine_Collection getParroquia()                    Returns the current record's "Parroquia" collection
  * @method Municipio           setNombreMunicipio()              Sets the current record's "nombre_municipio" value
  * @method Municipio           setIdEstado()                     Sets the current record's "id_estado" value
  * @method Municipio           setEstado()                       Sets the current record's "Estado" value
  * @method Municipio           setIdentificacion()               Sets the current record's "Identificacion" collection
  * @method Municipio           setDisponibilidadTrasladoEstado() Sets the current record's "DisponibilidadTrasladoEstado" collection
  * @method Municipio           setEnte()                         Sets the current record's "Ente" collection
+ * @method Municipio           setParroquia()                    Sets the current record's "Parroquia" collection
  * 
  * @package    facilitadores
  * @subpackage model
@@ -39,18 +42,12 @@ abstract class BaseMunicipio extends sfDoctrineRecord
         $this->setTableName('municipio');
         $this->hasColumn('nombre_municipio', 'string', 50, array(
              'type' => 'string',
-             'fixed' => 0,
-             'unsigned' => false,
-             'notnull' => false,
-             'primary' => false,
+             'notnull' => true,
              'length' => 50,
              ));
         $this->hasColumn('id_estado', 'integer', 4, array(
              'type' => 'integer',
-             'fixed' => 0,
-             'unsigned' => false,
-             'notnull' => false,
-             'primary' => false,
+             'notnull' => true,
              'length' => 4,
              ));
     }
@@ -71,6 +68,10 @@ abstract class BaseMunicipio extends sfDoctrineRecord
              'foreign' => 'id_municipio'));
 
         $this->hasMany('Ente', array(
+             'local' => 'id',
+             'foreign' => 'id_municipio'));
+
+        $this->hasMany('Parroquia', array(
              'local' => 'id',
              'foreign' => 'id_municipio'));
     }

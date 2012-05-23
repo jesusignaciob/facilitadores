@@ -30,18 +30,12 @@ abstract class BaseCorreos extends sfDoctrineRecord
         $this->setTableName('correos');
         $this->hasColumn('id_identificacion', 'integer', 4, array(
              'type' => 'integer',
-             'fixed' => 0,
-             'unsigned' => false,
-             'notnull' => false,
-             'primary' => false,
+             'notnull' => true,
              'length' => 4,
              ));
         $this->hasColumn('correo', 'string', 50, array(
              'type' => 'string',
-             'fixed' => 0,
-             'unsigned' => false,
              'notnull' => true,
-             'primary' => false,
              'length' => 50,
              ));
     }

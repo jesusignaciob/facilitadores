@@ -30,18 +30,12 @@ abstract class BaseOcupacion extends sfDoctrineRecord
         $this->setTableName('ocupacion');
         $this->hasColumn('id_identificacion', 'integer', 4, array(
              'type' => 'integer',
-             'fixed' => 0,
-             'unsigned' => false,
-             'notnull' => false,
-             'primary' => false,
+             'notnull' => true,
              'length' => 4,
              ));
         $this->hasColumn('nombre_ocupacion', 'string', 50, array(
              'type' => 'string',
-             'fixed' => 0,
-             'unsigned' => false,
-             'notnull' => false,
-             'primary' => false,
+             'notnull' => true,
              'length' => 50,
              ));
     }

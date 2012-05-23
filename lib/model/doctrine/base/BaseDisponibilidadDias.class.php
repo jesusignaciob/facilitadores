@@ -33,18 +33,12 @@ abstract class BaseDisponibilidadDias extends sfDoctrineRecord
         $this->setTableName('disponibilidad_dias');
         $this->hasColumn('id_identificacion', 'integer', 4, array(
              'type' => 'integer',
-             'fixed' => 0,
-             'unsigned' => false,
-             'notnull' => false,
-             'primary' => false,
+             'notnull' => true,
              'length' => 4,
              ));
         $this->hasColumn('dia', 'string', 20, array(
              'type' => 'string',
-             'fixed' => 0,
-             'unsigned' => false,
-             'notnull' => false,
-             'primary' => false,
+             'notnull' => true,
              'length' => 20,
              ));
     }

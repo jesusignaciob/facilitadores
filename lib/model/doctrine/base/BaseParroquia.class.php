@@ -9,18 +9,18 @@ Doctrine_Manager::getInstance()->bindComponent('Parroquia', 'doctrine');
  * 
  * @property string $nombre_parroquia
  * @property integer $id_municipio
- * @property Doctrine_Collection $Parroquia
+ * @property Municipio $Municipio
  * @property Doctrine_Collection $Identificacion
  * @property Doctrine_Collection $Ente
  * 
  * @method string              getNombreParroquia()  Returns the current record's "nombre_parroquia" value
  * @method integer             getIdMunicipio()      Returns the current record's "id_municipio" value
- * @method Doctrine_Collection getParroquia()        Returns the current record's "Parroquia" collection
+ * @method Municipio           getMunicipio()        Returns the current record's "Municipio" value
  * @method Doctrine_Collection getIdentificacion()   Returns the current record's "Identificacion" collection
  * @method Doctrine_Collection getEnte()             Returns the current record's "Ente" collection
  * @method Parroquia           setNombreParroquia()  Sets the current record's "nombre_parroquia" value
  * @method Parroquia           setIdMunicipio()      Sets the current record's "id_municipio" value
- * @method Parroquia           setParroquia()        Sets the current record's "Parroquia" collection
+ * @method Parroquia           setMunicipio()        Sets the current record's "Municipio" value
  * @method Parroquia           setIdentificacion()   Sets the current record's "Identificacion" collection
  * @method Parroquia           setEnte()             Sets the current record's "Ente" collection
  * 
@@ -36,18 +36,12 @@ abstract class BaseParroquia extends sfDoctrineRecord
         $this->setTableName('parroquia');
         $this->hasColumn('nombre_parroquia', 'string', 50, array(
              'type' => 'string',
-             'fixed' => 0,
-             'unsigned' => false,
-             'notnull' => false,
-             'primary' => false,
+             'notnull' => true,
              'length' => 50,
              ));
         $this->hasColumn('id_municipio', 'integer', 4, array(
              'type' => 'integer',
-             'fixed' => 0,
-             'unsigned' => false,
-             'notnull' => false,
-             'primary' => false,
+             'notnull' => true,
              'length' => 4,
              ));
     }
@@ -55,9 +49,9 @@ abstract class BaseParroquia extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasMany('Parroquia', array(
-             'local' => 'id',
-             'foreign' => 'id_municipio'));
+        $this->hasOne('Municipio', array(
+             'local' => 'id_municipio',
+             'foreign' => 'id'));
 
         $this->hasMany('Identificacion', array(
              'local' => 'id',
