@@ -23,14 +23,30 @@ class gestionActions extends sfActions
   {
     $this->form = new IdentificacionForm();
   }
-  
+  public function executeInsertartelefono(sfWebRequest $request)
+  {
+    $this->form = new TelefonosForm();
+  }
+  public function executeInsertarcorreo(sfWebRequest $request)
+  {
+	$this->form = new CorreosForm();
+  }
+  public function executeInsertar_areas_formacion_facilitador(sfWebRequest $request)
+  {
+	$this->form = new AreasFormacionFacilitadorForm();
+  }
+  public function executeInsertar_nivel_formacion_facilitador(sfWebRequest $request)
+  {
+	$this->form = new NivelFormacionForm();
+  }
+//Funcion para validar las entradas de datos de Identificacion
   public function executeCreate(sfWebRequest $request)
  {
    $this->form = new IdentificacionForm();
    $this->processForm($request, $this->form);
    $this->setTemplate('insertar');
  }
-
+//Si pasa la funcion anterior, almacena los registros de Identificacion
   protected function processForm(sfWebRequest $request, sfForm $form)
   {
    $form->bind(
@@ -41,7 +57,101 @@ class gestionActions extends sfActions
    if ($form->isValid())
    {
      $result = $form->save();
-     $this->redirect('gestion/index');
+     $id = $form->getObject()->id;
+     $this->redirect('gestion/insertartelefono?id='.$id);
+   }
+ }
+//Funcion para validar las entradas de datos de Telefonos
+ public function executeCreateTelefono(sfWebRequest $request)
+ {
+   $this->form = new TelefonosForm();
+   $this->processFormTelefono($request, $this->form);
+   $this->setTemplate('insertartelefono');
+   /*$busqueda = $id->getParameter('id');
+   $c = new Criteria();
+   $c->add(TelefonosPeer::id_identificacion,$id);*/
+ }
+//Si pasa la funcion anterior, almacena los registros de Telefonos
+  protected function processFormTelefono(sfWebRequest $request, sfForm $form)
+  {
+   $form->bind(
+
+
+     $request->getParameter($form->getName()),
+     $request->getFiles($form->getName())
+   );
+
+   if ($form->isValid())
+   {
+     $result = $form->save();
+     
+     $this->forwardUnless($id = $request->getParameter('id'));
+
+     $seleccionartelefonos = Doctrine_Core::getTable('Telefonos')->createQuery()->where('id_identificacion=?',$id);
+      $this->telefonos = $seleccionartelefonos->execute();
+   }
+ }
+//Funcion para validar las entradas de datos de Correos
+public function executeCreateCorreo(sfWebRequest $request)
+ {
+   $this->form = new CorreosForm();
+   $this->processFormCorreos($request, $this->form);
+   $this->setTemplate('insertarcorreo');
+ }
+//Si pasa la funcion anterior, almacena los registros de Correos
+  protected function processFormCorreos(sfWebRequest $request, sfForm $form)
+  {
+   $form->bind(
+
+     $request->getParameter($form->getName()),
+     $request->getFiles($form->getName())
+   );
+
+   if ($form->isValid())
+   {
+     $result = $form->save();
+   }
+ }
+//Funcion para validar las entradas de datos de Areas de Formación Facilitador
+public function executeCreateAreasFormacionFacilitador(sfWebRequest $request)
+ {
+   $this->form = new AreasFormacionFacilitadorForm();
+   $this->processAreasFormacionFacilitador($request, $this->form);
+   $this->setTemplate('insertar_areas_formacion_facilitador');
+ }
+//Si pasa la funcion anterior, almacena los registros de AreasFormacionFacilitador
+  protected function processAreasFormacionFacilitador(sfWebRequest $request, sfForm $form)
+  {
+   $form->bind(
+
+     $request->getParameter($form->getName()),
+     $request->getFiles($form->getName())
+   );
+
+   if ($form->isValid())
+   {
+     $result = $form->save();
+   }
+ }
+//Funcion para validar las entradas de datos de Nivel de Formación Facilitador
+public function executeCreateNivelFormacionFacilitador(sfWebRequest $request)
+ {
+   $this->form = new NivelFormacionForm();
+   $this->processNivelFormacionFacilitador($request, $this->form);
+   $this->setTemplate('insertar_nivel_formacion_facilitador');
+ }
+//Si pasa la funcion anterior, almacena los registros de NivelFormacionFacilitador
+  protected function processNivelFormacionFacilitador(sfWebRequest $request, sfForm $form)
+  {
+   $form->bind(
+
+     $request->getParameter($form->getName()),
+     $request->getFiles($form->getName())
+   );
+
+   if ($form->isValid())
+   {
+     $result = $form->save();
    }
  }
 
