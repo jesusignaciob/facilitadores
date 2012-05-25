@@ -17,13 +17,13 @@ abstract class BaseCorreosForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'                => new sfWidgetFormInputHidden(),
       'id_identificacion' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Identificacion'), 'add_empty' => true)),
-      'correo'            => new sfWidgetFormInputText(),
+    'correo'            => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
       'id'                => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'id_identificacion' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Identificacion'), 'required' => false)),
-      'correo'            => new sfValidatorString(array('max_length' => 50)),
+      'correo'            => new sfValidatorEmail(array('max_length' => 50), array('required'=> "Ingrese correo electrónico")),
     ));
 
     $this->widgetSchema->setNameFormat('correos[%s]');
