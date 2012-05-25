@@ -12,4 +12,9 @@
  */
 class AreasFormacion extends BaseAreasFormacion
 {
+	//Funcion para obtener los nombres de las areas de formacion de la tabla areas_formacion
+	public function __toString() 
+	{
+    		return $this->getnombre_area();
+  	}
 }
