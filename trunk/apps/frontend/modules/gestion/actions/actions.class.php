@@ -224,8 +224,9 @@ public function executeCreateProfesion(sfWebRequest $request)
     $estado = $request->getParameter('estado');
     $municipio = $request->getParameter('municipio');
     $parroquia = $request->getParameter('parroquia');
+    $estatus = $request->getParameter('estatus');
 
-    $this->facilitadores = Doctrine_Core::getTable('Identificacion')->obtenerFacilitadores($cedula, $nombre, $apellido, $estado, $municipio, $parroquia);
+    $this->facilitadores = Doctrine_Core::getTable('Identificacion')->obtenerFacilitadores($cedula, $nombre, $apellido, $estado, $municipio, $parroquia, $estatus);
  
     /*if ($request->isXmlHttpRequest())
     {
