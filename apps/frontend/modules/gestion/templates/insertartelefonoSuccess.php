@@ -1,6 +1,11 @@
 <?php $id=($sf_params->get ('id')) ?> 
 <button class="back-button" onclick="javascript:parent.location='<?php echo url_for('principal/index'); ?>'">Ir al menú Principal</button>
 <button class="back-button" onclick="javascript:parent.location='<?php echo url_for('gestion/insertar'); ?>'">Regresar</button>
+<br>
+<h4>
+Configuración de Teléfonos
+</h4>
+<br>
 <form action="<?php echo url_for('gestion/CreateTelefono?id='.$id); ?>" method="post">
 
 <table border=1>
