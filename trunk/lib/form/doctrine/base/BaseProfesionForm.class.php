@@ -23,7 +23,7 @@ abstract class BaseProfesionForm extends BaseFormDoctrine
     $this->setValidators(array(
       'id'                => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'id_identificacion' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Identificacion'), 'required' => false)),
-      'nombre_profesion'  => new sfValidatorString(array('max_length' => 50, 'required' => false)),
+       'nombre_profesion'            => new sfValidatorString(array('required' => true), array('required'=> "Ingrese nombre profesión")),
 
     ));
 
