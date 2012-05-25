@@ -33,10 +33,10 @@ abstract class BaseTelefonos extends sfDoctrineRecord
              'notnull' => true,
              'length' => 4,
              ));
-        $this->hasColumn('numero', 'integer', 4, array(
+        $this->hasColumn('numero', 'integer', 10, array(
              'type' => 'integer',
              'notnull' => true,
-             'length' => 4,
+             'length' => 10,
              ));
     }
 
