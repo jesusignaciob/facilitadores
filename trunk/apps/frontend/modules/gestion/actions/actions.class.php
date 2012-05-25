@@ -175,6 +175,20 @@ public function executeCreateNivelFormacionFacilitador(sfWebRequest $request)
      $this->redirect('gestion/buscar');
    }
  }
+ 
+ public function executeDetalle(sfWebRequest $request)
+ {
+    $id = $request->getParameter('id');
+    $this->facilitador = Doctrine::getTable('Identificacion')->find($id);
+    
+    $this->areasFormPorFacilitador = Doctrine::getTable('AreasFormacionFacilitador')->obtenerAreasFormacionPorFacilitador($id);
+    
+    $this->telefonos = Doctrine_Core::getTable('Telefonos')->obtenerTelefonosPorFacilitador($id);
+    $this->correos = Doctrine_Core::getTable('Correos')->obtenerCorreosPorFacilitador($id);
+    
+    $this->form = new IdentificacionForm();
+    $this->forward404Unless($this->facilitador);
+ }
 
   public function executeCargarFacilitadores(sfWebRequest $request)
   {
