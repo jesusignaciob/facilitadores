@@ -21,7 +21,7 @@ AreasFormacionFacilitador:
       type: integer(4)
       notnull: true
     estatus:
-      type: string(20)
+      type: integer(1)
       notnull: true
   relations:
     AreasFormacion:
@@ -246,6 +246,11 @@ Identificacion:
     formacion_politica:
       type: boolean(1)
       notnull: true
+      default: false
+    activo:
+      type: boolean(1)
+      notnull: true
+      default: true
     id_estado:
       type: integer(4)
       notnull: true
