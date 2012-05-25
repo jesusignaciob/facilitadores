@@ -16,7 +16,7 @@ CREATE TABLE ocupacion (id BIGSERIAL, id_identificacion INT NOT NULL, nombre_ocu
 CREATE TABLE parroquia (id BIGSERIAL, nombre_parroquia VARCHAR(50) NOT NULL, id_municipio INT NOT NULL, PRIMARY KEY(id));
 CREATE TABLE profesion (id BIGSERIAL, id_identificacion INT NOT NULL, nombre_profesion VARCHAR(50) NOT NULL, PRIMARY KEY(id));
 CREATE TABLE secciones (id BIGSERIAL, id_identificacion INT NOT NULL, id_area_formacion_facilitador INT NOT NULL, nombre_seccion VARCHAR(50) NOT NULL, id_ente INT NOT NULL, PRIMARY KEY(id));
-CREATE TABLE telefonos (id BIGSERIAL, id_identificacion INT NOT NULL, numero INT NOT NULL, PRIMARY KEY(id));
+CREATE TABLE telefonos (id BIGSERIAL, id_identificacion INT NOT NULL, numero BIGINT NOT NULL, PRIMARY KEY(id));
 CREATE TABLE sf_guard_forgot_password (id BIGSERIAL, user_id BIGINT NOT NULL, unique_key VARCHAR(255), expires_at TIMESTAMP NOT NULL, created_at TIMESTAMP NOT NULL, updated_at TIMESTAMP NOT NULL, PRIMARY KEY(id));
 CREATE TABLE sf_guard_group (id BIGSERIAL, name VARCHAR(255) UNIQUE, description VARCHAR(1000), created_at TIMESTAMP NOT NULL, updated_at TIMESTAMP NOT NULL, PRIMARY KEY(id));
 CREATE TABLE sf_guard_group_permission (group_id BIGINT, permission_id BIGINT, created_at TIMESTAMP NOT NULL, updated_at TIMESTAMP NOT NULL, PRIMARY KEY(group_id, permission_id));
