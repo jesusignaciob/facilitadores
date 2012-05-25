@@ -1,0 +1,9 @@
+AreasFormacion:
+  agricultura:
+    nombre_area: Agricultura
+  alfareria:
+    nombre_area: Alfareria
+  computacion:
+    nombre_area: Computacion
+  cienciasTierra:
+    nombre_area: Ciencias de la Tierra
