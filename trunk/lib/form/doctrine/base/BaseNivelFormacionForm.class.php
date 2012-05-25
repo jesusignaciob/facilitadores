@@ -22,8 +22,8 @@ abstract class BaseNivelFormacionForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'                => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'id_identificacion' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Identificacion'), 'required' => false)),
-      'id_estudios'       => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Estudios'), 'required' => false)),
+      'id_identificacion' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Identificacion'), 'required' => true)),
+      'id_estudios'       => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Estudios'), 'required' => true), array('required'=> "Seleccione el estudio")),
     ));
 
     $this->widgetSchema->setNameFormat('nivel_formacion[%s]');
