@@ -39,6 +39,10 @@ class gestionActions extends sfActions
   {
 	$this->form = new NivelFormacionForm();
   }
+public function executeInsertar_profesion(sfWebRequest $request)
+  {
+	$this->form = new ProfesionForm();
+  }
 //Funcion para validar las entradas de datos de Identificacion
   public function executeCreate(sfWebRequest $request)
  {
@@ -85,10 +89,10 @@ class gestionActions extends sfActions
    {
      $result = $form->save();
      
-     $this->forwardUnless($id = $request->getParameter('id'));
+     /*$this->forwardUnless($id = $request->getParameter('id'));
 
      $seleccionartelefonos = Doctrine_Core::getTable('Telefonos')->createQuery()->where('id_identificacion=?',$id);
-      $this->telefonos = $seleccionartelefonos->execute();
+      $this->telefonos = $seleccionartelefonos->execute();*/
    }
  }
 //Funcion para validar las entradas de datos de Correos
@@ -142,6 +146,28 @@ public function executeCreateNivelFormacionFacilitador(sfWebRequest $request)
  }
 //Si pasa la funcion anterior, almacena los registros de NivelFormacionFacilitador
   protected function processNivelFormacionFacilitador(sfWebRequest $request, sfForm $form)
+  {
+   $form->bind(
+
+     $request->getParameter($form->getName()),
+     $request->getFiles($form->getName())
+   );
+
+   if ($form->isValid())
+   {
+     $result = $form->save();
+   }
+ }
+
+//Funcion para validar las entradas de datos de Profesion
+public function executeCreateProfesion(sfWebRequest $request)
+ {
+   $this->form = new ProfesionForm();
+   $this->processProfesion($request, $this->form);
+   $this->setTemplate('insertar_profesion');
+ }
+//Si pasa la funcion anterior, almacena los registros de Profesion
+  protected function processProfesion(sfWebRequest $request, sfForm $form)
   {
    $form->bind(
 
