@@ -17,10 +17,10 @@ class IdentificacionTable extends Doctrine_Table
         return Doctrine_Core::getTable('Identificacion');
     }
 
-    public static function obtenerFacilitadores($cedula, $nombre, $apellido, $estado, $municipio, $parroquia)
+    public static function obtenerFacilitadores($cedula, $nombre, $apellido, $estado, $municipio, $parroquia, $estatus)
     {
-        $q = Doctrine_Query::create()
-                ->from('Identificacion i');
+        $q = Doctrine_Core::getTable('Identificacion')->createQuery("SELECT i FROM Identificacion i JOIN i.AreasFormacionFacilitador aff");
+        
         if (strlen($cedula) > 0)
             $q = $q->where("i.cedula_pasaporte like '%$cedula%'");
 
@@ -38,6 +38,9 @@ class IdentificacionTable extends Doctrine_Table
 
         if ($parroquia > 0)
             $q = $q->where('i.id_parroquia = ?', $parroquia);
+            
+        if (strlen($estatus) > 0)
+            $q = $q->where("aff.estatus = ?", $estatus);
 
         return $q->execute();
     }
