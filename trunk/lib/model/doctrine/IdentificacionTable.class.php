@@ -41,7 +41,17 @@ class IdentificacionTable extends Doctrine_Table
             
         if (strlen($estatus) > 0)
             $q = $q->where("aff.estatus = ?", $estatus);
+            
+        $q->where("i.activo = ?", true);
 
         return $q->execute();
+    }
+    
+    public static function eliminarFacilitador($id)
+    {
+      Doctrine_Query::create()->update('Identificacion i')
+        ->set('i.activo', '?', false)
+        ->where('i.id = ?', $id)
+        ->execute();
     }
 }
