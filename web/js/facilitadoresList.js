@@ -20,12 +20,33 @@ function valNumero(control) {
   control.value = soloNumerico(control.value);
 }
 
-function cargarFacilitadores(estado, municipio, parroquia, estatus) {
+function cargarFacilitadores(estado, municipio, parroquia, estatus, idEliminar) {
   var cedula = $('#identificacion_cedula_pasaporte').val();
   var nombre = $('#identificacion_nombre').val();
   var apellido = $('#identificacion_apellido').val();
 
   $(function() {
-    $('#facilitadoresConsultados').load('cargarFacilitadores',{ 'cedula': cedula, 'nombre': nombre, 'apellido': apellido, 'estado': estado, 'municipio': municipio,  'parroquia': parroquia, 'estatus': estatus });
+    $('#facilitadoresConsultados').load('cargarFacilitadores',{ 'cedula': cedula, 'nombre': nombre, 'apellido': apellido, 'estado': estado, 'municipio': municipio, 'parroquia': parroquia, 'estatus': estatus, 'id': idEliminar });
+  });
+}
+
+function eliminarFacilitador(estado, municipio, parroquia, estatus, idEliminar) {
+  $(function() {
+    $( "#dialog:ui-dialog" ).dialog( "destroy" );
+  
+    $( "#dialog-confirm" ).dialog({
+			resizable: false,
+			height:200,
+			modal: true,
+			buttons: {
+				"Eliminar": function() {
+				  cargarFacilitadores(estado, municipio, parroquia, estatus, idEliminar);
+					$( this ).dialog( "close" );
+				},
+				"Cancelar": function() {
+					$( this ).dialog( "close" );
+				}
+			}
+		});
   });
 }
