@@ -440,7 +440,7 @@ Telefonos:
       type: integer(4)
       notnull: true
     numero:
-      type: integer(4)
+      type: integer(10)
       notnull: true
   relations:
     Identificacion:
