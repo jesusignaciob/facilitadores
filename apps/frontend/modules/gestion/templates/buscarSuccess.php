@@ -34,8 +34,22 @@
       <td id="td_parroquia"></td>
       <td><input id="parroquia" value="" type="hidden"></td>
     </tr>
+    <tr>
+      <th style="text-align:right; height: 30px">Estatus</th>
+      <td>
+        <select id="estatus">
+          <option value=""></option>
+          <option value="0">En Formacion</option>
+          <option value="1">Formado</option>
+          <option value="2">Convocado</option>
+          <option value="3">Activo</option>
+          <option value="4">Inactivo</option>
+        </select>
+      </td>
+      <td><input id="estatusAreaFormacion" value="" type="hidden"></td>
+    </tr>
   </table>
-<input type="submit" onclick="cargarFacilitadores($('#estado').val(), $('#municipio').val(), $('#parroquia').val()); return false;" value="Consultar">
+<input type="submit" onclick="cargarFacilitadores($('#estado').val(), $('#municipio').val(), $('#parroquia').val(), $('#estatusAreaFormacion').val()); return false;" value="Consultar">
 <?php echo $form->renderHiddenFields(); ?>
 </form>
 <br>

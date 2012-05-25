@@ -8,6 +8,7 @@
       <th>Dirección</th>
       <th>Sector</th>
       <th>Estado</th>
+      <th>Areas de Formacion</th>
   </tr>
   <?php foreach($facilitadores as $f): ?>
   <tr style="height: 30px">
@@ -19,6 +20,15 @@
       <td><?php echo $f->getDireccion(); ?></td>
       <td><?php echo $f->getSector(); ?></td>
       <td><?php echo $f->getEstado(); ?></td>
+      <td>
+        <table border="0">
+          <?php foreach($f->getAreasFormacionFacilitador() as $aff): ?>
+          <tr>
+            <td><?php echo $aff->getAreasFormacion()->getNombreArea(); ?></td>
+          </tr>
+          <?php endforeach; ?>
+        </table>
+      </td>
   </tr>
   <?php endforeach; ?>
 </table>
