@@ -1,5 +1,10 @@
 <button class="back-button" onclick="javascript:parent.location='<?php echo url_for('principal/index'); ?>'">Ir al menú Principal</button>
 <button class="back-button" onclick="javascript:parent.location='<?php echo url_for('gestion/index'); ?>'">Regresar</button>
+
+<div id="dialog-confirm" title="Eliminar Facilitador" style="display: none; min-height: 100px;">
+	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>¿Esta seguro de eliminar al Facilitador?</p>
+</div>
+
 <br>
 <br>
 <form action="<?php echo url_for('gestion/buscar'); ?>" method="post">
@@ -49,7 +54,7 @@
       <td><input id="estatusAreaFormacion" value="" type="hidden"></td>
     </tr>
   </table>
-<input type="submit" onclick="cargarFacilitadores($('#estado').val(), $('#municipio').val(), $('#parroquia').val(), $('#estatusAreaFormacion').val()); return false;" value="Consultar">
+<input type="submit" onclick="cargarFacilitadores($('#estado').val(), $('#municipio').val(), $('#parroquia').val(), $('#estatusAreaFormacion').val(),''); return false;" value="Consultar">
 <?php echo $form->renderHiddenFields(); ?>
 </form>
 <br>
