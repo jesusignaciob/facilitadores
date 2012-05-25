@@ -9,7 +9,7 @@ Doctrine_Manager::getInstance()->bindComponent('AreasFormacionFacilitador', 'doc
  * 
  * @property integer $id_identificacion
  * @property integer $id_area_formacion
- * @property string $estatus
+ * @property integer $estatus
  * @property AreasFormacion $AreasFormacion
  * @property Identificacion $Identificacion
  * @property Doctrine_Collection $Secciones
@@ -17,7 +17,7 @@ Doctrine_Manager::getInstance()->bindComponent('AreasFormacionFacilitador', 'doc
  * 
  * @method integer                   getIdIdentificacion()             Returns the current record's "id_identificacion" value
  * @method integer                   getIdAreaFormacion()              Returns the current record's "id_area_formacion" value
- * @method string                    getEstatus()                      Returns the current record's "estatus" value
+ * @method integer                   getEstatus()                      Returns the current record's "estatus" value
  * @method AreasFormacion            getAreasFormacion()               Returns the current record's "AreasFormacion" value
  * @method Identificacion            getIdentificacion()               Returns the current record's "Identificacion" value
  * @method Doctrine_Collection       getSecciones()                    Returns the current record's "Secciones" collection
@@ -50,10 +50,10 @@ abstract class BaseAreasFormacionFacilitador extends sfDoctrineRecord
              'notnull' => true,
              'length' => 4,
              ));
-        $this->hasColumn('estatus', 'string', 20, array(
-             'type' => 'string',
+        $this->hasColumn('estatus', 'integer', 1, array(
+             'type' => 'integer',
              'notnull' => true,
-             'length' => 20,
+             'length' => 1,
              ));
     }
 
