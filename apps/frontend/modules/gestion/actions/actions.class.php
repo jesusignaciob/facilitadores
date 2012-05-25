@@ -218,6 +218,9 @@ public function executeCreateProfesion(sfWebRequest $request)
 
   public function executeCargarFacilitadores(sfWebRequest $request)
   {
+    if (!$request->isXmlHttpRequest())
+      return $this->renderText('No hay registros');
+  
     $cedula = $request->getParameter('cedula');
     $nombre = $request->getParameter('nombre');
     $apellido = $request->getParameter('apellido');
@@ -225,16 +228,14 @@ public function executeCreateProfesion(sfWebRequest $request)
     $municipio = $request->getParameter('municipio');
     $parroquia = $request->getParameter('parroquia');
     $estatus = $request->getParameter('estatus');
+    $id = $request->getParameter('id');
+
+    if (strlen($id) > 0)
+      Doctrine_Core::getTable('Identificacion')->eliminarFacilitador($id);
 
     $this->facilitadores = Doctrine_Core::getTable('Identificacion')->obtenerFacilitadores($cedula, $nombre, $apellido, $estado, $municipio, $parroquia, $estatus);
- 
-    /*if ($request->isXmlHttpRequest())
-    {
-      if ($this->facilitadores)
-        return $this->renderText('No hay registros consultados');
-    }*/
 
-    return $this->renderPartial('gestion/facilitadoresList', array('facilitadores' => $this->facilitadores));
+    return $this->renderPartial('gestion/facilitadoresList', array('facilitadores' => $this->facilitadores, 'cedula' => $cedula, 'nombre' => $nombre, 'apellido' => $apellido, 'estado' => $estado, 'municipio' => $municipio, 'parroquia' => $parroquia, 'estatus' => $estatus));
   }
 
   public function executeCargarMunicipios(sfWebRequest $request)
