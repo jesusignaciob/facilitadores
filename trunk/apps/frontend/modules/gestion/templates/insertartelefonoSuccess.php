@@ -23,4 +23,27 @@ echo $form['id_identificacion']->render(array('value'=>$id));
 <form action="<?php echo url_for('gestion/insertarcorreo?id='.$id); ?>" method="post">
 <input type="submit" value="Siguiente">
 </form>
+<br>
+<table border="1" style="border-collapse:collapse; width: 100%">
+  <tr style="height: 30px">
+<?php if (isset($telefonos)){
+?>
+<th>Nº de Teléfonos</th>
+  </tr>
+<?php foreach($telefonos as $tf): ?>
+  <tr style="height: 30px">
+     
+      <td><?php echo $tf->getnumero(); ?></td>
+      
+  </tr>
+  <?php endforeach; 
+} 
+else 
+{ 
+echo "Aún no haz configurado números de teléfonos"; 
+} ?>
+</table>
+
+      
+  
 
