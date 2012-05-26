@@ -3,7 +3,7 @@
 <button class="back-button" onclick="javascript:parent.location='<?php echo url_for('gestion/insertar_profesion?id='.$id); ?>'">Regresar</button>
 <br>
 <h4>
-Configuración de Ocupación
+Configuración de Ocupación Facilitador
 </h4>
 <br>
 <form action="<?php echo url_for('gestion/CreateOcupacion?id='.$id); ?>" method="post">
@@ -31,13 +31,21 @@ echo $form['id_identificacion']->render(array('value'=>$id));
   <tr style="height: 30px">
 <?php if (isset($ocupacion_facilitador)){
 ?>
-<th>Ocupación del Facilitador</th>
+<th colspan='2'>Lista de Ocupaciones</th>
   </tr>
-<?php foreach($ocupacion_facilitador as $pf): ?>
+<tr>
+<th>
+Nº
+</th>
+<th>
+Ocupación
+</th>
+</tr>
+<?php $cont=1; foreach($ocupacion_facilitador as $pf): ?>
   <tr style="height: 30px">
-     
+      <td><?php echo $cont; ?></td>
       <td><?php echo $pf->getnombre_ocupacion(); ?></td>
-      
+      <?php $cont +=1; ?>
   </tr>
   <?php endforeach; 
 } 
