@@ -9,7 +9,7 @@ CREATE TABLE disponibilidad_turnos (id BIGSERIAL, id_disponibilidad_dia INT NOT 
 CREATE TABLE ente (id BIGSERIAL, nombre_ente VARCHAR(50) NOT NULL, id_estado INT NOT NULL, id_municipio INT NOT NULL, id_parroquia INT NOT NULL, PRIMARY KEY(id));
 CREATE TABLE estado (id BIGSERIAL, nombre_estado VARCHAR(20) NOT NULL, PRIMARY KEY(id));
 CREATE TABLE estudios (id BIGSERIAL, nombre_estudio VARCHAR(50) NOT NULL, PRIMARY KEY(id));
-CREATE TABLE identificacion (id BIGSERIAL, nombre VARCHAR(50) NOT NULL, apellido VARCHAR(50) NOT NULL, cedula_pasaporte VARCHAR(8) NOT NULL UNIQUE, nacionalidad VARCHAR(20) NOT NULL, direccion VARCHAR(100) NOT NULL, sector VARCHAR(100), situacion_laboral VARCHAR(50) NOT NULL, formacion_politica BOOLEAN NOT NULL, activo BOOLEAN NOT NULL, id_estado INT NOT NULL, id_municipio INT NOT NULL, id_parroquia INT NOT NULL, PRIMARY KEY(id));
+CREATE TABLE identificacion (id BIGSERIAL, nombre VARCHAR(50) NOT NULL, apellido VARCHAR(50) NOT NULL, cedula_pasaporte VARCHAR(8) NOT NULL UNIQUE, nacionalidad VARCHAR(20) NOT NULL, direccion VARCHAR(100) NOT NULL, sector VARCHAR(100), situacion_laboral VARCHAR(50) NOT NULL, formacion_politica BOOLEAN DEFAULT 'false' NOT NULL, activo BOOLEAN DEFAULT 'true' NOT NULL, id_estado INT NOT NULL, id_municipio INT NOT NULL, id_parroquia INT NOT NULL, PRIMARY KEY(id));
 CREATE TABLE municipio (id BIGSERIAL, nombre_municipio VARCHAR(50) NOT NULL, id_estado INT NOT NULL, PRIMARY KEY(id));
 CREATE TABLE nivel_formacion (id BIGSERIAL, id_identificacion INT NOT NULL, id_estudios INT NOT NULL, PRIMARY KEY(id));
 CREATE TABLE ocupacion (id BIGSERIAL, id_identificacion INT NOT NULL, nombre_ocupacion VARCHAR(50) NOT NULL, PRIMARY KEY(id));
