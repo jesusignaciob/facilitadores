@@ -6,6 +6,10 @@ $(function() {
   $('#estatus').change(function() {
     $('#estatusAreaFormacion').attr('value', this.value);
   });
+  
+  $('#areas').change(function() {
+    $('#areaFormacion').attr('value', this.value);
+  });
 });
 
 function soloNumerico(variable) {
@@ -20,17 +24,17 @@ function valNumero(control) {
   control.value = soloNumerico(control.value);
 }
 
-function cargarFacilitadores(estado, municipio, parroquia, estatus, idEliminar) {
+function cargarFacilitadores(estado, municipio, parroquia, estatus, area, idEliminar) {
   var cedula = $('#identificacion_cedula_pasaporte').val();
   var nombre = $('#identificacion_nombre').val();
   var apellido = $('#identificacion_apellido').val();
 
   $(function() {
-    $('#facilitadoresConsultados').load('cargarFacilitadores',{ 'cedula': cedula, 'nombre': nombre, 'apellido': apellido, 'estado': estado, 'municipio': municipio, 'parroquia': parroquia, 'estatus': estatus, 'id': idEliminar });
+    $('#facilitadoresConsultados').load('cargarFacilitadores',{ 'cedula': cedula, 'nombre': nombre, 'apellido': apellido, 'estado': estado, 'municipio': municipio, 'parroquia': parroquia, 'estatus': estatus, 'area': area, 'id': idEliminar });
   });
 }
 
-function eliminarFacilitador(estado, municipio, parroquia, estatus, idEliminar) {
+function eliminarFacilitador(estado, municipio, parroquia, estatus, area, idEliminar) {
   $(function() {
     $( "#dialog:ui-dialog" ).dialog( "destroy" );
   
@@ -40,7 +44,7 @@ function eliminarFacilitador(estado, municipio, parroquia, estatus, idEliminar) 
 			modal: true,
 			buttons: {
 				"Eliminar": function() {
-				  cargarFacilitadores(estado, municipio, parroquia, estatus, idEliminar);
+				  cargarFacilitadores(estado, municipio, parroquia, estatus, area, idEliminar);
 					$( this ).dialog( "close" );
 				},
 				"Cancelar": function() {
