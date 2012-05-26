@@ -28,7 +28,9 @@ abstract class BaseCorreosForm extends BaseFormDoctrine
 
     $this->widgetSchema->setNameFormat('correos[%s]');
 
-    $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+    $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema->setPostValidator(new sfValidatorAnd(array(
+            new sfValidatorDoctrineUnique(array('model' => 'Correos', 'column' => array('correo','id_identificacion')), array('invalid'=> "Correo Electrónico ya fue asignado al Facilitador")),
+))));
 
     $this->setupInheritance();
 
