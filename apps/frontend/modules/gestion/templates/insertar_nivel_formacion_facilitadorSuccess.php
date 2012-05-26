@@ -7,17 +7,20 @@ Configuración de Nivel de Formación
 </h4>
 <br>
 <form action="<?php echo url_for('gestion/CreateNivelFormacionFacilitador?id='.$id); ?>" method="post">
-<table border=1>
+<table border=0>
 <tr>
-<td><?php echo $form['id_estudios']->renderLabel(); ?></td>
+<th style="text-align:right; height: 30px"><?php echo $form['id_estudios']->renderLabel(); ?></th>
 <td><?php echo $form['id_estudios']->render(); ?></td>
-<td><?php echo $form['id_estudios']->renderError(); ?></td>
+<td style="text-align:left; height: 30px"><?php echo $form['id_estudios']->renderError(); ?></td>
 </tr>
 </table>
-<input type="submit">
+<br>
+<input type="submit" value="Agregar Formación">
 <?php echo $form->renderHiddenFields(); 
 echo $form['id_identificacion']->render(array('value'=>$id));
 ?>
+<br>
+<br>
 </form>
 <form action="<?php echo url_for('gestion/insertar_profesion?id='.$id); ?>" method="post">
 <input type="submit" value="Siguiente">

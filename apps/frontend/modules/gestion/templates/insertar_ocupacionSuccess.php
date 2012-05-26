@@ -8,17 +8,20 @@ Configuración de Ocupación
 <br>
 <form action="<?php echo url_for('gestion/CreateOcupacion?id='.$id); ?>" method="post">
 
-<table border=1>
+<table border=0>
 <tr>
-  <td><?php echo $form['nombre_ocupacion']->renderLabel(); ?></td>
+  <th style="text-align:right; height: 30px"><?php echo $form['nombre_ocupacion']->renderLabel(); ?></th>
   <td><?php echo $form['nombre_ocupacion']->render(); ?></td>
-  <td><?php echo $form['nombre_ocupacion']->renderError(); ?></td>
+  <td style="text-align:left; height: 30px"><?php echo $form['nombre_ocupacion']->renderError(); ?></td>
 </tr>
 </table>
-<input type="submit">
+<br>
+<input type="submit" value="Agregar Ocupación">
 <?php echo $form->renderHiddenFields(); 
 echo $form['id_identificacion']->render(array('value'=>$id));
 ?>
+<br>
+<br>
 </form>
 <form action="<?php echo url_for('gestion/insertar_dias_turno?id='.$id); ?>" method="post">
 <input type="submit" value="Siguiente">

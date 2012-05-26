@@ -8,17 +8,20 @@ Configuración de Profesión
 <br>
 <form action="<?php echo url_for('gestion/CreateProfesion?id='.$id); ?>" method="post">
 
-<table border=1>
+<table border=0>
 <tr>
-  <td><?php echo $form['nombre_profesion']->renderLabel(); ?></td>
+  <th style="text-align:right; height: 30px"><?php echo $form['nombre_profesion']->renderLabel(); ?></th>
   <td><?php echo $form['nombre_profesion']->render(); ?></td>
-  <td><?php echo $form['nombre_profesion']->renderError(); ?></td>
+  <td style="text-align:left; height: 30px"><?php echo $form['nombre_profesion']->renderError(); ?></td>
 </tr>
 </table>
-<input type="submit">
+<br>
+<input type="submit" value="Agregar Profesión">
 <?php echo $form->renderHiddenFields(); 
 echo $form['id_identificacion']->render(array('value'=>$id));
 ?>
+<br>
+<br>
 </form>
 <form action="<?php echo url_for('gestion/insertar_ocupacion?id='.$id); ?>" method="post">
 <input type="submit" value="Siguiente">
