@@ -26,22 +26,57 @@ class gestionActions extends sfActions
   public function executeInsertartelefono(sfWebRequest $request)
   {
     $this->form = new TelefonosForm();
+    $id = $request->getParameter('id');
+   //Realizar la consulta a la tabla telefonos referenciando el id y la enviamos al formulario insertartelefonoSuccess.php
+   $this->telefonos = Doctrine_Core::getTable('Telefonos')->obtenerTelefonosPorFacilitador($id);
   }
   public function executeInsertarcorreo(sfWebRequest $request)
   {
 	$this->form = new CorreosForm();
+        $id = $request->getParameter('id');
+   //Realizar la consulta a la tabla correos referenciando el id y la enviamos al formulario insertarcorreoSuccess.php
+   $this->correos = Doctrine_Core::getTable('Correos')->obtenerCorreosPorFacilitador($id);
   }
   public function executeInsertar_areas_formacion_facilitador(sfWebRequest $request)
   {
 	$this->form = new AreasFormacionFacilitadorForm();
+        //obtener el id que pertenece al identificador
+   $id = $request->getParameter('id');
+   //Realizar la consulta a la tabla areas_formacion y areas_formacion_facilitador referenciando el id y la enviamos al formulario insertar_areas_formacion_facilitadorSuccess.php
+   $this->areas_formacion_facilitador = Doctrine_Core::getTable('AreasFormacionFacilitador')->obtenerAreasFormacionPorFacilitador($id);
   }
   public function executeInsertar_nivel_formacion_facilitador(sfWebRequest $request)
   {
 	$this->form = new NivelFormacionForm();
+        //obtener el id que pertenece al identificador
+   $id = $request->getParameter('id');
+   //Realizar la consulta a la tabla nivel_formacion referenciando el id y la enviamos al formulario insertar_nivel_formacion_facilitadorSuccess.php
+   $this->nivel_formacion_facilitador = Doctrine_Core::getTable('NivelFormacion')->obtenerNivelFormacionPorFacilitador($id);
   }
 public function executeInsertar_profesion(sfWebRequest $request)
   {
 	$this->form = new ProfesionForm();
+   //obtener el id que pertenece al identificador
+   $id = $request->getParameter('id');
+   //Realizar la consulta a la tabla profesion referenciando el id y la enviamos al formulario insertar_profesionSuccess.php
+   $this->profesion_facilitador = Doctrine_Core::getTable('Profesion')->obtenerProfesionPorFacilitador($id);
+  }
+public function executeInsertar_ocupacion(sfWebRequest $request)
+  {
+	$this->form = new OcupacionForm();
+   //obtener el id que pertenece al identificador
+   $id = $request->getParameter('id');
+   //Realizar la consulta a la tabla ocupacion referenciando el id y la enviamos al formulario insertar_ocupacionSuccess.php
+   $this->ocupacion_facilitador = Doctrine_Core::getTable('Ocupacion')->obtenerOcupacionPorFacilitador($id);
+  }
+public function executeInsertar_dias_turno(sfWebRequest $request)
+  {
+    
+   $this->form = new DisponibilidadTurnosForm();
+   //obtener el id que pertenece al identificador
+   $id = $request->getParameter('id');
+   //Realizar la consulta a la tabla ocupacion referenciando el id y la enviamos al formulario insertar_ocupacionSuccess.php
+   //$this->ocupacion_facilitador = Doctrine_Core::getTable('Ocupacion')->obtenerOcupacionPorFacilitador($id);
   }
 //Funcion para validar las entradas de datos de Identificacion
   public function executeCreate(sfWebRequest $request)
@@ -71,9 +106,10 @@ public function executeInsertar_profesion(sfWebRequest $request)
    $this->form = new TelefonosForm();
    $this->processFormTelefono($request, $this->form);
    $this->setTemplate('insertartelefono');
-   /*$busqueda = $id->getParameter('id');
-   $c = new Criteria();
-   $c->add(TelefonosPeer::id_identificacion,$id);*/
+   //obtener el id que pertenece al identificador
+   $id = $request->getParameter('id');
+   //Realizar la consulta a la tabla telefonos referenciando el id y la enviamos al formulario insertartelefonoSuccess.php
+   $this->telefonos = Doctrine_Core::getTable('Telefonos')->obtenerTelefonosPorFacilitador($id);  
  }
 //Si pasa la funcion anterior, almacena los registros de Telefonos
   protected function processFormTelefono(sfWebRequest $request, sfForm $form)
@@ -87,20 +123,19 @@ public function executeInsertar_profesion(sfWebRequest $request)
 
    if ($form->isValid())
    {
-     $result = $form->save();
-     
-     /*$this->forwardUnless($id = $request->getParameter('id'));
-
-     $seleccionartelefonos = Doctrine_Core::getTable('Telefonos')->createQuery()->where('id_identificacion=?',$id);
-      $this->telefonos = $seleccionartelefonos->execute();*/
+   $result = $form->save();
    }
- }
+   }
 //Funcion para validar las entradas de datos de Correos
 public function executeCreateCorreo(sfWebRequest $request)
  {
    $this->form = new CorreosForm();
    $this->processFormCorreos($request, $this->form);
    $this->setTemplate('insertarcorreo');
+   //obtener el id que pertenece al identificador
+   $id = $request->getParameter('id');
+   //Realizar la consulta a la tabla correos referenciando el id y la enviamos al formulario insertarcorreoSuccess.php
+   $this->correos = Doctrine_Core::getTable('Correos')->obtenerCorreosPorFacilitador($id);
  }
 //Si pasa la funcion anterior, almacena los registros de Correos
   protected function processFormCorreos(sfWebRequest $request, sfForm $form)
@@ -122,6 +157,10 @@ public function executeCreateAreasFormacionFacilitador(sfWebRequest $request)
    $this->form = new AreasFormacionFacilitadorForm();
    $this->processAreasFormacionFacilitador($request, $this->form);
    $this->setTemplate('insertar_areas_formacion_facilitador');
+   //obtener el id que pertenece al identificador
+   $id = $request->getParameter('id');
+   //Realizar la consulta a la tabla areas_formacion_facilitador referenciando el id y la enviamos al formulario insertar_areas_formacion_facilitadorSuccess.php
+   $this->areas_formacion_facilitador = Doctrine_Core::getTable('AreasFormacionFacilitador')->obtenerAreasFormacionPorFacilitador($id);
  }
 //Si pasa la funcion anterior, almacena los registros de AreasFormacionFacilitador
   protected function processAreasFormacionFacilitador(sfWebRequest $request, sfForm $form)
@@ -143,6 +182,10 @@ public function executeCreateNivelFormacionFacilitador(sfWebRequest $request)
    $this->form = new NivelFormacionForm();
    $this->processNivelFormacionFacilitador($request, $this->form);
    $this->setTemplate('insertar_nivel_formacion_facilitador');
+   //obtener el id que pertenece al identificador
+   $id = $request->getParameter('id');
+   //Realizar la consulta a la tabla nivel_formacion referenciando el id y la enviamos al formulario insertar_nivel_formacion_facilitadorSuccess.php
+   $this->nivel_formacion_facilitador = Doctrine_Core::getTable('NivelFormacion')->obtenerNivelFormacionPorFacilitador($id);
  }
 //Si pasa la funcion anterior, almacena los registros de NivelFormacionFacilitador
   protected function processNivelFormacionFacilitador(sfWebRequest $request, sfForm $form)
@@ -165,9 +208,65 @@ public function executeCreateProfesion(sfWebRequest $request)
    $this->form = new ProfesionForm();
    $this->processProfesion($request, $this->form);
    $this->setTemplate('insertar_profesion');
+   //obtener el id que pertenece al identificador
+   $id = $request->getParameter('id');
+   //Realizar la consulta a la tabla profesion referenciando el id y la enviamos al formulario insertar_profesionSuccess.php
+   $this->profesion_facilitador = Doctrine_Core::getTable('Profesion')->obtenerProfesionPorFacilitador($id);
  }
 //Si pasa la funcion anterior, almacena los registros de Profesion
   protected function processProfesion(sfWebRequest $request, sfForm $form)
+  {
+   $form->bind(
+
+     $request->getParameter($form->getName()),
+     $request->getFiles($form->getName())
+   );
+
+   if ($form->isValid())
+   {
+     $result = $form->save();
+   }
+ }
+
+//Funcion para validar las entradas de datos de Ocupacion
+public function executeCreateOcupacion(sfWebRequest $request)
+ {
+   $this->form = new OcupacionForm();
+   $this->processOcupacion($request, $this->form);
+   $this->setTemplate('insertar_ocupacion');
+   //obtener el id que pertenece al identificador
+   $id = $request->getParameter('id');
+   //Realizar la consulta a la tabla ocupacion referenciando el id y la enviamos al formulario insertar_ocupacionSuccess.php
+   $this->ocupacion_facilitador = Doctrine_Core::getTable('Ocupacion')->obtenerOcupacionPorFacilitador($id);
+ }
+//Si pasa la funcion anterior, almacena los registros de Ocupacion
+  protected function processOcupacion(sfWebRequest $request, sfForm $form)
+  {
+   $form->bind(
+
+     $request->getParameter($form->getName()),
+     $request->getFiles($form->getName())
+   );
+
+   if ($form->isValid())
+   {
+     $result = $form->save();
+   }
+ }
+
+//Funcion para validar las entradas de datos de Turnos disponibles
+public function executeCreateTurnoDisponible(sfWebRequest $request)
+ {
+   $this->form = new DisponibilidadTurnosForm();
+   $this->processDisponibilidadTurnos($request, $this->form);
+   $this->setTemplate('insertar_dias_turno');
+   //obtener el id que pertenece al identificador
+   $id = $request->getParameter('id');
+   //Realizar la consulta a la tabla ocupacion referenciando el id y la enviamos al formulario insertar_ocupacionSuccess.php
+   //$this->ocupacion_facilitador = Doctrine_Core::getTable('Ocupacion')->obtenerOcupacionPorFacilitador($id);
+ }
+//Si pasa la funcion anterior, almacena los registros de Ocupacion
+  protected function processDisponibilidadTurnos(sfWebRequest $request, sfForm $form)
   {
    $form->bind(
 
