@@ -50,8 +50,9 @@ abstract class BaseIdentificacionForm extends BaseFormDoctrine
 
     $this->widgetSchema->setNameFormat('identificacion[%s]');
 
-    $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
-
+    $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema->setPostValidator(new sfValidatorAnd(array(
+            new sfValidatorDoctrineUnique(array('model' => 'Identificacion', 'column' => array('cedula_pasaporte')), array('invalid'=> "Esta cédula ó pasaporte ya pertenece a un Facilitador")),
+))));
     $this->setupInheritance();
 
     parent::setup();
