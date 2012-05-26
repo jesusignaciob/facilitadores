@@ -130,11 +130,13 @@ abstract class BaseIdentificacion extends sfDoctrineRecord
         $this->hasColumn('formacion_politica', 'boolean', 1, array(
              'type' => 'boolean',
              'notnull' => true,
+             'default' => false,
              'length' => 1,
              ));
         $this->hasColumn('activo', 'boolean', 1, array(
              'type' => 'boolean',
              'notnull' => true,
+             'default' => true,
              'length' => 1,
              ));
         $this->hasColumn('id_estado', 'integer', 4, array(
