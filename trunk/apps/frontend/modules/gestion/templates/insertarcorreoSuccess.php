@@ -7,18 +7,21 @@ Configuración de Correos Electrónicos
 </h4>
 <br>
 <form action="<?php echo url_for('gestion/CreateCorreo?id='.$id); ?>" method="post">
-<table border=1>
+<table border=0>
 
 <tr>
-  <td><?php echo $form['correo']->renderLabel(); ?></td>
+  <th style="text-align:right; height: 30px"><?php echo $form['correo']->renderLabel(); ?></th>
   <td><?php echo $form['correo']->render(); ?></td>
-  <td><?php echo $form['correo']->renderError(); ?></td>
+  <td style="text-align:left; height: 30px"><?php echo $form['correo']->renderError(); ?></td>
 </tr>
 </table>
-<input type="submit">
+<br>
+<input type="submit" value="Agregar Correo">
 <?php echo $form->renderHiddenFields(); 
 echo $form['id_identificacion']->render(array('value'=>$id));
 ?>
+<br>
+<br>
 </form>
 <form action="<?php echo url_for('gestion/insertar_areas_formacion_facilitador?id='.$id); ?>" method="post">
 <input type="submit" value="Siguiente">

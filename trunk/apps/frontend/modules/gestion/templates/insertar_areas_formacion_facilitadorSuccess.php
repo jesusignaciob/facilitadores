@@ -7,21 +7,24 @@ Configuración de Áreas de Formación
 </h4>
 <br>
 <form action="<?php echo url_for('gestion/CreateAreasFormacionFacilitador?id='.$id); ?>" method="post">
-<table border=1>
+<table border=0>
 <tr>
-<td><?php echo $form['id_area_formacion']->renderLabel(); ?></td>
-<td><?php echo $form['id_area_formacion']->render(); ?></td>
-<td><?php echo $form['id_area_formacion']->renderError(); ?></td>
+  <th style="text-align:right; height: 30px"><?php echo $form['id_area_formacion']->renderLabel(); ?></th>
+  <td><?php echo $form['id_area_formacion']->render(); ?></td>
+  <td style="text-align:left; height: 30px"><?php echo $form['id_area_formacion']->renderError(); ?></td>
 </tr>
 </table>
-<input type="submit">
+<br>
+<input type="submit" value="Agregar Areas de Formación">
 <?php echo $form->renderHiddenFields(); 
 echo $form['id_identificacion']->render(array('value'=>$id));
 echo $form['id_identificacion']->render(array('value'=>$id));
 ?>
+<br>
+<br>
 </form>
 <form action="<?php echo url_for('gestion/insertar_nivel_formacion_facilitador?id='.$id); ?>" method="post">
-<input type="submit" value="Siguiente">
+  <input type="submit" value="Siguiente">
 </form>
 <br>
 <table border="1" style="border-collapse:collapse; width: 100%">
@@ -40,6 +43,6 @@ echo $form['id_identificacion']->render(array('value'=>$id));
 } 
 else 
 { 
-echo "Aún no haz configurado Áreas de Formación del Facilitador"; 
+echo "Aún no has configurado Áreas de Formación del Facilitador"; 
 } ?>
 </table>
