@@ -29,7 +29,9 @@ abstract class BaseProfesionForm extends BaseFormDoctrine
 
     $this->widgetSchema->setNameFormat('profesion[%s]');
 
-    $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+    $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema->setPostValidator(new sfValidatorAnd(array(
+            new sfValidatorDoctrineUnique(array('model' => 'Profesion', 'column' => array('nombre_profesion','id_identificacion')), array('invalid'=> "Profesión ya fue asignada al Facilitador")),
+))));
 
     $this->setupInheritance();
 
