@@ -117,6 +117,9 @@ DisponibilidadTrasladoEstado:
     id_municipio:
       type: integer(4)
       notnull: true
+    id_parroquia:
+      type: integer(4)
+      notnull: true
     requiere_traslado:
       type: boolean(1)
       notnull: true
@@ -131,6 +134,10 @@ DisponibilidadTrasladoEstado:
       type: one
     Municipio:
       local: id_municipio
+      foreign: id
+      type: one
+    Parroquia:
+      local: id_parroquia
       foreign: id
       type: one
 DisponibilidadTurnos:
@@ -445,7 +452,7 @@ Telefonos:
       type: integer(4)
       notnull: true
     numero:
-      type: integer(10)
+      type: string(12)
       notnull: true
   relations:
     Identificacion:
