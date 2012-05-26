@@ -285,6 +285,8 @@ public function executeCreateTurnoDisponible(sfWebRequest $request)
    $this->form = new IdentificacionBuscarForm();
    $this->buscarProcessForm($request, $this->form);
    $this->setTemplate('buscar');
+   
+   $this->areas = Doctrine::getTable('AreasFormacion')->obtenerTodos();
  }
 
   protected function buscarProcessForm(sfWebRequest $request, sfForm $form)
@@ -328,13 +330,14 @@ public function executeCreateTurnoDisponible(sfWebRequest $request)
     $parroquia = $request->getParameter('parroquia');
     $estatus = $request->getParameter('estatus');
     $id = $request->getParameter('id');
+    $area = $request->getParameter('area');
 
     if (strlen($id) > 0)
       Doctrine_Core::getTable('Identificacion')->eliminarFacilitador($id);
 
-    $this->facilitadores = Doctrine_Core::getTable('Identificacion')->obtenerFacilitadores($cedula, $nombre, $apellido, $estado, $municipio, $parroquia, $estatus);
+    $this->facilitadores = Doctrine_Core::getTable('Identificacion')->obtenerFacilitadores($cedula, $nombre, $apellido, $estado, $municipio, $parroquia, $estatus, $area);
 
-    return $this->renderPartial('gestion/facilitadoresList', array('facilitadores' => $this->facilitadores, 'cedula' => $cedula, 'nombre' => $nombre, 'apellido' => $apellido, 'estado' => $estado, 'municipio' => $municipio, 'parroquia' => $parroquia, 'estatus' => $estatus));
+    return $this->renderPartial('gestion/facilitadoresList', array('facilitadores' => $this->facilitadores, 'cedula' => $cedula, 'nombre' => $nombre, 'apellido' => $apellido, 'estado' => $estado, 'municipio' => $municipio, 'parroquia' => $parroquia, 'estatus' => $estatus, 'area' => $area));
   }
 
   public function executeCargarMunicipios(sfWebRequest $request)
