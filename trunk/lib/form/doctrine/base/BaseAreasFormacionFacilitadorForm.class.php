@@ -31,7 +31,9 @@ abstract class BaseAreasFormacionFacilitadorForm extends BaseFormDoctrine
 
     $this->widgetSchema->setNameFormat('areas_formacion_facilitador[%s]');
 
-    $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+    $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema->setPostValidator(new sfValidatorAnd(array(
+            new sfValidatorDoctrineUnique(array('model' => 'AreasFormacionFacilitador', 'column' => array('id_area_formacion', 'id_identificacion')), array('invalid'=> "Área de Formación ya fue asignada al Facilitador")),
+            ))));
 
     $this->setupInheritance();
 
