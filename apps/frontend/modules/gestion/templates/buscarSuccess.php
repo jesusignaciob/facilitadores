@@ -40,6 +40,18 @@
       <td><input id="parroquia" value="" type="hidden"></td>
     </tr>
     <tr>
+      <th style="text-align:right; height: 30px">Areas de Formacion</th>
+      <td>
+        <select id="areas">
+          <option value=""></option>
+          <?php foreach($areas as $af): ?>
+          <option value="<?php echo $af->getId(); ?>"><?php echo $af->getNombreArea(); ?></option>
+          <?php endforeach; ?>
+        </select>
+      </td>
+      <td><input id="areaFormacion" value="" type="hidden"></td>
+    </tr>
+    <tr>
       <th style="text-align:right; height: 30px">Estatus</th>
       <td>
         <select id="estatus">
@@ -54,7 +66,7 @@
       <td><input id="estatusAreaFormacion" value="" type="hidden"></td>
     </tr>
   </table>
-<input type="submit" onclick="cargarFacilitadores($('#estado').val(), $('#municipio').val(), $('#parroquia').val(), $('#estatusAreaFormacion').val(),''); return false;" value="Consultar">
+<input type="submit" onclick="cargarFacilitadores($('#estado').val(), $('#municipio').val(), $('#parroquia').val(), $('#estatusAreaFormacion').val(), $('#areaFormacion').val(),''); return false;" value="Consultar">
 <?php echo $form->renderHiddenFields(); ?>
 </form>
 <br>
