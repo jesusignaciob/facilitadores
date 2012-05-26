@@ -3,7 +3,7 @@
 <button class="back-button" onclick="javascript:parent.location='<?php echo url_for('gestion/insertartelefono?id='.$id); ?>'">Regresar</button>
 <br>
 <h4>
-Configuración de Correos Electrónicos
+Configuración de Correos Electrónicos Facilitador
 </h4>
 <br>
 <form action="<?php echo url_for('gestion/CreateCorreo?id='.$id); ?>" method="post">
@@ -31,13 +31,21 @@ echo $form['id_identificacion']->render(array('value'=>$id));
   <tr style="height: 30px">
 <?php if (isset($correos)){
 ?>
-<th>Correos Electrónicos</th>
+<th colspan='2'>Lista Correos Electrónicos</th>
   </tr>
-<?php foreach($correos as $cf): ?>
+<tr>
+<th>
+Nº
+</th>
+<th>
+Correos Electrónicos
+</th>
+</tr>
+<?php $cont=1; foreach($correos as $cf): ?>
   <tr style="height: 30px">
-     
+      <td><?php echo $cont; ?></td>
       <td><?php echo $cf->getcorreo(); ?></td>
-      
+      <?php $cont +=1; ?>
   </tr>
   <?php endforeach; 
 } 
