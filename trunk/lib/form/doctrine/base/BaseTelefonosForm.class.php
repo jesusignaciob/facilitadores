@@ -28,8 +28,10 @@ abstract class BaseTelefonosForm extends BaseFormDoctrine
 
     $this->widgetSchema->setNameFormat('telefonos[%s]');
 
-    $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
-
+    $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema->setPostValidator(new sfValidatorAnd(array(
+            new sfValidatorDoctrineUnique(array('model' => 'Telefonos', 'column' => array('numero', 'id_identificacion')), array('invalid'=> "Teléfono ya fue asignado al Facilitador")),
+    ))));
+    
     $this->setupInheritance();
 
     parent::setup();
