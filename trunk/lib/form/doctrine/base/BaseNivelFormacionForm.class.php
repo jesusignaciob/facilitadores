@@ -28,7 +28,9 @@ abstract class BaseNivelFormacionForm extends BaseFormDoctrine
 
     $this->widgetSchema->setNameFormat('nivel_formacion[%s]');
 
-    $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+    $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema->setPostValidator(new sfValidatorAnd(array(
+            new sfValidatorDoctrineUnique(array('model' => 'NivelFormacion', 'column' => array('id_estudios','id_identificacion')), array('invalid'=> "Nivel de Formación ya fue asignada al Facilitador")),
+))));
 
     $this->setupInheritance();
 
