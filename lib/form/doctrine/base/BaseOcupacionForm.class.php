@@ -28,7 +28,9 @@ abstract class BaseOcupacionForm extends BaseFormDoctrine
 
     $this->widgetSchema->setNameFormat('ocupacion[%s]');
 
-    $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema->setPostValidator(new sfValidatorAnd(array(
+            new sfValidatorDoctrineUnique(array('model' => 'Ocupacion', 'column' => array('nombre_ocupacion','id_identificacion')), array('invalid'=> "Ocupación ya fue asignada al Facilitador")),
+))));
 
     $this->setupInheritance();
 
