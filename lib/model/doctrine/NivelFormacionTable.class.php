@@ -16,4 +16,12 @@ class NivelFormacionTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('NivelFormacion');
     }
+    public static function obtenerNivelFormacionPorFacilitador($idFacilitador)
+    {
+        $q = Doctrine_Query::create()
+                ->from('NivelFormacion nff')
+                ->where('nff.id_identificacion = ?', $idFacilitador);
+                
+        return $q->execute();
+    }
 }
