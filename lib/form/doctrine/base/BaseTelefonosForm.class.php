@@ -23,7 +23,7 @@ abstract class BaseTelefonosForm extends BaseFormDoctrine
     $this->setValidators(array(
       'id'                => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'id_identificacion' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Identificacion'), 'required' => false)),
-      'numero'            => new sfValidatorInteger(array('required' => true), array('required'=> "Ingrese el número de teléfono")),
+      'numero'            => new sfValidatorString(array('required' => true), array('required'=> "Ingrese el número de teléfono")),
     ));
 
     $this->widgetSchema->setNameFormat('telefonos[%s]');
