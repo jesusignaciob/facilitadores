@@ -24,7 +24,7 @@
   <tr style="height: 30px">
       <td>
         [<a href="<?php echo url_for('gestion/detalle?id='.$f->getId()) ?>">Consultar<a>]
-        [<a href="#">Modificar<a>]
+        <!--[<a href="#">Modificar<a>]-->
         [<a href="#" onclick="eliminarFacilitador($('#estado').val(), $('#municipio').val(), $('#parroquia').val(), $('#estatus').val(), $('#area').val(), <?php echo $f->getId(); ?>); return false;">Eliminar<a>]
       </td>
       <td><?php echo $f->getCedulaPasaporte(); ?></td>
