@@ -23,6 +23,7 @@ AreasFormacionFacilitador:
     estatus:
       type: integer(1)
       notnull: true
+      default: 0
   relations:
     AreasFormacion:
       local: id_area_formacion
