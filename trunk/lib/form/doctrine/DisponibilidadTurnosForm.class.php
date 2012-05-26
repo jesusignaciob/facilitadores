@@ -12,5 +12,6 @@ class DisponibilidadTurnosForm extends BaseDisponibilidadTurnosForm
 {
   public function configure()
   {
+	$this->widgetSchema['id_identificacion'] = new sfWidgetFormInputHidden();
   }
 }
