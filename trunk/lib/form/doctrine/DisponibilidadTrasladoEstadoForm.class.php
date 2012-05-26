@@ -12,5 +12,11 @@ class DisponibilidadTrasladoEstadoForm extends BaseDisponibilidadTrasladoEstadoF
 {
   public function configure()
   {
+     $this->widgetSchema['id_identificacion'] = new sfWidgetFormInputHidden();
+     $this->widgetSchema->setLabels(array(
+          'id_estado'    => 'Estado',
+          'id_municipio'   => 'Municipio',
+          'id_parroquia' => 'Parroquia',
+        ));
   }
 }
