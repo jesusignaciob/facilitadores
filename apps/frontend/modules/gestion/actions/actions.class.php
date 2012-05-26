@@ -78,6 +78,15 @@ public function executeInsertar_dias_turno(sfWebRequest $request)
    //Realizar la consulta a la tabla ocupacion referenciando el id y la enviamos al formulario insertar_ocupacionSuccess.php
    //$this->ocupacion_facilitador = Doctrine_Core::getTable('Ocupacion')->obtenerOcupacionPorFacilitador($id);
   }
+public function executeInsertar_traslados(sfWebRequest $request)
+  {
+    
+   $this->form = new DisponibilidadTrasladoEstadoForm();
+   //obtener el id que pertenece al identificador
+   $id = $request->getParameter('id');
+   //Realizar la consulta a la tabla ocupacion referenciando el id y la enviamos al formulario insertar_ocupacionSuccess.php
+   //$this->ocupacion_facilitador = Doctrine_Core::getTable('Ocupacion')->obtenerOcupacionPorFacilitador($id);
+  }
 //Funcion para validar las entradas de datos de Identificacion
   public function executeCreate(sfWebRequest $request)
  {
@@ -280,6 +289,33 @@ public function executeCreateTurnoDisponible(sfWebRequest $request)
    }
  }
 
+//Funcion para validar las entradas de datos de Disponbilidad traslados
+public function executeCreateDisponibilidadtraslados(sfWebRequest $request)
+ {
+   $this->form = new DisponibilidadTrasladoEstadoForm();
+   $this->processDisponibilidadTrasladoEstado($request, $this->form);
+   $this->setTemplate('insertar_traslados');
+   //obtener el id que pertenece al identificador
+   $id = $request->getParameter('id');
+   //Realizar la consulta a la tabla ocupacion referenciando el id y la enviamos al formulario insertar_ocupacionSuccess.php
+   //$this->ocupacion_facilitador = Doctrine_Core::getTable('Ocupacion')->obtenerOcupacionPorFacilitador($id);
+ }
+//Si pasa la funcion anterior, almacena los registros de Disponbilidad traslados
+  protected function processDisponibilidadTrasladoEstado(sfWebRequest $request, sfForm $form)
+  {
+   $form->bind(
+
+     $request->getParameter($form->getName()),
+     $request->getFiles($form->getName())
+   );
+
+   if ($form->isValid())
+   {
+     $result = $form->save();
+   }
+ }
+
+
  public function executeBuscar(sfWebRequest $request)
  {
    $this->form = new IdentificacionBuscarForm();
@@ -343,7 +379,7 @@ public function executeCreateTurnoDisponible(sfWebRequest $request)
   public function executeCargarMunicipios(sfWebRequest $request)
   {
     $this->forwardUnless($query = $request->getParameter('query'), 'gestion', 'insertar');
-
+  //$this->forwardUnless($query = $request->getParameter('query'), 'gestion', 'insertar_traslados');
     if('*' != $query){
       $this->municipios = Doctrine_Core::getTable('Municipio')->obtenerMunicipiosPorEstado($query);
     }
@@ -359,8 +395,8 @@ public function executeCreateTurnoDisponible(sfWebRequest $request)
   }
   public function executeCargarParroquias(sfWebRequest $request)
   {
-    $this->forwardUnless($query = $request->getParameter('query'), 'gestion', 'insertar');
-
+   $this->forwardUnless($query = $request->getParameter('query'), 'gestion', 'insertar');
+//$this->forwardUnless($query = $request->getParameter('query'), 'gestion', 'insertar_traslados');
     if('*' != $query){
       $this->parroquias = Doctrine_Core::getTable('Parroquia')->obtenerParroquiaPorMunicipio($query);
     }
@@ -374,4 +410,38 @@ public function executeCreateTurnoDisponible(sfWebRequest $request)
       return $this->renderPartial('gestion/parroquiasList', array('parroquias' => $this->parroquias));
     }
   }
+
+public function executeCargarMunicipiosTraslados(sfWebRequest $request)
+  {
+    $this->forwardUnless($query = $request->getParameter('query'), 'gestion', 'insertar_traslados');
+    if('*' != $query){
+      $this->municipios = Doctrine_Core::getTable('Municipio')->obtenerMunicipiosPorEstado($query);
+    }
+ 
+    if ($request->isXmlHttpRequest())
+    {
+      if ('*' == $query || !$this->municipios)
+      {
+        return $this->renderText('');
+      }
+      return $this->renderPartial('gestion/municipiosListTraslados', array('municipios' => $this->municipios));
+    }
+  }
+  public function executeCargarParroquiasTraslados(sfWebRequest $request)
+  {
+   $this->forwardUnless($query = $request->getParameter('query'), 'gestion', 'insertar_traslados');
+    if('*' != $query){
+      $this->parroquias = Doctrine_Core::getTable('Parroquia')->obtenerParroquiaPorMunicipio($query);
+    }
+ 
+    if ($request->isXmlHttpRequest())
+    {
+      if ('*' == $query || !$this->parroquias)
+      {
+        return $this->renderText('');
+      }
+      return $this->renderPartial('gestion/parroquiasListTraslados', array('parroquias' => $this->parroquias));
+    }
+  }
+
 }
