@@ -16,4 +16,9 @@ class AreasFormacionTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('AreasFormacion');
     }
+    
+    public static function obtenerTodos()
+    {
+      return Doctrine_Core::getTable('AreasFormacion')->createQuery()->execute();
+    }
 }

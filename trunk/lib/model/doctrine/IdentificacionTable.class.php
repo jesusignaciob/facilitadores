@@ -17,33 +17,44 @@ class IdentificacionTable extends Doctrine_Table
         return Doctrine_Core::getTable('Identificacion');
     }
 
-    public static function obtenerFacilitadores($cedula, $nombre, $apellido, $estado, $municipio, $parroquia, $estatus)
+    public static function obtenerFacilitadores($cedula, $nombre, $apellido, $estado, $municipio, $parroquia, $estatus, $area)
     {
-        $q = Doctrine_Core::getTable('Identificacion')->createQuery("SELECT i FROM Identificacion i JOIN i.AreasFormacionFacilitador aff");
-        
+        $w = "";
         if (strlen($cedula) > 0)
-            $q = $q->where("i.cedula_pasaporte like '%$cedula%'");
+          $w = $w. "and i.cedula_pasaporte like '%$cedula%'";
 
         if (strlen($nombre) > 0)
-            $q = $q->where("i.nombre like '%$nombre%'");
+        {
+          $nombre = strtolower($nombre);
+          $w = $w. " and lower(i.nombre) like '%$nombre%'";
+        }
 
         if (strlen($apellido) > 0)
-            $q = $q->where("i.apellido like '%$apellido%'");
+        {
+          $apellido = strtolower($apellido);
+          $w = $w. " and lower(i.apellido) like '%$apellido%'";
+        }
 
-        if ($estado > 0)
-            $q = $q->where('i.id_estado = ?', $estado);
+        if (strlen($estado) > 0)
+          $w = $w. " and i.id_estado = $estado";
 
-        if ($municipio > 0)
-            $q = $q->where('i.id_municipio = ?', $municipio);
+        if (strlen($municipio) > 0)
+          $w = $w. " and i.id_municipio = $municipio";
 
-        if ($parroquia > 0)
-            $q = $q->where('i.id_parroquia = ?', $parroquia);
+        if (strlen($parroquia) > 0)
+          $w = $w. " and i.id_parroquia = $parroquia";
             
-        if (strlen($estatus) > 0)
-            $q = $q->where("aff.estatus = ?", $estatus);
-            
-        $q->where("i.activo = ?", true);
-
+        if (strlen($estatus) > 0 && strlen($area) == 0)
+          $w = $w. " and i.activo = true and aff.estatus = $estatus";
+        
+        if (strlen($estatus) == 0 && strlen($area) > 0)
+          $w = $w. " and i.activo = true and aff.id_area_formacion = $area";
+        
+        if (strlen($estatus) > 0 && strlen($area) > 0)
+          $w = $w. " and i.activo = true and aff.estatus = $estatus and aff.id_area_formacion = $area";
+        
+        $q = Doctrine_Core::getTable('Identificacion')->createQuery("SELECT i FROM Identificacion i JOIN i.AreasFormacionFacilitador aff")->where("i.activo = true" . $w);
+        
         return $q->execute();
     }
     
