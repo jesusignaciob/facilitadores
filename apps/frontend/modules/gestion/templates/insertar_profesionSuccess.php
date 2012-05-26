@@ -3,7 +3,7 @@
 <button class="back-button" onclick="javascript:parent.location='<?php echo url_for('gestion/insertar_nivel_formacion_facilitador?id='.$id); ?>'">Regresar</button>
 <br>
 <h4>
-Configuración de Profesión
+Configuración de Profesión Facilitador
 </h4>
 <br>
 <form action="<?php echo url_for('gestion/CreateProfesion?id='.$id); ?>" method="post">
@@ -31,7 +31,7 @@ echo $form['id_identificacion']->render(array('value'=>$id));
   <tr style="height: 30px">
 <?php if (isset($profesion_facilitador)){
 ?>
-<th colspan='2'>Profesión del Facilitador</th>
+<th colspan='2'>Lista de Profesiones</th>
 </tr>
 <tr><th>Nº</th>
 <th>Profesión</th></tr>
