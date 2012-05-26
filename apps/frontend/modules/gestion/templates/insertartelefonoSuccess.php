@@ -3,7 +3,7 @@
 <button class="back-button" onclick="javascript:parent.location='<?php echo url_for('gestion/insertar'); ?>'">Regresar</button>
 <br>
 <h4>
-Configuración de Teléfonos
+Configuración de Teléfonos Facilitador
 </h4>
 <br>
 <form action="<?php echo url_for('gestion/CreateTelefono?id='.$id); ?>" method="post">
@@ -29,15 +29,24 @@ echo $form['id_identificacion']->render(array('value'=>$id));
 <br>
 <table border="1" style="border-collapse:collapse; width: 100%">
   <tr style="height: 30px">
-<?php if (isset($telefonos)){
+<?php $cont=1; if (isset($telefonos)){
 ?>
-<th>Nº de Teléfonos</th>
-  </tr>
+<tr>
+<th colspan='2'>Lista de Teléfonos</th>
+</tr>
+<tr>
+<th>
+Nº
+</th>
+<th>
+Nº de Teléfonos
+</th>
+</tr>
 <?php foreach($telefonos as $tf): ?>
-  <tr style="height: 30px">
-     
+     <tr style="height: 30px">
+      <td><?php echo $cont; ?> </td>
       <td><?php echo $tf->getnumero(); ?></td>
-      
+      <?php $cont+=1; ?>
   </tr>
   <?php endforeach; 
 } 
