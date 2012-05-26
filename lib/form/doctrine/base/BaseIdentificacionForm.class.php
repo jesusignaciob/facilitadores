@@ -31,17 +31,17 @@ abstract class BaseIdentificacionForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'                 => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'nombre'             => new sfValidatorString(array('max_length' => 50)),
-      'apellido'           => new sfValidatorString(array('max_length' => 50, 'required' => false)),
-      'cedula_pasaporte'   => new sfValidatorInteger(),
-      'nacionalidad'       => new sfValidatorString(array('max_length' => 20, 'required' => false)),
-      'direccion'          => new sfValidatorString(array('max_length' => 100, 'required' => false)),
-      'sector'             => new sfValidatorString(array('max_length' => 100, 'required' => false)),
-      'situacion_laboral'  => new sfValidatorString(array('max_length' => 50, 'required' => false)),
-      'formacion_politica' => new sfValidatorBoolean(array('required' => false)),
-      'id_estado'          => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Estado'), 'required' => false)),
-      'id_municipio'       => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Municipio'), 'required' => false)),
-      'id_parroquia'       => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Parroquia'), 'required' => false)),
+      'nombre'            => new sfValidatorString(array('required' => true), array('required'=> "Ingrese el nombre")),
+      'apellido'            => new sfValidatorString(array('required' => true), array('required'=> "Ingrese el apellido")),
+      'cedula_pasaporte'            => new sfValidatorInteger(array('required' => true), array('required'=> "Ingrese cédula ó pasaporte")),
+      'nacionalidad'            => new sfValidatorString(array('required' => true), array('required'=> "Ingrese la nacionalidad")),
+      'direccion'            => new sfValidatorString(array('required' => true), array('required'=> "Ingrese la dirección")),
+     'sector'            => new sfValidatorString(array('required' => true), array('required'=> "Ingrese el sector")),
+      'situacion_laboral'            => new sfValidatorString(array('required' => true), array('required'=> "Ingrese situación laboral")),
+      'formacion_politica'            => new sfValidatorBoolean(array('required' => true), array('required'=> "Seleccione formación política")),
+      'id_estado'          => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Estado'), 'required' => true)),
+      'id_municipio'       => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Municipio'), 'required' => true)),
+      'id_parroquia'       => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Parroquia'), 'required' => true)),
     ));
 
     $this->validatorSchema->setPostValidator(
