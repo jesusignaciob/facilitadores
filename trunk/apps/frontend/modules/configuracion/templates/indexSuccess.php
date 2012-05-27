@@ -1,6 +1,4 @@
-<button class="back-button" onclick="javascript:parent.location='<?php echo url_for('principal/index'); ?>'">Ir al menú Principal</but
-ton>
-<button class="back-button" onclick="javascript:parent.location='<?php echo url_for('principal/index'); ?>'">Regresar</button>
+<button class="back-button" onclick="javascript:parent.location='<?php echo url_for('principal/index'); ?>'">Ir al menú Principal</button>
 <div style="min-height: 300px;">
   <button class="cajaicono" onclick="javascript:parent.location='<?php echo url_for('users/index'); ?>'"><?php echo image_tag(''); ?><br/>
   Permisos
@@ -8,7 +6,7 @@ ton>
   <button class="cajaicono" onclick="javascript:parent.location='<?php echo url_for('geografia/index'); ?>'"><?php echo image_tag(''); ?><br/>
   Datos Geográficos 
 </button>
-  <button class="cajaicono" onclick="javascript:parent.location='<?php echo url_for('formacion/index')?>'"><?php echo image_tag('
-'); ?><br/>
+  <button class="cajaicono" onclick="javascript:parent.location='<?php echo url_for('formacion/index')?>'"><?php echo image_tag('formacion.png'); ?><br/>
   Datos de formación 
 </button>
+</div>
