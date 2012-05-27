@@ -16,24 +16,21 @@ abstract class BaseAreasFormacionFacilitadorForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'                => new sfWidgetFormInputHidden(),
-      'id_identificacion' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Identificacion'), 'add_empty' => true)),
-
-      'id_area_formacion' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('AreasFormacion'), 'add_empty' => true)),
+      'id_identificacion' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Identificacion'), 'add_empty' => false)),
+      'id_area_formacion' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('AreasFormacion'), 'add_empty' => false)),
       'estatus'           => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
       'id'                => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'id_identificacion' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Identificacion'), 'required' => false)),
-      'id_area_formacion' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('AreasFormacion'), 'required' => true), array('required'=> "Seleccione el áreas de formación")),
-      'estatus'           => new sfValidatorString(array('max_length' => 20, 'required' => false)),
+      'id_identificacion' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Identificacion'))),
+      'id_area_formacion' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('AreasFormacion'))),
+      'estatus'           => new sfValidatorString(array('max_length' => 20)),
     ));
 
     $this->widgetSchema->setNameFormat('areas_formacion_facilitador[%s]');
 
-    $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema->setPostValidator(new sfValidatorAnd(array(
-            new sfValidatorDoctrineUnique(array('model' => 'AreasFormacionFacilitador', 'column' => array('id_area_formacion', 'id_identificacion')), array('invalid'=> "Área de Formación ya fue asignada al Facilitador")),
-            ))));
+    $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
 
     $this->setupInheritance();
 

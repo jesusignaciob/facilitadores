@@ -16,14 +16,14 @@ abstract class BaseBitacoraFormacionFacilitadorForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'                            => new sfWidgetFormInputHidden(),
-      'id_area_formacion_facilitador' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('AreasFormacionFacilitador'), 'add_empty' => true)),
+      'id_area_formacion_facilitador' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('AreasFormacionFacilitador'), 'add_empty' => false)),
       'fecha'                         => new sfWidgetFormDate(),
     ));
 
     $this->setValidators(array(
       'id'                            => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'id_area_formacion_facilitador' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('AreasFormacionFacilitador'), 'required' => false)),
-      'fecha'                         => new sfValidatorDate(array('required' => false)),
+      'id_area_formacion_facilitador' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('AreasFormacionFacilitador'))),
+      'fecha'                         => new sfValidatorDate(),
     ));
 
     $this->widgetSchema->setNameFormat('bitacora_formacion_facilitador[%s]');

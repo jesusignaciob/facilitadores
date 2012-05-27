@@ -14,7 +14,7 @@ abstract class BaseDisponibilidadTurnosFormFilter extends BaseFormFilterDoctrine
   {
     $this->setWidgets(array(
       'id_disponibilidad_dia' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('DisponibilidadDias'), 'add_empty' => true)),
-      'turno'                 => new sfWidgetFormFilterInput(),
+      'turno'                 => new sfWidgetFormFilterInput(array('with_empty' => false)),
     ));
 
     $this->setValidators(array(

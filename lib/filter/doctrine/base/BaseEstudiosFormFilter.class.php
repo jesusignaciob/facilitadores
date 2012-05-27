@@ -13,7 +13,7 @@ abstract class BaseEstudiosFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'nombre_estudio' => new sfWidgetFormFilterInput(),
+      'nombre_estudio' => new sfWidgetFormFilterInput(array('with_empty' => false)),
     ));
 
     $this->setValidators(array(

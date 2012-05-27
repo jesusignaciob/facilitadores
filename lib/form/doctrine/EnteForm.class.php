@@ -12,5 +12,13 @@ class EnteForm extends BaseEnteForm
 {
   public function configure()
   {
+
+    $this->widgetSchema['id_estado'] = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Estado'), 'add_empty' => true));
+
+    $this->widgetSchema->setLabels(array(
+    'id_estado'    => 'Estado',
+    'id_municipio'   => 'Municipio',
+    'id_parroquia' => 'Parroquia',
+    ));
   }
 }

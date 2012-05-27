@@ -13,7 +13,7 @@ abstract class BaseMunicipioFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'nombre_municipio' => new sfWidgetFormFilterInput(),
+      'nombre_municipio' => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'id_estado'        => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Estado'), 'add_empty' => true)),
     ));
 

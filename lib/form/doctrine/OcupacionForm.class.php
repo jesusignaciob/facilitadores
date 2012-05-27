@@ -12,6 +12,5 @@ class OcupacionForm extends BaseOcupacionForm
 {
   public function configure()
   {
-	$this->widgetSchema['id_identificacion'] = new sfWidgetFormInputHidden();
   }
 }

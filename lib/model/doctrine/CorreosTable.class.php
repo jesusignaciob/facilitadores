@@ -16,11 +16,4 @@ class CorreosTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Correos');
     }
-    
-    public static function obtenerCorreosPorFacilitador($idFacilitador)
-    {
-      $querystring = Doctrine_Core::getTable('Correos')->createQuery()->where('id_identificacion=?',$idFacilitador);
-
-        return $querystring->execute();
-    }
 }

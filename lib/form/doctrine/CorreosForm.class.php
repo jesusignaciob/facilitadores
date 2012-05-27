@@ -12,17 +12,5 @@ class CorreosForm extends BaseCorreosForm
 {
   public function configure()
   {
-
-	 $this->widgetSchema['id_identificacion'] = new sfWidgetFormInputHidden();
-	$this->widgetSchema['correo'] = new sfWidgetFormInputText();
-
-	/*$this->setValidators(array(
-	'correo'        => new sfValidatorEmail(array('required'=>true), array('required'=> "El correo es obligatorio")),            
-	));
-
-$this->widgetSchema->setNameFormat('correos[%s]');
-	$this->validatorSchema->setPostValidator(new sfValidatorAnd(array(
-            new sfValidatorDoctrineUnique(array('model' => 'Correos', 'column' => array('correo')), array('invalid'=> "El correo ya existe")),
-            )));*/
   }
 }

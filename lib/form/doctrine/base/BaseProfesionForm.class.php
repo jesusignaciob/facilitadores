@@ -16,22 +16,19 @@ abstract class BaseProfesionForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'                => new sfWidgetFormInputHidden(),
-      'id_identificacion' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Identificacion'), 'add_empty' => true)),
+      'id_identificacion' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Identificacion'), 'add_empty' => false)),
       'nombre_profesion'  => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
       'id'                => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'id_identificacion' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Identificacion'), 'required' => false)),
-       'nombre_profesion'            => new sfValidatorString(array('required' => true), array('required'=> "Ingrese nombre profesión")),
-
+      'id_identificacion' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Identificacion'))),
+      'nombre_profesion'  => new sfValidatorString(array('max_length' => 50)),
     ));
 
     $this->widgetSchema->setNameFormat('profesion[%s]');
 
-    $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema->setPostValidator(new sfValidatorAnd(array(
-            new sfValidatorDoctrineUnique(array('model' => 'Profesion', 'column' => array('nombre_profesion','id_identificacion')), array('invalid'=> "Profesión ya fue asignada al Facilitador")),
-))));
+    $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
 
     $this->setupInheritance();
 
