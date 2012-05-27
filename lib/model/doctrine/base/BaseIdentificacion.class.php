@@ -30,6 +30,7 @@ Doctrine_Manager::getInstance()->bindComponent('Identificacion', 'doctrine');
  * @property Doctrine_Collection $Correos
  * @property Doctrine_Collection $NivelFormacion
  * @property Doctrine_Collection $Telefonos
+ * @property Doctrine_Collection $BitacoraSecciones
  * 
  * @method string              getNombre()                       Returns the current record's "nombre" value
  * @method string              getApellido()                     Returns the current record's "apellido" value
@@ -54,6 +55,7 @@ Doctrine_Manager::getInstance()->bindComponent('Identificacion', 'doctrine');
  * @method Doctrine_Collection getCorreos()                      Returns the current record's "Correos" collection
  * @method Doctrine_Collection getNivelFormacion()               Returns the current record's "NivelFormacion" collection
  * @method Doctrine_Collection getTelefonos()                    Returns the current record's "Telefonos" collection
+ * @method Doctrine_Collection getBitacoraSecciones()            Returns the current record's "BitacoraSecciones" collection
  * @method Identificacion      setNombre()                       Sets the current record's "nombre" value
  * @method Identificacion      setApellido()                     Sets the current record's "apellido" value
  * @method Identificacion      setCedulaPasaporte()              Sets the current record's "cedula_pasaporte" value
@@ -77,6 +79,7 @@ Doctrine_Manager::getInstance()->bindComponent('Identificacion', 'doctrine');
  * @method Identificacion      setCorreos()                      Sets the current record's "Correos" collection
  * @method Identificacion      setNivelFormacion()               Sets the current record's "NivelFormacion" collection
  * @method Identificacion      setTelefonos()                    Sets the current record's "Telefonos" collection
+ * @method Identificacion      setBitacoraSecciones()            Sets the current record's "BitacoraSecciones" collection
  * 
  * @package    facilitadores
  * @subpackage model
@@ -194,6 +197,10 @@ abstract class BaseIdentificacion extends sfDoctrineRecord
              'foreign' => 'id_identificacion'));
 
         $this->hasMany('Telefonos', array(
+             'local' => 'id',
+             'foreign' => 'id_identificacion'));
+
+        $this->hasMany('BitacoraSecciones', array(
              'local' => 'id',
              'foreign' => 'id_identificacion'));
     }
