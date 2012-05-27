@@ -32,10 +32,6 @@ AreasFormacionFacilitador:
       local: id_identificacion
       foreign: id
       type: one
-    Secciones:
-      local: id
-      foreign: id_area_formacion_facilitador
-      type: many
     BitacoraFormacionFacilitador:
       local: id
       foreign: id_area_formacion_facilitador
@@ -62,12 +58,19 @@ BitacoraSecciones:
     id_secciones:
       type: integer(4)
       notnull: true
+    id_identificacion:
+      type: integer(4)
+      notnull: true
     fecha:
       type: date(25)
       notnull: true
   relations:
     Secciones:
       local: id_secciones
+      foreign: id
+      type: one
+    Identificacion:
+      local: id_identificacion
       foreign: id
       type: one
 Correos:
@@ -302,6 +305,10 @@ Identificacion:
       foreign: id_identificacion
       type: many
     Telefonos:
+      local: id
+      foreign: id_identificacion
+      type: many
+    Bitacora_Secciones:
       local: id
       foreign: id_identificacion
       type: many
