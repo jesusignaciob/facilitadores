@@ -6,5 +6,5 @@ all:
     class: sfDoctrineDatabase
     param:
       dsn:      pgsql:host=localhost;dbname=facilitadores_gmstv
-      username: facilitador 
-      password: 123456 
+      username: desarrollos 
+      password: development
