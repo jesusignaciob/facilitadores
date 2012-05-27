@@ -1,7 +1,7 @@
 CREATE TABLE areas_formacion (id BIGSERIAL, nombre_area VARCHAR(50) NOT NULL, PRIMARY KEY(id));
 CREATE TABLE areas_formacion_facilitador (id BIGSERIAL, id_identificacion INT NOT NULL, id_area_formacion INT NOT NULL, estatus VARCHAR(20) NOT NULL, PRIMARY KEY(id));
 CREATE TABLE bitacora_formacion_facilitador (id BIGSERIAL, id_area_formacion_facilitador INT NOT NULL, fecha DATE NOT NULL, PRIMARY KEY(id));
-CREATE TABLE bitacora_secciones (id BIGSERIAL, id_secciones INT NOT NULL, fecha DATE NOT NULL, PRIMARY KEY(id));
+CREATE TABLE bitacora_secciones (id BIGSERIAL, id_secciones INT NOT NULL, id_identificacion INT NOT NULL, fecha DATE NOT NULL, PRIMARY KEY(id));
 CREATE TABLE correos (id BIGSERIAL, id_identificacion INT NOT NULL, correo VARCHAR(50) NOT NULL, PRIMARY KEY(id));
 CREATE TABLE disponibilidad_dias (id BIGSERIAL, id_identificacion INT NOT NULL, dia VARCHAR(20) NOT NULL, PRIMARY KEY(id));
 CREATE TABLE disponibilidad_traslado_estado (id BIGSERIAL, id_identificacion INT NOT NULL, id_estado INT NOT NULL, id_municipio INT NOT NULL, requiere_traslado BOOLEAN NOT NULL, PRIMARY KEY(id));
@@ -30,6 +30,7 @@ ALTER TABLE areas_formacion_facilitador ADD CONSTRAINT areas_formacion_facilitad
 ALTER TABLE areas_formacion_facilitador ADD CONSTRAINT areas_formacion_facilitador_id_area_formacion_areas_formacion_id FOREIGN KEY (id_area_formacion) REFERENCES areas_formacion(id) NOT DEFERRABLE INITIALLY IMMEDIATE;
 ALTER TABLE bitacora_formacion_facilitador ADD CONSTRAINT biai FOREIGN KEY (id_area_formacion_facilitador) REFERENCES areas_formacion_facilitador(id) NOT DEFERRABLE INITIALLY IMMEDIATE;
 ALTER TABLE bitacora_secciones ADD CONSTRAINT bitacora_secciones_id_secciones_secciones_id FOREIGN KEY (id_secciones) REFERENCES secciones(id) NOT DEFERRABLE INITIALLY IMMEDIATE;
+ALTER TABLE bitacora_secciones ADD CONSTRAINT bitacora_secciones_id_identificacion_identificacion_id FOREIGN KEY (id_identificacion) REFERENCES identificacion(id) NOT DEFERRABLE INITIALLY IMMEDIATE;
 ALTER TABLE correos ADD CONSTRAINT correos_id_identificacion_identificacion_id FOREIGN KEY (id_identificacion) REFERENCES identificacion(id) NOT DEFERRABLE INITIALLY IMMEDIATE;
 ALTER TABLE disponibilidad_dias ADD CONSTRAINT disponibilidad_dias_id_identificacion_identificacion_id FOREIGN KEY (id_identificacion) REFERENCES identificacion(id) NOT DEFERRABLE INITIALLY IMMEDIATE;
 ALTER TABLE disponibilidad_traslado_estado ADD CONSTRAINT disponibilidad_traslado_estado_id_municipio_municipio_id FOREIGN KEY (id_municipio) REFERENCES municipio(id) NOT DEFERRABLE INITIALLY IMMEDIATE;
@@ -48,7 +49,6 @@ ALTER TABLE nivel_formacion ADD CONSTRAINT nivel_formacion_id_estudios_estudios_
 ALTER TABLE ocupacion ADD CONSTRAINT ocupacion_id_identificacion_identificacion_id FOREIGN KEY (id_identificacion) REFERENCES identificacion(id) NOT DEFERRABLE INITIALLY IMMEDIATE;
 ALTER TABLE parroquia ADD CONSTRAINT parroquia_id_municipio_municipio_id FOREIGN KEY (id_municipio) REFERENCES municipio(id) NOT DEFERRABLE INITIALLY IMMEDIATE;
 ALTER TABLE profesion ADD CONSTRAINT profesion_id_identificacion_identificacion_id FOREIGN KEY (id_identificacion) REFERENCES identificacion(id) NOT DEFERRABLE INITIALLY IMMEDIATE;
-ALTER TABLE secciones ADD CONSTRAINT siai FOREIGN KEY (id_area_formacion_facilitador) REFERENCES areas_formacion_facilitador(id) NOT DEFERRABLE INITIALLY IMMEDIATE;
 ALTER TABLE secciones ADD CONSTRAINT secciones_id_identificacion_identificacion_id FOREIGN KEY (id_identificacion) REFERENCES identificacion(id) NOT DEFERRABLE INITIALLY IMMEDIATE;
 ALTER TABLE secciones ADD CONSTRAINT secciones_id_ente_ente_id FOREIGN KEY (id_ente) REFERENCES ente(id) NOT DEFERRABLE INITIALLY IMMEDIATE;
 ALTER TABLE secciones ADD CONSTRAINT secciones_id_area_formacion_areas_formacion_id FOREIGN KEY (id_area_formacion) REFERENCES areas_formacion(id) NOT DEFERRABLE INITIALLY IMMEDIATE;
