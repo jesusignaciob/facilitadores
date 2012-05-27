@@ -16,13 +16,4 @@ class AreasFormacionFacilitadorTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('AreasFormacionFacilitador');
     }
-    
-    public static function obtenerAreasFormacionPorFacilitador($idFacilitador)
-    {
-        $q = Doctrine_Query::create()
-                ->from('AreasFormacionFacilitador aff')
-                ->where('aff.id_identificacion = ?', $idFacilitador);
-                
-        return $q->execute();
-    }
 }

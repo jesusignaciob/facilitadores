@@ -17,13 +17,13 @@ abstract class BaseParroquiaForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'               => new sfWidgetFormInputHidden(),
       'nombre_parroquia' => new sfWidgetFormInputText(),
-      'id_municipio'     => new sfWidgetFormInputText(),
+      'id_municipio'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Municipio'), 'add_empty' => false)),
     ));
 
     $this->setValidators(array(
       'id'               => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'nombre_parroquia' => new sfValidatorString(array('max_length' => 50, 'required' => false)),
-      'id_municipio'     => new sfValidatorInteger(array('required' => false)),
+      'nombre_parroquia' => new sfValidatorString(array('max_length' => 50)),
+      'id_municipio'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Municipio'))),
     ));
 
     $this->widgetSchema->setNameFormat('parroquia[%s]');

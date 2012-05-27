@@ -14,7 +14,7 @@ abstract class BaseOcupacionFormFilter extends BaseFormFilterDoctrine
   {
     $this->setWidgets(array(
       'id_identificacion' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Identificacion'), 'add_empty' => true)),
-      'nombre_ocupacion'  => new sfWidgetFormFilterInput(),
+      'nombre_ocupacion'  => new sfWidgetFormFilterInput(array('with_empty' => false)),
     ));
 
     $this->setValidators(array(

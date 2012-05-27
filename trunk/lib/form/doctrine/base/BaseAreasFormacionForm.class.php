@@ -21,7 +21,7 @@ abstract class BaseAreasFormacionForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'          => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'nombre_area' => new sfValidatorString(array('max_length' => 50, 'required' => false)),
+      'nombre_area' => new sfValidatorString(array('max_length' => 50)),
     ));
 
     $this->widgetSchema->setNameFormat('areas_formacion[%s]');

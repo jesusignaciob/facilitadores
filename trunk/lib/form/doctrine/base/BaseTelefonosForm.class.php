@@ -16,22 +16,20 @@ abstract class BaseTelefonosForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'                => new sfWidgetFormInputHidden(),
-      'id_identificacion' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Identificacion'), 'add_empty' => true)),
+      'id_identificacion' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Identificacion'), 'add_empty' => false)),
       'numero'            => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
       'id'                => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'id_identificacion' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Identificacion'), 'required' => false)),
-      'numero'            => new sfValidatorString(array('required' => true), array('required'=> "Ingrese el número de teléfono")),
+      'id_identificacion' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Identificacion'))),
+      'numero'            => new sfValidatorInteger(),
     ));
 
     $this->widgetSchema->setNameFormat('telefonos[%s]');
 
-    $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema->setPostValidator(new sfValidatorAnd(array(
-            new sfValidatorDoctrineUnique(array('model' => 'Telefonos', 'column' => array('numero', 'id_identificacion')), array('invalid'=> "Teléfono ya fue asignado al Facilitador")),
-    ))));
-    
+    $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+
     $this->setupInheritance();
 
     parent::setup();

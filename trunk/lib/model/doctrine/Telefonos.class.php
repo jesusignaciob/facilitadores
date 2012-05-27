@@ -12,7 +12,4 @@
  */
 class Telefonos extends BaseTelefonos
 {
-    public function __toString() {
-    return $this->getnumero();
-  }
 }

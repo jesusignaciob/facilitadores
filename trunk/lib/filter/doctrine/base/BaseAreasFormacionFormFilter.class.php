@@ -13,7 +13,7 @@ abstract class BaseAreasFormacionFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'nombre_area' => new sfWidgetFormFilterInput(),
+      'nombre_area' => new sfWidgetFormFilterInput(array('with_empty' => false)),
     ));
 
     $this->setValidators(array(

@@ -16,4 +16,10 @@ class EstadoTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Estado');
     }
+
+    public function getEstados() {
+      $query = $this->getInstance()->createQuery()
+                    ->orderBy('nombre_estado');
+      return $query->execute();
+    }
 }

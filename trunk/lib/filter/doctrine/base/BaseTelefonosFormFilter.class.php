@@ -14,7 +14,7 @@ abstract class BaseTelefonosFormFilter extends BaseFormFilterDoctrine
   {
     $this->setWidgets(array(
       'id_identificacion' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Identificacion'), 'add_empty' => true)),
-      'numero'            => new sfWidgetFormFilterInput(),
+      'numero'            => new sfWidgetFormFilterInput(array('with_empty' => false)),
     ));
 
     $this->setValidators(array(

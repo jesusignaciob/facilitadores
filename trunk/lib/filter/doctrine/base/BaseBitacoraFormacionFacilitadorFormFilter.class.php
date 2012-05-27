@@ -14,7 +14,7 @@ abstract class BaseBitacoraFormacionFacilitadorFormFilter extends BaseFormFilter
   {
     $this->setWidgets(array(
       'id_area_formacion_facilitador' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('AreasFormacionFacilitador'), 'add_empty' => true)),
-      'fecha'                         => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate())),
+      'fecha'                         => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
     ));
 
     $this->setValidators(array(

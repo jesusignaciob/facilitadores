@@ -12,6 +12,5 @@ class AreasFormacionFacilitadorForm extends BaseAreasFormacionFacilitadorForm
 {
   public function configure()
   {
-	 $this->widgetSchema['id_identificacion'] = new sfWidgetFormInputHidden();
   }
 }

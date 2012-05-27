@@ -12,6 +12,5 @@ class NivelFormacionForm extends BaseNivelFormacionForm
 {
   public function configure()
   {
-	$this->widgetSchema['id_identificacion'] = new sfWidgetFormInputHidden();
   }
 }

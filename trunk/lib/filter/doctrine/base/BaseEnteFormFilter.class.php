@@ -13,7 +13,7 @@ abstract class BaseEnteFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'nombre_ente'  => new sfWidgetFormFilterInput(),
+      'nombre_ente'  => new sfWidgetFormFilterInput(array('with_empty' => false)),
       'id_estado'    => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Estado'), 'add_empty' => true)),
       'id_municipio' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Municipio'), 'add_empty' => true)),
       'id_parroquia' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Parroquia'), 'add_empty' => true)),

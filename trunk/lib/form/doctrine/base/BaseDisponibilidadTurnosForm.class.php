@@ -16,14 +16,14 @@ abstract class BaseDisponibilidadTurnosForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'                    => new sfWidgetFormInputHidden(),
-      'id_disponibilidad_dia' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('DisponibilidadDias'), 'add_empty' => true)),
+      'id_disponibilidad_dia' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('DisponibilidadDias'), 'add_empty' => false)),
       'turno'                 => new sfWidgetFormInputText(),
     ));
 
     $this->setValidators(array(
       'id'                    => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'id_disponibilidad_dia' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('DisponibilidadDias'), 'required' => false)),
-      'turno'                 => new sfValidatorString(array('max_length' => 20, 'required' => false)),
+      'id_disponibilidad_dia' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('DisponibilidadDias'))),
+      'turno'                 => new sfValidatorString(array('max_length' => 20)),
     ));
 
     $this->widgetSchema->setNameFormat('disponibilidad_turnos[%s]');

@@ -17,13 +17,13 @@ abstract class BaseMunicipioForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'               => new sfWidgetFormInputHidden(),
       'nombre_municipio' => new sfWidgetFormInputText(),
-      'id_estado'        => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Estado'), 'add_empty' => true)),
+      'id_estado'        => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Estado'), 'add_empty' => false)),
     ));
 
     $this->setValidators(array(
       'id'               => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'nombre_municipio' => new sfValidatorString(array('max_length' => 50, 'required' => false)),
-      'id_estado'        => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Estado'), 'required' => false)),
+      'nombre_municipio' => new sfValidatorString(array('max_length' => 50)),
+      'id_estado'        => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Estado'))),
     ));
 
     $this->widgetSchema->setNameFormat('municipio[%s]');

@@ -15,7 +15,7 @@ abstract class BaseAreasFormacionFacilitadorFormFilter extends BaseFormFilterDoc
     $this->setWidgets(array(
       'id_identificacion' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Identificacion'), 'add_empty' => true)),
       'id_area_formacion' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('AreasFormacion'), 'add_empty' => true)),
-      'estatus'           => new sfWidgetFormFilterInput(),
+      'estatus'           => new sfWidgetFormFilterInput(array('with_empty' => false)),
     ));
 
     $this->setValidators(array(

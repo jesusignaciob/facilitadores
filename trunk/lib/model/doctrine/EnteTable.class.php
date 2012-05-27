@@ -16,4 +16,10 @@ class EnteTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Ente');
     }
+
+    public function getEntes() {
+      $query = $this->getInstance()->createQuery()
+                    ->orderBy('nombre_ente');
+      return $query->execute();
+    }
 }

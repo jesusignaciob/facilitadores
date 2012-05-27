@@ -17,18 +17,22 @@ abstract class BaseEnteForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'           => new sfWidgetFormInputHidden(),
       'nombre_ente'  => new sfWidgetFormInputText(),
-      'id_estado'    => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Estado'), 'add_empty' => true)),
-      'id_municipio' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Municipio'), 'add_empty' => true)),
-      'id_parroquia' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Parroquia'), 'add_empty' => true)),
+      'id_estado'    => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Estado'), 'add_empty' => false)),
+      'id_municipio' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Municipio'), 'add_empty' => false)),
+      'id_parroquia' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Parroquia'), 'add_empty' => false)),
     ));
 
     $this->setValidators(array(
       'id'           => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'nombre_ente'  => new sfValidatorString(array('max_length' => 50, 'required' => false)),
-      'id_estado'    => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Estado'), 'required' => false)),
-      'id_municipio' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Municipio'), 'required' => false)),
-      'id_parroquia' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Parroquia'), 'required' => false)),
+      'nombre_ente'  => new sfValidatorString(array('max_length' => 50)),
+      'id_estado'    => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Estado'))),
+      'id_municipio' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Municipio'))),
+      'id_parroquia' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Parroquia'))),
     ));
+
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorDoctrineUnique(array('model' => 'Ente', 'column' => array('nombre_ente')))
+    );
 
     $this->widgetSchema->setNameFormat('ente[%s]');
 

@@ -16,4 +16,10 @@ class SeccionesTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Secciones');
     }
+
+    public function getSecciones() {
+      $query = $this->getInstance()->createQuery()
+                    ->orderBy('nombre_seccion');
+      return $query->execute();
+    }
 }

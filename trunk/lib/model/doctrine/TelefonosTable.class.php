@@ -16,11 +16,4 @@ class TelefonosTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Telefonos');
     }
-    
-    public static function obtenerTelefonosPorFacilitador($idFacilitador)
-    {
-      $querystring = Doctrine_Core::getTable('Telefonos')->createQuery()->where('id_identificacion=?',$idFacilitador);
-
-        return $querystring->execute();
-    }
 }

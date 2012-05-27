@@ -16,21 +16,19 @@ abstract class BaseNivelFormacionForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'                => new sfWidgetFormInputHidden(),
-      'id_identificacion' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Identificacion'), 'add_empty' => true)),
-      'id_estudios'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Estudios'), 'add_empty' => true)),
+      'id_identificacion' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Identificacion'), 'add_empty' => false)),
+      'id_estudios'       => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Estudios'), 'add_empty' => false)),
     ));
 
     $this->setValidators(array(
       'id'                => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'id_identificacion' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Identificacion'), 'required' => true)),
-      'id_estudios'       => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Estudios'), 'required' => true), array('required'=> "Seleccione el estudio")),
+      'id_identificacion' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Identificacion'))),
+      'id_estudios'       => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Estudios'))),
     ));
 
     $this->widgetSchema->setNameFormat('nivel_formacion[%s]');
 
-    $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema->setPostValidator(new sfValidatorAnd(array(
-            new sfValidatorDoctrineUnique(array('model' => 'NivelFormacion', 'column' => array('id_estudios','id_identificacion')), array('invalid'=> "Nivel de Formación ya fue asignada al Facilitador")),
-))));
+    $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
 
     $this->setupInheritance();
 

@@ -9,11 +9,14 @@ Doctrine_Manager::getInstance()->bindComponent('AreasFormacion', 'doctrine');
  * 
  * @property string $nombre_area
  * @property Doctrine_Collection $AreasFormacionFacilitador
+ * @property Doctrine_Collection $Secciones
  * 
  * @method string              getNombreArea()                Returns the current record's "nombre_area" value
  * @method Doctrine_Collection getAreasFormacionFacilitador() Returns the current record's "AreasFormacionFacilitador" collection
+ * @method Doctrine_Collection getSecciones()                 Returns the current record's "Secciones" collection
  * @method AreasFormacion      setNombreArea()                Sets the current record's "nombre_area" value
  * @method AreasFormacion      setAreasFormacionFacilitador() Sets the current record's "AreasFormacionFacilitador" collection
+ * @method AreasFormacion      setSecciones()                 Sets the current record's "Secciones" collection
  * 
  * @package    facilitadores
  * @subpackage model
@@ -36,6 +39,10 @@ abstract class BaseAreasFormacion extends sfDoctrineRecord
     {
         parent::setUp();
         $this->hasMany('AreasFormacionFacilitador', array(
+             'local' => 'id',
+             'foreign' => 'id_area_formacion'));
+
+        $this->hasMany('Secciones', array(
              'local' => 'id',
              'foreign' => 'id_area_formacion'));
     }
