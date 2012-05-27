@@ -21,9 +21,8 @@ AreasFormacionFacilitador:
       type: integer(4)
       notnull: true
     estatus:
-      type: integer(1)
+      type: string(20)
       notnull: true
-      default: 0
   relations:
     AreasFormacion:
       local: id_area_formacion
@@ -118,9 +117,6 @@ DisponibilidadTrasladoEstado:
     id_municipio:
       type: integer(4)
       notnull: true
-    id_parroquia:
-      type: integer(4)
-      notnull: true
     requiere_traslado:
       type: boolean(1)
       notnull: true
@@ -135,10 +131,6 @@ DisponibilidadTrasladoEstado:
       type: one
     Municipio:
       local: id_municipio
-      foreign: id
-      type: one
-    Parroquia:
-      local: id_parroquia
       foreign: id
       type: one
 DisponibilidadTurnos:
@@ -163,6 +155,7 @@ Ente:
     nombre_ente:
       type: string(50)
       notnull: true
+      unique: true
     id_estado:
       type: integer(4)
       notnull: true
@@ -254,11 +247,6 @@ Identificacion:
     formacion_politica:
       type: boolean(1)
       notnull: true
-      default: false
-    activo:
-      type: boolean(1)
-      notnull: true
-      default: true
     id_estado:
       type: integer(4)
       notnull: true
@@ -422,8 +410,8 @@ Secciones:
   columns:
     id_identificacion:
       type: integer(4)
-      notnull: true
-    id_area_formacion_facilitador:
+      notnull: false
+    id_area_formacion:
       type: integer(4)
       notnull: true
     nombre_seccion:
@@ -433,8 +421,8 @@ Secciones:
       type: integer(4)
       notnull: true
   relations:
-    AreasFormacionFacilitador:
-      local: id_area_formacion_facilitador
+    AreasFormacion:
+      local: id_area_formacion
       foreign: id
       type: one
     Ente:
@@ -453,7 +441,7 @@ Telefonos:
       type: integer(4)
       notnull: true
     numero:
-      type: string(12)
+      type: integer(10)
       notnull: true
   relations:
     Identificacion:
