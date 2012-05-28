@@ -21,8 +21,9 @@ AreasFormacionFacilitador:
       type: integer(4)
       notnull: true
     estatus:
-      type: string(20)
+      type: integer(1)
       notnull: true
+      default: 0
   relations:
     AreasFormacion:
       local: id_area_formacion
@@ -32,6 +33,10 @@ AreasFormacionFacilitador:
       local: id_identificacion
       foreign: id
       type: one
+    Secciones:
+      local: id
+      foreign: id_area_formacion_facilitador
+      type: many
     BitacoraFormacionFacilitador:
       local: id
       foreign: id_area_formacion_facilitador
@@ -58,19 +63,12 @@ BitacoraSecciones:
     id_secciones:
       type: integer(4)
       notnull: true
-    id_identificacion:
-      type: integer(4)
-      notnull: true
     fecha:
       type: date(25)
       notnull: true
   relations:
     Secciones:
       local: id_secciones
-      foreign: id
-      type: one
-    Identificacion:
-      local: id_identificacion
       foreign: id
       type: one
 Correos:
@@ -120,6 +118,9 @@ DisponibilidadTrasladoEstado:
     id_municipio:
       type: integer(4)
       notnull: true
+    id_parroquia:
+      type: integer(4)
+      notnull: true
     requiere_traslado:
       type: boolean(1)
       notnull: true
@@ -134,6 +135,10 @@ DisponibilidadTrasladoEstado:
       type: one
     Municipio:
       local: id_municipio
+      foreign: id
+      type: one
+    Parroquia:
+      local: id_parroquia
       foreign: id
       type: one
 DisponibilidadTurnos:
@@ -250,6 +255,11 @@ Identificacion:
     formacion_politica:
       type: boolean(1)
       notnull: true
+      default: false
+    activo:
+      type: boolean(1)
+      notnull: true
+      default: true
     id_estado:
       type: integer(4)
       notnull: true
@@ -305,10 +315,6 @@ Identificacion:
       foreign: id_identificacion
       type: many
     Telefonos:
-      local: id
-      foreign: id_identificacion
-      type: many
-    Bitacora_Secciones:
       local: id
       foreign: id_identificacion
       type: many
@@ -417,8 +423,8 @@ Secciones:
   columns:
     id_identificacion:
       type: integer(4)
-      notnull: false
-    id_area_formacion:
+      notnull: true
+    id_area_formacion_facilitador:
       type: integer(4)
       notnull: true
     nombre_seccion:
@@ -428,8 +434,8 @@ Secciones:
       type: integer(4)
       notnull: true
   relations:
-    AreasFormacion:
-      local: id_area_formacion
+    AreasFormacionFacilitador:
+      local: id_area_formacion_facilitador
       foreign: id
       type: one
     Ente:
@@ -448,7 +454,7 @@ Telefonos:
       type: integer(4)
       notnull: true
     numero:
-      type: integer(10)
+      type: string(12)
       notnull: true
   relations:
     Identificacion:
