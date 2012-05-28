@@ -16,4 +16,10 @@ class EstudiosTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Estudios');
     }
+
+    public function getEstudios() {
+      $query = $this->getInstance()->createQuery()
+                    ->orderBy('nombre_estudio');
+      return $query->execute();
+    }
 }
