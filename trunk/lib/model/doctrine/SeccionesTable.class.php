@@ -16,28 +16,4 @@ class SeccionesTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Secciones');
     }
-
-    public function getSecciones() {
-      $query = $this->getInstance()->createQuery()
-                    ->orderBy('nombre_seccion');
-      return $query->execute();
-    }
-    
-    public function getSeccionesForFacilitador($id_facilitador){
-      $query = Doctrine_Query::create()
-              ->select('s.id as id, s.nombre_seccion as nombre')
-              ->from("secciones as s, areasFormacionFacilitador as aff,
-                      disponibilidadTrasladoEstado as dte, areasFormacion as af,
-                      ente as en")
-              ->where('s.id_area_formacion = aff.id_area_formacion')
-              ->andWhere('aff.id_area_formacion = af.id')
-              ->andWhere('s.id_area_formacion = af.id')              
-              ->andWhere('s.id_ente = en.id')
-              ->andWhere('en.id_estado = dte.id_estado')
-              ->andWhere('(en.id_municipio = dte.id_municipio or dte.id_municipio IS NULL)')
-              ->andWhere("(aff.id_identificacion = '$id_facilitador')")
-              ->andWhere("(s.id_identificacion is NULL or s.id_identificacion != '$id_facilitador')")
-              ->orderBy('s.nombre_seccion asc');
-      return $query->execute();
-    }
 }
