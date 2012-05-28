@@ -322,7 +322,7 @@ public function executeCreateDisponibilidadtraslados(sfWebRequest $request)
    $this->buscarProcessForm($request, $this->form);
    $this->setTemplate('buscar');
    
-   $this->areas = Doctrine::getTable('AreasFormacion')->obtenerTodos();
+   $this->areas = Doctrine::getTable('AreasFormacion')->getAreasFormacion();
  }
 
   protected function buscarProcessForm(sfWebRequest $request, sfForm $form)
