@@ -10,6 +10,10 @@ AreasFormacion:
       local: id
       foreign: id_area_formacion
       type: many
+    Secciones:
+      local: id
+      foreign: id_area_formacion
+      type: many
 AreasFormacionFacilitador:
   connection: doctrine
   tableName: areas_formacion_facilitador
@@ -33,10 +37,6 @@ AreasFormacionFacilitador:
       local: id_identificacion
       foreign: id
       type: one
-    Secciones:
-      local: id
-      foreign: id_area_formacion
-      type: many
     BitacoraFormacionFacilitador:
       local: id
       foreign: id_area_formacion_facilitador
@@ -51,16 +51,24 @@ BitacoraFormacionFacilitador:
     fecha:
       type: date(25)
       notnull: true
+    estatus:
+      type: integer(1)
+      notnull: true
+      default: 0
   relations:
     AreasFormacionFacilitador:
       local: id_area_formacion_facilitador
       foreign: id
       type: one
+    AreasFormacionFacilitador:  { onDelete: CASCADE, local: id_area_formacion_facilitador, foreign: id }
 BitacoraSecciones:
   connection: doctrine
   tableName: bitacora_secciones
   columns:
     id_secciones:
+      type: integer(4)
+      notnull: true
+    id_identificacion:
       type: integer(4)
       notnull: true
     fecha:
@@ -69,6 +77,10 @@ BitacoraSecciones:
   relations:
     Secciones:
       local: id_secciones
+      foreign: id
+      type: one
+    Identificacion:
+      local: id_identificacion
       foreign: id
       type: one
 Correos:
@@ -94,7 +106,7 @@ DisponibilidadDias:
       type: integer(4)
       notnull: true
     dia:
-      type: string(20)
+      type: integer(1)
       notnull: true
   relations:
     Identificacion:
@@ -118,12 +130,10 @@ DisponibilidadTrasladoEstado:
     id_municipio:
       type: integer(4)
       notnull: true
-    id_parroquia:
-      type: integer(4)
-      notnull: true
     requiere_traslado:
       type: boolean(1)
       notnull: true
+      default: false
   relations:
     Estado:
       local: id_estado
@@ -135,10 +145,6 @@ DisponibilidadTrasladoEstado:
       type: one
     Municipio:
       local: id_municipio
-      foreign: id
-      type: one
-    Parroquia:
-      local: id_parroquia
       foreign: id
       type: one
 DisponibilidadTurnos:
@@ -156,6 +162,7 @@ DisponibilidadTurnos:
       local: id_disponibilidad_dia
       foreign: id
       type: one
+    DisponibilidadDias:  { onDelete: CASCADE, local: id_disponibilidad_dia, foreign: id }
 Ente:
   connection: doctrine
   tableName: ente
@@ -256,7 +263,7 @@ Identificacion:
       type: boolean(1)
       notnull: true
       default: false
-    activo:
+    habilitado:
       type: boolean(1)
       notnull: true
       default: true
@@ -315,6 +322,10 @@ Identificacion:
       foreign: id_identificacion
       type: many
     Telefonos:
+      local: id
+      foreign: id_identificacion
+      type: many
+    Bitacora_Secciones:
       local: id
       foreign: id_identificacion
       type: many
@@ -423,7 +434,7 @@ Secciones:
   columns:
     id_identificacion:
       type: integer(4)
-      notnull: true
+      notnull: false
     id_area_formacion:
       type: integer(4)
       notnull: true
