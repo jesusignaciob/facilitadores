@@ -15,11 +15,13 @@ abstract class BaseBitacoraFormacionFacilitadorFormFilter extends BaseFormFilter
     $this->setWidgets(array(
       'id_area_formacion_facilitador' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('AreasFormacionFacilitador'), 'add_empty' => true)),
       'fecha'                         => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
+      'estatus'                       => new sfWidgetFormFilterInput(array('with_empty' => false)),
     ));
 
     $this->setValidators(array(
       'id_area_formacion_facilitador' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('AreasFormacionFacilitador'), 'column' => 'id')),
       'fecha'                         => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDateTime(array('required' => false)))),
+      'estatus'                       => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
     ));
 
     $this->widgetSchema->setNameFormat('bitacora_formacion_facilitador_filters[%s]');
@@ -42,6 +44,7 @@ abstract class BaseBitacoraFormacionFacilitadorFormFilter extends BaseFormFilter
       'id'                            => 'Number',
       'id_area_formacion_facilitador' => 'ForeignKey',
       'fecha'                         => 'Date',
+      'estatus'                       => 'Number',
     );
   }
 }
