@@ -19,7 +19,7 @@ abstract class BaseDisponibilidadDiasFormFilter extends BaseFormFilterDoctrine
 
     $this->setValidators(array(
       'id_identificacion' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Identificacion'), 'column' => 'id')),
-      'dia'               => new sfValidatorPass(array('required' => false)),
+      'dia'               => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
     ));
 
     $this->widgetSchema->setNameFormat('disponibilidad_dias_filters[%s]');
@@ -41,7 +41,7 @@ abstract class BaseDisponibilidadDiasFormFilter extends BaseFormFilterDoctrine
     return array(
       'id'                => 'Number',
       'id_identificacion' => 'ForeignKey',
-      'dia'               => 'Text',
+      'dia'               => 'Number',
     );
   }
 }
