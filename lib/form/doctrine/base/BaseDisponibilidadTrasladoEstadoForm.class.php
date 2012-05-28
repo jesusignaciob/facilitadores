@@ -19,6 +19,7 @@ abstract class BaseDisponibilidadTrasladoEstadoForm extends BaseFormDoctrine
       'id_identificacion' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Identificacion'), 'add_empty' => false)),
       'id_estado'         => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Estado'), 'add_empty' => false)),
       'id_municipio'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Municipio'), 'add_empty' => false)),
+      'id_parroquia'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Parroquia'), 'add_empty' => false)),
       'requiere_traslado' => new sfWidgetFormInputCheckbox(),
     ));
 
@@ -27,6 +28,7 @@ abstract class BaseDisponibilidadTrasladoEstadoForm extends BaseFormDoctrine
       'id_identificacion' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Identificacion'))),
       'id_estado'         => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Estado'))),
       'id_municipio'      => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Municipio'))),
+      'id_parroquia'      => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Parroquia'))),
       'requiere_traslado' => new sfValidatorBoolean(),
     ));
 

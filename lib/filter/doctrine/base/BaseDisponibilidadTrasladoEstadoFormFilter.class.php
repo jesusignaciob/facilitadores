@@ -16,6 +16,7 @@ abstract class BaseDisponibilidadTrasladoEstadoFormFilter extends BaseFormFilter
       'id_identificacion' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Identificacion'), 'add_empty' => true)),
       'id_estado'         => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Estado'), 'add_empty' => true)),
       'id_municipio'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Municipio'), 'add_empty' => true)),
+      'id_parroquia'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Parroquia'), 'add_empty' => true)),
       'requiere_traslado' => new sfWidgetFormChoice(array('choices' => array('' => 'yes or no', 1 => 'yes', 0 => 'no'))),
     ));
 
@@ -23,6 +24,7 @@ abstract class BaseDisponibilidadTrasladoEstadoFormFilter extends BaseFormFilter
       'id_identificacion' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Identificacion'), 'column' => 'id')),
       'id_estado'         => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Estado'), 'column' => 'id')),
       'id_municipio'      => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Municipio'), 'column' => 'id')),
+      'id_parroquia'      => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Parroquia'), 'column' => 'id')),
       'requiere_traslado' => new sfValidatorChoice(array('required' => false, 'choices' => array('', 1, 0))),
     ));
 
@@ -47,6 +49,7 @@ abstract class BaseDisponibilidadTrasladoEstadoFormFilter extends BaseFormFilter
       'id_identificacion' => 'ForeignKey',
       'id_estado'         => 'ForeignKey',
       'id_municipio'      => 'ForeignKey',
+      'id_parroquia'      => 'ForeignKey',
       'requiere_traslado' => 'Boolean',
     );
   }

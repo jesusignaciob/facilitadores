@@ -16,7 +16,7 @@ abstract class BaseSeccionesForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'                => new sfWidgetFormInputHidden(),
-      'id_identificacion' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Identificacion'), 'add_empty' => true)),
+      'id_identificacion' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Identificacion'), 'add_empty' => false)),
       'id_area_formacion' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('AreasFormacion'), 'add_empty' => false)),
       'nombre_seccion'    => new sfWidgetFormInputText(),
       'id_ente'           => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Ente'), 'add_empty' => false)),
@@ -24,7 +24,7 @@ abstract class BaseSeccionesForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'                => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'id_identificacion' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Identificacion'), 'required' => false)),
+      'id_identificacion' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Identificacion'))),
       'id_area_formacion' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('AreasFormacion'))),
       'nombre_seccion'    => new sfValidatorString(array('max_length' => 50)),
       'id_ente'           => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Ente'))),
