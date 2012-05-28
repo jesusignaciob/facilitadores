@@ -12,5 +12,6 @@ class AreasFormacionForm extends BaseAreasFormacionForm
 {
   public function configure()
   {
+    
   }
 }

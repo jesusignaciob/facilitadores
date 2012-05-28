@@ -15,15 +15,17 @@ abstract class BaseBitacoraSeccionesForm extends BaseFormDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'id'           => new sfWidgetFormInputHidden(),
-      'id_secciones' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Secciones'), 'add_empty' => false)),
-      'fecha'        => new sfWidgetFormDate(),
+      'id'                => new sfWidgetFormInputHidden(),
+      'id_secciones'      => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Secciones'), 'add_empty' => false)),
+      'id_identificacion' => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Identificacion'), 'add_empty' => false)),
+      'fecha'             => new sfWidgetFormDate(),
     ));
 
     $this->setValidators(array(
-      'id'           => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'id_secciones' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Secciones'))),
-      'fecha'        => new sfValidatorDate(),
+      'id'                => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
+      'id_secciones'      => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Secciones'))),
+      'id_identificacion' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Identificacion'))),
+      'fecha'             => new sfValidatorDate(),
     ));
 
     $this->widgetSchema->setNameFormat('bitacora_secciones[%s]');
