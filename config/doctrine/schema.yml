@@ -35,7 +35,7 @@ AreasFormacionFacilitador:
       type: one
     Secciones:
       local: id
-      foreign: id_area_formacion_facilitador
+      foreign: id_area_formacion
       type: many
     BitacoraFormacionFacilitador:
       local: id
@@ -424,7 +424,7 @@ Secciones:
     id_identificacion:
       type: integer(4)
       notnull: true
-    id_area_formacion_facilitador:
+    id_area_formacion:
       type: integer(4)
       notnull: true
     nombre_seccion:
@@ -434,8 +434,8 @@ Secciones:
       type: integer(4)
       notnull: true
   relations:
-    AreasFormacionFacilitador:
-      local: id_area_formacion_facilitador
+    AreasFormacion:
+      local: id_area_formacion
       foreign: id
       type: one
     Ente:
