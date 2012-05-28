@@ -12,4 +12,7 @@
  */
 class Ente extends BaseEnte
 {
+  public function  __toString() {
+    return $this->getNombreEnte();
+  }
 }
