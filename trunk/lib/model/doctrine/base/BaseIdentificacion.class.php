@@ -15,7 +15,7 @@ Doctrine_Manager::getInstance()->bindComponent('Identificacion', 'doctrine');
  * @property string $sector
  * @property string $situacion_laboral
  * @property boolean $formacion_politica
- * @property boolean $activo
+ * @property boolean $habilitado
  * @property integer $id_estado
  * @property integer $id_municipio
  * @property integer $id_parroquia
@@ -31,6 +31,7 @@ Doctrine_Manager::getInstance()->bindComponent('Identificacion', 'doctrine');
  * @property Doctrine_Collection $Correos
  * @property Doctrine_Collection $NivelFormacion
  * @property Doctrine_Collection $Telefonos
+ * @property Doctrine_Collection $BitacoraSecciones
  * 
  * @method string              getNombre()                       Returns the current record's "nombre" value
  * @method string              getApellido()                     Returns the current record's "apellido" value
@@ -40,7 +41,7 @@ Doctrine_Manager::getInstance()->bindComponent('Identificacion', 'doctrine');
  * @method string              getSector()                       Returns the current record's "sector" value
  * @method string              getSituacionLaboral()             Returns the current record's "situacion_laboral" value
  * @method boolean             getFormacionPolitica()            Returns the current record's "formacion_politica" value
- * @method boolean             getActivo()                       Returns the current record's "activo" value
+ * @method boolean             getHabilitado()                   Returns the current record's "habilitado" value
  * @method integer             getIdEstado()                     Returns the current record's "id_estado" value
  * @method integer             getIdMunicipio()                  Returns the current record's "id_municipio" value
  * @method integer             getIdParroquia()                  Returns the current record's "id_parroquia" value
@@ -56,6 +57,7 @@ Doctrine_Manager::getInstance()->bindComponent('Identificacion', 'doctrine');
  * @method Doctrine_Collection getCorreos()                      Returns the current record's "Correos" collection
  * @method Doctrine_Collection getNivelFormacion()               Returns the current record's "NivelFormacion" collection
  * @method Doctrine_Collection getTelefonos()                    Returns the current record's "Telefonos" collection
+ * @method Doctrine_Collection getBitacoraSecciones()            Returns the current record's "BitacoraSecciones" collection
  * @method Identificacion      setNombre()                       Sets the current record's "nombre" value
  * @method Identificacion      setApellido()                     Sets the current record's "apellido" value
  * @method Identificacion      setCedulaPasaporte()              Sets the current record's "cedula_pasaporte" value
@@ -64,7 +66,7 @@ Doctrine_Manager::getInstance()->bindComponent('Identificacion', 'doctrine');
  * @method Identificacion      setSector()                       Sets the current record's "sector" value
  * @method Identificacion      setSituacionLaboral()             Sets the current record's "situacion_laboral" value
  * @method Identificacion      setFormacionPolitica()            Sets the current record's "formacion_politica" value
- * @method Identificacion      setActivo()                       Sets the current record's "activo" value
+ * @method Identificacion      setHabilitado()                   Sets the current record's "habilitado" value
  * @method Identificacion      setIdEstado()                     Sets the current record's "id_estado" value
  * @method Identificacion      setIdMunicipio()                  Sets the current record's "id_municipio" value
  * @method Identificacion      setIdParroquia()                  Sets the current record's "id_parroquia" value
@@ -80,6 +82,7 @@ Doctrine_Manager::getInstance()->bindComponent('Identificacion', 'doctrine');
  * @method Identificacion      setCorreos()                      Sets the current record's "Correos" collection
  * @method Identificacion      setNivelFormacion()               Sets the current record's "NivelFormacion" collection
  * @method Identificacion      setTelefonos()                    Sets the current record's "Telefonos" collection
+ * @method Identificacion      setBitacoraSecciones()            Sets the current record's "BitacoraSecciones" collection
  * 
  * @package    facilitadores
  * @subpackage model
@@ -133,7 +136,7 @@ abstract class BaseIdentificacion extends sfDoctrineRecord
              'default' => false,
              'length' => 1,
              ));
-        $this->hasColumn('activo', 'boolean', 1, array(
+        $this->hasColumn('habilitado', 'boolean', 1, array(
              'type' => 'boolean',
              'notnull' => true,
              'default' => true,
@@ -204,6 +207,10 @@ abstract class BaseIdentificacion extends sfDoctrineRecord
              'foreign' => 'id_identificacion'));
 
         $this->hasMany('Telefonos', array(
+             'local' => 'id',
+             'foreign' => 'id_identificacion'));
+
+        $this->hasMany('BitacoraSecciones', array(
              'local' => 'id',
              'foreign' => 'id_identificacion'));
     }

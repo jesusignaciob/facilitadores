@@ -14,27 +14,24 @@ Doctrine_Manager::getInstance()->bindComponent('Secciones', 'doctrine');
  * @property AreasFormacion $AreasFormacion
  * @property Ente $Ente
  * @property Identificacion $Identificacion
- * @property AreasFormacionFacilitador $AreasFormacionFacilitador
  * @property Doctrine_Collection $BitacoraSecciones
  * 
- * @method integer                   getIdIdentificacion()          Returns the current record's "id_identificacion" value
- * @method integer                   getIdAreaFormacion()           Returns the current record's "id_area_formacion" value
- * @method string                    getNombreSeccion()             Returns the current record's "nombre_seccion" value
- * @method integer                   getIdEnte()                    Returns the current record's "id_ente" value
- * @method AreasFormacion            getAreasFormacion()            Returns the current record's "AreasFormacion" value
- * @method Ente                      getEnte()                      Returns the current record's "Ente" value
- * @method Identificacion            getIdentificacion()            Returns the current record's "Identificacion" value
- * @method AreasFormacionFacilitador getAreasFormacionFacilitador() Returns the current record's "AreasFormacionFacilitador" value
- * @method Doctrine_Collection       getBitacoraSecciones()         Returns the current record's "BitacoraSecciones" collection
- * @method Secciones                 setIdIdentificacion()          Sets the current record's "id_identificacion" value
- * @method Secciones                 setIdAreaFormacion()           Sets the current record's "id_area_formacion" value
- * @method Secciones                 setNombreSeccion()             Sets the current record's "nombre_seccion" value
- * @method Secciones                 setIdEnte()                    Sets the current record's "id_ente" value
- * @method Secciones                 setAreasFormacion()            Sets the current record's "AreasFormacion" value
- * @method Secciones                 setEnte()                      Sets the current record's "Ente" value
- * @method Secciones                 setIdentificacion()            Sets the current record's "Identificacion" value
- * @method Secciones                 setAreasFormacionFacilitador() Sets the current record's "AreasFormacionFacilitador" value
- * @method Secciones                 setBitacoraSecciones()         Sets the current record's "BitacoraSecciones" collection
+ * @method integer             getIdIdentificacion()  Returns the current record's "id_identificacion" value
+ * @method integer             getIdAreaFormacion()   Returns the current record's "id_area_formacion" value
+ * @method string              getNombreSeccion()     Returns the current record's "nombre_seccion" value
+ * @method integer             getIdEnte()            Returns the current record's "id_ente" value
+ * @method AreasFormacion      getAreasFormacion()    Returns the current record's "AreasFormacion" value
+ * @method Ente                getEnte()              Returns the current record's "Ente" value
+ * @method Identificacion      getIdentificacion()    Returns the current record's "Identificacion" value
+ * @method Doctrine_Collection getBitacoraSecciones() Returns the current record's "BitacoraSecciones" collection
+ * @method Secciones           setIdIdentificacion()  Sets the current record's "id_identificacion" value
+ * @method Secciones           setIdAreaFormacion()   Sets the current record's "id_area_formacion" value
+ * @method Secciones           setNombreSeccion()     Sets the current record's "nombre_seccion" value
+ * @method Secciones           setIdEnte()            Sets the current record's "id_ente" value
+ * @method Secciones           setAreasFormacion()    Sets the current record's "AreasFormacion" value
+ * @method Secciones           setEnte()              Sets the current record's "Ente" value
+ * @method Secciones           setIdentificacion()    Sets the current record's "Identificacion" value
+ * @method Secciones           setBitacoraSecciones() Sets the current record's "BitacoraSecciones" collection
  * 
  * @package    facilitadores
  * @subpackage model
@@ -48,7 +45,7 @@ abstract class BaseSecciones extends sfDoctrineRecord
         $this->setTableName('secciones');
         $this->hasColumn('id_identificacion', 'integer', 4, array(
              'type' => 'integer',
-             'notnull' => true,
+             'notnull' => false,
              'length' => 4,
              ));
         $this->hasColumn('id_area_formacion', 'integer', 4, array(
@@ -81,10 +78,6 @@ abstract class BaseSecciones extends sfDoctrineRecord
 
         $this->hasOne('Identificacion', array(
              'local' => 'id_identificacion',
-             'foreign' => 'id'));
-
-        $this->hasOne('AreasFormacionFacilitador', array(
-             'local' => 'id_area_formacion',
              'foreign' => 'id'));
 
         $this->hasMany('BitacoraSecciones', array(
