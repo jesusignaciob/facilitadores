@@ -21,7 +21,7 @@ abstract class BaseAreasFormacionFacilitadorFormFilter extends BaseFormFilterDoc
     $this->setValidators(array(
       'id_identificacion' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Identificacion'), 'column' => 'id')),
       'id_area_formacion' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('AreasFormacion'), 'column' => 'id')),
-      'estatus'           => new sfValidatorPass(array('required' => false)),
+      'estatus'           => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
     ));
 
     $this->widgetSchema->setNameFormat('areas_formacion_facilitador_filters[%s]');
@@ -44,7 +44,7 @@ abstract class BaseAreasFormacionFacilitadorFormFilter extends BaseFormFilterDoc
       'id'                => 'Number',
       'id_identificacion' => 'ForeignKey',
       'id_area_formacion' => 'ForeignKey',
-      'estatus'           => 'Text',
+      'estatus'           => 'Number',
     );
   }
 }

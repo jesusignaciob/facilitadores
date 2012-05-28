@@ -10,25 +10,31 @@ Doctrine_Manager::getInstance()->bindComponent('DisponibilidadTrasladoEstado', '
  * @property integer $id_identificacion
  * @property integer $id_estado
  * @property integer $id_municipio
+ * @property integer $id_parroquia
  * @property boolean $requiere_traslado
  * @property Estado $Estado
  * @property Identificacion $Identificacion
  * @property Municipio $Municipio
+ * @property Parroquia $Parroquia
  * 
  * @method integer                      getIdIdentificacion()  Returns the current record's "id_identificacion" value
  * @method integer                      getIdEstado()          Returns the current record's "id_estado" value
  * @method integer                      getIdMunicipio()       Returns the current record's "id_municipio" value
+ * @method integer                      getIdParroquia()       Returns the current record's "id_parroquia" value
  * @method boolean                      getRequiereTraslado()  Returns the current record's "requiere_traslado" value
  * @method Estado                       getEstado()            Returns the current record's "Estado" value
  * @method Identificacion               getIdentificacion()    Returns the current record's "Identificacion" value
  * @method Municipio                    getMunicipio()         Returns the current record's "Municipio" value
+ * @method Parroquia                    getParroquia()         Returns the current record's "Parroquia" value
  * @method DisponibilidadTrasladoEstado setIdIdentificacion()  Sets the current record's "id_identificacion" value
  * @method DisponibilidadTrasladoEstado setIdEstado()          Sets the current record's "id_estado" value
  * @method DisponibilidadTrasladoEstado setIdMunicipio()       Sets the current record's "id_municipio" value
+ * @method DisponibilidadTrasladoEstado setIdParroquia()       Sets the current record's "id_parroquia" value
  * @method DisponibilidadTrasladoEstado setRequiereTraslado()  Sets the current record's "requiere_traslado" value
  * @method DisponibilidadTrasladoEstado setEstado()            Sets the current record's "Estado" value
  * @method DisponibilidadTrasladoEstado setIdentificacion()    Sets the current record's "Identificacion" value
  * @method DisponibilidadTrasladoEstado setMunicipio()         Sets the current record's "Municipio" value
+ * @method DisponibilidadTrasladoEstado setParroquia()         Sets the current record's "Parroquia" value
  * 
  * @package    facilitadores
  * @subpackage model
@@ -55,6 +61,11 @@ abstract class BaseDisponibilidadTrasladoEstado extends sfDoctrineRecord
              'notnull' => true,
              'length' => 4,
              ));
+        $this->hasColumn('id_parroquia', 'integer', 4, array(
+             'type' => 'integer',
+             'notnull' => true,
+             'length' => 4,
+             ));
         $this->hasColumn('requiere_traslado', 'boolean', 1, array(
              'type' => 'boolean',
              'notnull' => true,
@@ -75,6 +86,10 @@ abstract class BaseDisponibilidadTrasladoEstado extends sfDoctrineRecord
 
         $this->hasOne('Municipio', array(
              'local' => 'id_municipio',
+             'foreign' => 'id'));
+
+        $this->hasOne('Parroquia', array(
+             'local' => 'id_parroquia',
              'foreign' => 'id'));
     }
 }

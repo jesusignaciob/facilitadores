@@ -53,6 +53,7 @@ abstract class BaseAreasFormacionFacilitador extends sfDoctrineRecord
         $this->hasColumn('estatus', 'integer', 1, array(
              'type' => 'integer',
              'notnull' => true,
+             'default' => 0,
              'length' => 1,
              ));
     }
@@ -70,7 +71,7 @@ abstract class BaseAreasFormacionFacilitador extends sfDoctrineRecord
 
         $this->hasMany('Secciones', array(
              'local' => 'id',
-             'foreign' => 'id_area_formacion_facilitador'));
+             'foreign' => 'id_area_formacion'));
 
         $this->hasMany('BitacoraFormacionFacilitador', array(
              'local' => 'id',
