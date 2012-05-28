@@ -25,4 +25,18 @@ class AreasFormacionFacilitadorTable extends Doctrine_Table
                 
         return $q->execute();
     }
+    
+    static protected $estatus = array(
+      '' => '',
+      '0' => 'En fomación',
+      '1' => 'Formado',
+      '2' => 'Convocado',
+      '3' => 'Activo',
+      '4' => 'Inactivo',
+    );
+    
+    public function getstatus()
+    {
+		  return self::$estatus;
+	  }
 }

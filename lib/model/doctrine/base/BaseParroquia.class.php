@@ -12,20 +12,17 @@ Doctrine_Manager::getInstance()->bindComponent('Parroquia', 'doctrine');
  * @property Municipio $Municipio
  * @property Doctrine_Collection $Identificacion
  * @property Doctrine_Collection $Ente
- * @property Doctrine_Collection $DisponibilidadTrasladoEstado
  * 
- * @method string              getNombreParroquia()              Returns the current record's "nombre_parroquia" value
- * @method integer             getIdMunicipio()                  Returns the current record's "id_municipio" value
- * @method Municipio           getMunicipio()                    Returns the current record's "Municipio" value
- * @method Doctrine_Collection getIdentificacion()               Returns the current record's "Identificacion" collection
- * @method Doctrine_Collection getEnte()                         Returns the current record's "Ente" collection
- * @method Doctrine_Collection getDisponibilidadTrasladoEstado() Returns the current record's "DisponibilidadTrasladoEstado" collection
- * @method Parroquia           setNombreParroquia()              Sets the current record's "nombre_parroquia" value
- * @method Parroquia           setIdMunicipio()                  Sets the current record's "id_municipio" value
- * @method Parroquia           setMunicipio()                    Sets the current record's "Municipio" value
- * @method Parroquia           setIdentificacion()               Sets the current record's "Identificacion" collection
- * @method Parroquia           setEnte()                         Sets the current record's "Ente" collection
- * @method Parroquia           setDisponibilidadTrasladoEstado() Sets the current record's "DisponibilidadTrasladoEstado" collection
+ * @method string              getNombreParroquia()  Returns the current record's "nombre_parroquia" value
+ * @method integer             getIdMunicipio()      Returns the current record's "id_municipio" value
+ * @method Municipio           getMunicipio()        Returns the current record's "Municipio" value
+ * @method Doctrine_Collection getIdentificacion()   Returns the current record's "Identificacion" collection
+ * @method Doctrine_Collection getEnte()             Returns the current record's "Ente" collection
+ * @method Parroquia           setNombreParroquia()  Sets the current record's "nombre_parroquia" value
+ * @method Parroquia           setIdMunicipio()      Sets the current record's "id_municipio" value
+ * @method Parroquia           setMunicipio()        Sets the current record's "Municipio" value
+ * @method Parroquia           setIdentificacion()   Sets the current record's "Identificacion" collection
+ * @method Parroquia           setEnte()             Sets the current record's "Ente" collection
  * 
  * @package    facilitadores
  * @subpackage model
@@ -61,10 +58,6 @@ abstract class BaseParroquia extends sfDoctrineRecord
              'foreign' => 'id_parroquia'));
 
         $this->hasMany('Ente', array(
-             'local' => 'id',
-             'foreign' => 'id_parroquia'));
-
-        $this->hasMany('DisponibilidadTrasladoEstado', array(
              'local' => 'id',
              'foreign' => 'id_parroquia'));
     }

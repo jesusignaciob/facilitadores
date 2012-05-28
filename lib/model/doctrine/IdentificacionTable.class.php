@@ -45,15 +45,15 @@ class IdentificacionTable extends Doctrine_Table
           $w = $w. " and i.id_parroquia = $parroquia";
             
         if (strlen($estatus) > 0 && strlen($area) == 0)
-          $w = $w. " and i.activo = true and aff.estatus = $estatus";
+          $w = $w. " and i.habilitado = true and aff.estatus = $estatus";
         
         if (strlen($estatus) == 0 && strlen($area) > 0)
-          $w = $w. " and i.activo = true and aff.id_area_formacion = $area";
+          $w = $w. " and i.habilitado = true and aff.id_area_formacion = $area";
         
         if (strlen($estatus) > 0 && strlen($area) > 0)
-          $w = $w. " and i.activo = true and aff.estatus = $estatus and aff.id_area_formacion = $area";
+          $w = $w. " and i.habilitado = true and aff.estatus = $estatus and aff.id_area_formacion = $area";
         
-        $q = Doctrine_Core::getTable('Identificacion')->createQuery("SELECT i FROM Identificacion i JOIN i.AreasFormacionFacilitador aff")->where("i.activo = true" . $w);
+        $q = Doctrine_Core::getTable('Identificacion')->createQuery("SELECT i FROM Identificacion i JOIN i.AreasFormacionFacilitador aff")->where("i.habilitado = true" . $w);
         
         return $q->execute();
     }
@@ -61,7 +61,7 @@ class IdentificacionTable extends Doctrine_Table
     public static function eliminarFacilitador($id)
     {
       Doctrine_Query::create()->update('Identificacion i')
-        ->set('i.activo', '?', false)
+        ->set('i.habilitado', '?', false)
         ->where('i.id = ?', $id)
         ->execute();
     }

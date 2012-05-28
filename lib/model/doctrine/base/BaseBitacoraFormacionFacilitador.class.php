@@ -9,13 +9,16 @@ Doctrine_Manager::getInstance()->bindComponent('BitacoraFormacionFacilitador', '
  * 
  * @property integer $id_area_formacion_facilitador
  * @property date $fecha
+ * @property integer $estatus
  * @property AreasFormacionFacilitador $AreasFormacionFacilitador
  * 
  * @method integer                      getIdAreaFormacionFacilitador()    Returns the current record's "id_area_formacion_facilitador" value
  * @method date                         getFecha()                         Returns the current record's "fecha" value
+ * @method integer                      getEstatus()                       Returns the current record's "estatus" value
  * @method AreasFormacionFacilitador    getAreasFormacionFacilitador()     Returns the current record's "AreasFormacionFacilitador" value
  * @method BitacoraFormacionFacilitador setIdAreaFormacionFacilitador()    Sets the current record's "id_area_formacion_facilitador" value
  * @method BitacoraFormacionFacilitador setFecha()                         Sets the current record's "fecha" value
+ * @method BitacoraFormacionFacilitador setEstatus()                       Sets the current record's "estatus" value
  * @method BitacoraFormacionFacilitador setAreasFormacionFacilitador()     Sets the current record's "AreasFormacionFacilitador" value
  * 
  * @package    facilitadores
@@ -38,6 +41,12 @@ abstract class BaseBitacoraFormacionFacilitador extends sfDoctrineRecord
              'notnull' => true,
              'length' => 25,
              ));
+        $this->hasColumn('estatus', 'integer', 1, array(
+             'type' => 'integer',
+             'notnull' => true,
+             'default' => 0,
+             'length' => 1,
+             ));
     }
 
     public function setUp()
@@ -45,6 +54,7 @@ abstract class BaseBitacoraFormacionFacilitador extends sfDoctrineRecord
         parent::setUp();
         $this->hasOne('AreasFormacionFacilitador', array(
              'local' => 'id_area_formacion_facilitador',
-             'foreign' => 'id'));
+             'foreign' => 'id',
+             'onDelete' => 'CASCADE'));
     }
 }

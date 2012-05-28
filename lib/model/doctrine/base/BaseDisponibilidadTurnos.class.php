@@ -45,6 +45,7 @@ abstract class BaseDisponibilidadTurnos extends sfDoctrineRecord
         parent::setUp();
         $this->hasOne('DisponibilidadDias', array(
              'local' => 'id_disponibilidad_dia',
-             'foreign' => 'id'));
+             'foreign' => 'id',
+             'onDelete' => 'CASCADE'));
     }
 }
