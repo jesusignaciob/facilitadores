@@ -46,7 +46,6 @@ abstract class BaseEnte extends sfDoctrineRecord
         $this->hasColumn('nombre_ente', 'string', 50, array(
              'type' => 'string',
              'notnull' => true,
-             'unique' => true,
              'length' => 50,
              ));
         $this->hasColumn('id_estado', 'integer', 4, array(

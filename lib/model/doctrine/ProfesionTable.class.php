@@ -16,4 +16,12 @@ class ProfesionTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('Profesion');
     }
+     public static function obtenerProfesionPorFacilitador($idFacilitador)
+    {
+        $q = Doctrine_Query::create()
+                ->from('Profesion pf')
+                ->where('pf.id_identificacion = ?', $idFacilitador);
+                
+        return $q->execute();
+    }
 }

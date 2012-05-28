@@ -9,22 +9,25 @@ Doctrine_Manager::getInstance()->bindComponent('AreasFormacionFacilitador', 'doc
  * 
  * @property integer $id_identificacion
  * @property integer $id_area_formacion
- * @property string $estatus
+ * @property integer $estatus
  * @property AreasFormacion $AreasFormacion
  * @property Identificacion $Identificacion
+ * @property Doctrine_Collection $Secciones
  * @property Doctrine_Collection $BitacoraFormacionFacilitador
  * 
  * @method integer                   getIdIdentificacion()             Returns the current record's "id_identificacion" value
  * @method integer                   getIdAreaFormacion()              Returns the current record's "id_area_formacion" value
- * @method string                    getEstatus()                      Returns the current record's "estatus" value
+ * @method integer                   getEstatus()                      Returns the current record's "estatus" value
  * @method AreasFormacion            getAreasFormacion()               Returns the current record's "AreasFormacion" value
  * @method Identificacion            getIdentificacion()               Returns the current record's "Identificacion" value
+ * @method Doctrine_Collection       getSecciones()                    Returns the current record's "Secciones" collection
  * @method Doctrine_Collection       getBitacoraFormacionFacilitador() Returns the current record's "BitacoraFormacionFacilitador" collection
  * @method AreasFormacionFacilitador setIdIdentificacion()             Sets the current record's "id_identificacion" value
  * @method AreasFormacionFacilitador setIdAreaFormacion()              Sets the current record's "id_area_formacion" value
  * @method AreasFormacionFacilitador setEstatus()                      Sets the current record's "estatus" value
  * @method AreasFormacionFacilitador setAreasFormacion()               Sets the current record's "AreasFormacion" value
  * @method AreasFormacionFacilitador setIdentificacion()               Sets the current record's "Identificacion" value
+ * @method AreasFormacionFacilitador setSecciones()                    Sets the current record's "Secciones" collection
  * @method AreasFormacionFacilitador setBitacoraFormacionFacilitador() Sets the current record's "BitacoraFormacionFacilitador" collection
  * 
  * @package    facilitadores
@@ -47,10 +50,10 @@ abstract class BaseAreasFormacionFacilitador extends sfDoctrineRecord
              'notnull' => true,
              'length' => 4,
              ));
-        $this->hasColumn('estatus', 'string', 20, array(
-             'type' => 'string',
+        $this->hasColumn('estatus', 'integer', 1, array(
+             'type' => 'integer',
              'notnull' => true,
-             'length' => 20,
+             'length' => 1,
              ));
     }
 
@@ -64,6 +67,10 @@ abstract class BaseAreasFormacionFacilitador extends sfDoctrineRecord
         $this->hasOne('Identificacion', array(
              'local' => 'id_identificacion',
              'foreign' => 'id'));
+
+        $this->hasMany('Secciones', array(
+             'local' => 'id',
+             'foreign' => 'id_area_formacion_facilitador'));
 
         $this->hasMany('BitacoraFormacionFacilitador', array(
              'local' => 'id',

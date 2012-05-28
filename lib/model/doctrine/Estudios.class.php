@@ -12,4 +12,9 @@
  */
 class Estudios extends BaseEstudios
 {
+//Funcion para obtener los nombres de estudio de la tabla estudios
+	public function __toString() 
+	{
+    		return $this->getnombre_estudio();
+  	}
 }

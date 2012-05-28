@@ -12,4 +12,5 @@
  */
 class NivelFormacion extends BaseNivelFormacion
 {
+
 }
