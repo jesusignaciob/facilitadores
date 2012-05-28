@@ -23,7 +23,7 @@ abstract class BaseDisponibilidadDiasForm extends BaseFormDoctrine
     $this->setValidators(array(
       'id'                => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'id_identificacion' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Identificacion'))),
-      'dia'               => new sfValidatorString(array('max_length' => 20)),
+      'dia'               => new sfValidatorInteger(),
     ));
 
     $this->widgetSchema->setNameFormat('disponibilidad_dias[%s]');
