@@ -17,6 +17,8 @@ class IdentificacionForm extends BaseIdentificacionForm
           'id_municipio'   => 'Municipio',
           'id_parroquia' => 'Parroquia',
         ));
+        
+        $this->widgetSchema['id_estado'] = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Estado'), 'add_empty' => true));
 
   }
 }
