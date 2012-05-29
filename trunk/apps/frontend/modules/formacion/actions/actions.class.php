@@ -23,6 +23,13 @@ class formacionActions extends sfActions
   public function executeEstudios(sfWebRequest $request)
   {
     $this->estudios = Doctrine_Core::getTable('Estudios')->getEstudios();
+    $this->filter = new EstudiosFormFilter();
+  }
+  public function executeEstudiosFiltro(sfWebRequest $request) {
+    $this->filter = new EstudiosFormFilter();
+    $this->query = $this->filter->buildQuery($request->getParameter('estudios_filters'));
+    $this->estudios = $this->query->execute();
+    $this->setTemplate('estudios');
   }
   public function executeEstudiosInsertar(sfWebRequest $request)
   {
@@ -98,6 +105,13 @@ class formacionActions extends sfActions
   public function executeAreasFormacion(sfWebRequest $request)
   {
     $this->areasFormacion = Doctrine_Core::getTable('AreasFormacion')->getAreasFormacion();
+    $this->filter = new AreasFormacionFormFilter();
+  }
+  public function executeAreasFiltro(sfWebRequest $request) {
+    $this->filter = new AreasFormacionFormFilter();
+    $this->query = $this->filter->buildQuery($request->getParameter('areas_formacion_filters'));
+    $this->areasFormacion = $this->query->execute();
+    $this->setTemplate('areasFormacion');
   }
   public function executeAreasFormacionInsertar(sfWebRequest $request)
   {
@@ -172,6 +186,13 @@ class formacionActions extends sfActions
   public function executeEntes(sfWebRequest $request)
   {
     $this->entes = Doctrine_Core::getTable('Ente')->getEntes();
+    $this->filter = new EnteFormFilter();
+  }
+  public function executeEntesFiltro(sfWebRequest $request) {
+    $this->filter = new EnteFormFilter();
+    $this->query = $this->filter->buildQuery($request->getParameter('ente_filters'));
+    $this->entes = $this->query->execute();
+    $this->setTemplate('entes');
   }
   public function executeEntesInsertar(sfWebRequest $request)
   {

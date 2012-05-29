@@ -12,6 +12,27 @@
 <button class="back-button" onclick="javascript:parent.location='/frontend_dev.php/principal'">Ir al menú Principal</button><br/><br/>
 <div id="sf_gmstv_container">
   <h1>Lista de Estudios</h1>
+  
+<div id="sf_gmstv_bar">    
+  <div class="sf_gmstv_filter">
+    <form action="<?php echo url_for('formacion/estudiosFiltro');?>" method="post">
+      <table cellspacing="0">
+        <tfoot>
+          <tr>
+
+            <td colspan="2">           
+              <?php echo $filter->renderHiddenFields(); ?>
+              <input type="submit" value="Filtrar" />
+            </td>
+          </tr>
+        </tfoot>
+        <tbody>
+          <?php echo $filter; ?>
+        </tbody>
+      </table>
+    </form>
+  </div>
+</div>
   <div id="sf_gmstv_content">
     <form action="/frontend_dev.php/guard/groups/batch/action" method="post">
     <div class="sf_gmstv_list">
