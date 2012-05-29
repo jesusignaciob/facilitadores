@@ -200,7 +200,7 @@ Estado:
   tableName: estado
   columns:
     nombre_estado:
-      type: string(20)
+      type: string(25)
       notnull: true
   relations:
     Identificacion:
