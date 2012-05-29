@@ -246,6 +246,13 @@ class formacionActions extends sfActions
   public function executeSecciones(sfWebRequest $request)
   {
     $this->secciones = Doctrine_Core::getTable('Secciones')->getSecciones();
+    $this->filter = new SeccionesFormFilter();
+  }
+  public function executeSeccionesFiltro(sfWebRequest $request) {
+    $this->filter = new SeccionesFormFilter();
+    $this->query = $this->filter->buildQuery($request->getParameter('secciones_filters'));
+    $this->secciones = $this->query->execute();
+    $this->setTemplate('secciones');
   }
   public function executeSeccionesInsertar(sfWebRequest $request)
   {

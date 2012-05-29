@@ -12,5 +12,10 @@ class SeccionesFormFilter extends BaseSeccionesFormFilter
 {
   public function configure()
   {
+    unset($this['id_identificacion']);
+    $this->widgetSchema->setLabels(array(
+      'id_area_formacion'    => 'Área formación',
+      'id_ente'   => 'Ente',
+    ));
   }
 }
