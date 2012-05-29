@@ -179,7 +179,7 @@ public function executeInsertar_secciones(sfWebRequest $request)
    {
      $result = $form->save();
      $id = $form->getObject()->id;
-     //$this->redirect('gestion/insertartelefono?id='.$id);
+     $this->redirect('gestion/insertartelefono?id='.$id);
    }
  }
 //Funcion para validar las entradas de datos de Telefonos
