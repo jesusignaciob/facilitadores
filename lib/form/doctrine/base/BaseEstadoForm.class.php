@@ -21,7 +21,7 @@ abstract class BaseEstadoForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'            => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
-      'nombre_estado' => new sfValidatorString(array('max_length' => 20)),
+      'nombre_estado' => new sfValidatorString(array('max_length' => 25)),
     ));
 
     $this->widgetSchema->setNameFormat('estado[%s]');

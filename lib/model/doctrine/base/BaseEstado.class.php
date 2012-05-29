@@ -34,10 +34,10 @@ abstract class BaseEstado extends sfDoctrineRecord
     public function setTableDefinition()
     {
         $this->setTableName('estado');
-        $this->hasColumn('nombre_estado', 'string', 20, array(
+        $this->hasColumn('nombre_estado', 'string', 25, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => 20,
+             'length' => 25,
              ));
     }
 
