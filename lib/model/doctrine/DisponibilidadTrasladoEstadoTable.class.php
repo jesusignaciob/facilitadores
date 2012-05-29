@@ -25,4 +25,14 @@ class DisponibilidadTrasladoEstadoTable extends Doctrine_Table
                 
         return $q->execute();
     }
+
+    public static function eliminarTraslados($id_traslado)
+	{
+ 	  $deleted = Doctrine_Query::create()
+	  ->delete()
+	  ->from('DisponibilidadTrasladoEstado')
+	  ->andWhere('id = ?', $id_traslado)
+	  ->execute();
+	}
+
 }

@@ -138,7 +138,6 @@ abstract class BaseIdentificacion extends sfDoctrineRecord
              ));
         $this->hasColumn('habilitado', 'boolean', 1, array(
              'type' => 'boolean',
-             'notnull' => true,
              'default' => true,
              'length' => 1,
              ));

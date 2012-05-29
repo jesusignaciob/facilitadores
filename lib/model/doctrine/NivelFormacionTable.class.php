@@ -24,4 +24,13 @@ class NivelFormacionTable extends Doctrine_Table
                 
         return $q->execute();
     }
+
+     public static function eliminarNivelFormacion($id_nivel)
+	{
+ 	 $deleted = Doctrine_Query::create()
+  	->delete()
+  	->from('NivelFormacion')
+  	->andWhere('id = ?', $id_nivel)
+  	->execute();
+	}
 }

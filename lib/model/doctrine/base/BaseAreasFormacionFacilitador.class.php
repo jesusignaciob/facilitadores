@@ -50,7 +50,6 @@ abstract class BaseAreasFormacionFacilitador extends sfDoctrineRecord
         $this->hasColumn('estatus', 'integer', 1, array(
              'type' => 'integer',
              'notnull' => true,
-             'default' => 0,
              'length' => 1,
              ));
     }

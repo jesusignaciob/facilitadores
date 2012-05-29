@@ -24,4 +24,13 @@ class OcupacionTable extends Doctrine_Table
                 
         return $q->execute();
     }
+    
+    public static function eliminarOcupacion($id_ocupacion)
+	{
+ 	 $deleted = Doctrine_Query::create()
+  	->delete()
+  	->from('Ocupacion')
+  	->andWhere('id = ?', $id_ocupacion)
+  	->execute();
+	}
 }

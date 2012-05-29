@@ -23,4 +23,14 @@ class CorreosTable extends Doctrine_Table
 
         return $querystring->execute();
     }
+    
+    public static function eliminarCorreo($id_correo)
+    {
+	   $deleted = Doctrine_Query::create()
+	  ->delete()
+	  ->from('Correos')
+	  ->andWhere('id = ?', $id_correo)
+	  ->execute(); 
+  
+    }
 }

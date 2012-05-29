@@ -9,220 +9,326 @@ Configuración de Turnos Disponibles
 <form action="<?php echo url_for('gestion/CreateTurnoDisponible?id='.$id); ?>" method="post">
 
 <table border=1>
-  <?php $form['turno']->renderLabel(); ?>
-  <?php $form['turno']->render(); ?>
-  <?php $form['turno']->renderError(); ?>
 <tr>
 <th>
-Turnos
+Horarios
 </th>
-<th colspan='6'>
-Días
+<th>
+Lunes
+</th>
+<th>
+Martes
+</th>
+<th>
+Miércoles
+</th>
+<th>
+Jueves
+</th>
+<th>
+Viernes
+</th>
+<th>
+Sábado
+</th>
+<th>
+Domingo
+</th>
+</tr>
+</th>
+<tr>
+<th>
+7am-8am
+</th>
+<th>
+<input type="checkbox" name="lunes[]" value="7am-8am" ><br>
+</th>
+<th>
+<input type="checkbox" name="martes[]" value="7am-8am"><br>
+</th>
+<th>
+<input type="checkbox" name="miercoles[]" value="7am-8am"><br>
+</th>
+<th>
+<input type="checkbox" name="jueves[]" value="7am-8am"><br>
+</th>
+<th>
+<input type="checkbox" name="viernes[]" value="7am-8am"><br>
+</th>
+<th>
+<input type="checkbox" name="sabado[]" value="7am-8am"><br>
+</th>
+<th>
+<input type="checkbox" name="domingo[]" value="7am-8am"><br>
+</th>
+</tr>
+<tr>
+<tr>
+<th>
+8am-9am
+</th>
+<th>
+<input type="checkbox" name="lunes[]" value="8am-9am"><br>
+</th>
+<th>
+<input type="checkbox" name="martes[]" value="8am-9am"><br>
+</th>
+<th>
+<input type="checkbox" name="miercoles[]" value="8am-9am"><br>
+</th>
+<th>
+<input type="checkbox" name="jueves[]" value="8am-9am"><br>
+</th>
+<th>
+<input type="checkbox" name="viernes[]" value="8am-9am"><br>
+</th>
+<th>
+<input type="checkbox" name="sabado[]" value="8am-9am"><br>
+</th>
+<th>
+<input type="checkbox" name="domingo[]" value="8am-9am"><br>
 </th>
 </tr>
 <tr>
 <th>
-<input  type='checkbox'>7am-8am
+9am-10am
 </th>
 <th>
-<input type='checkbox'>Lunes
+<input type="checkbox" name="lunes[]" value="9am-10am"><br>
 </th>
 <th>
-<input  type='checkbox'>Martes
+<input type="checkbox" name="martes[]" value="9am-10am"><br>
 </th>
 <th>
-<input type='checkbox'>Miercoles
+<input type="checkbox" name="miercoles[]" value="9am-10am"><br>
 </th>
 <th>
-<input type='checkbox'>Jueves
+<input type="checkbox" name="jueves[]" value="9am-10am"><br>
 </th>
 <th>
-<input type='checkbox'>Viernes
-</th><th>
-<input type='checkbox'>Sábado
+<input type="checkbox" name="viernes[]" value="9am-10am"><br>
+</th>
+<th>
+<input type="checkbox" name="sabado[]" value="9am-10am"><br>
+</th>
+<th>
+<input type="checkbox" name="domingo[]" value="9am-10am"><br>
 </th>
 </tr>
 <tr>
 <th>
-<input type='checkbox'>8am-9am
+10am-11am
 </th>
 <th>
-<input type='checkbox'>Lunes
+<input type="checkbox" name="lunes[]" value="10am-11am"><br>
 </th>
 <th>
-<input type='checkbox'>Martes
+<input type="checkbox" name="martes[]" value="10am-11am"><br>
 </th>
 <th>
-<input type='checkbox'>Miercoles
+<input type="checkbox" name="miercoles[]" value="10am-11am"><br>
 </th>
 <th>
-<input type='checkbox'>Jueves
+<input type="checkbox" name="jueves[]" value="10am-11am"><br>
 </th>
 <th>
-<input type='checkbox'>Viernes
-</th><th>
-<input type='checkbox'>Sábado
+<input type="checkbox" name="viernes[]" value="10am-11am"><br>
+</th>
+<th>
+<input type="checkbox" name="sabado[]" value="10am-11am"><br>
+</th>
+<th>
+<input type="checkbox" name="domingo[]" value="10am-11am"><br>
 </th>
 </tr>
 <tr>
 <th>
-<input type='checkbox'>9am-10am
+11am-12pm
 </th>
 <th>
-<input type='checkbox'>Lunes
+<input type="checkbox" name="lunes[]" value="11am-12pm"><br>
 </th>
 <th>
-<input type='checkbox'>Martes
+<input type="checkbox" name="martes[]" value="11am-12pm"><br>
 </th>
 <th>
-<input type='checkbox'>Miercoles
+<input type="checkbox" name="miercoles[]" value="11am-12pm"><br>
 </th>
 <th>
-<input type='checkbox'>Jueves
+<input type="checkbox" name="jueves[]" value="11am-12pm"><br>
 </th>
 <th>
-<input type='checkbox'>Viernes
-</th><th>
-<input type='checkbox'>Sábado
+<input type="checkbox" name="viernes[]" value="11am-12pm"><br>
+</th>
+<th>
+<input type="checkbox" name="sabado[]" value="11am-12pm"><br>
+</th>
+<th>
+<input type="checkbox" name="domingo[]" value="11am-12pm"><br>
 </th>
 </tr>
 <tr>
 <th>
-<input type='checkbox'>10am-11am
+2pm-3pm
 </th>
 <th>
-<input type='checkbox'>Lunes
+<input type="checkbox" name="lunes[]" value="2pm-3pm"><br>
 </th>
 <th>
-<input type='checkbox'>Martes
+<input type="checkbox" name="martes[]" value="2pm-3pm"><br>
 </th>
 <th>
-<input type='checkbox'>Miercoles
+<input type="checkbox" name="miercoles[]" value="2pm-3pm"><br>
 </th>
 <th>
-<input type='checkbox'>Jueves
+<input type="checkbox" name="jueves[]" value="2pm-3pm"><br>
 </th>
 <th>
-<input type='checkbox'>Viernes
-</th><th>
-<input type='checkbox'>Sábado
+<input type="checkbox" name="viernes[]" value="2pm-3pm"><br>
+</th>
+<th>
+<input type="checkbox" name="sabado[]" value="2pm-3pm"><br>
+</th>
+<th>
+<input type="checkbox" name="domingo[]" value="2pm-3pm"><br>
 </th>
 </tr>
 <tr>
 <th>
-<input type='checkbox'>11am-12pm
+3pm-4pm
 </th>
 <th>
-<input type='checkbox'>Lunes
+<input type="checkbox" name="lunes[]" value="3pm-4pm"><br>
 </th>
 <th>
-<input type='checkbox'>Martes
+<input type="checkbox" name="martes[]" value="3pm-4pm"><br>
 </th>
 <th>
-<input type='checkbox'>Miercoles
+<input type="checkbox" name="miercoles[]" value="3pm-4pm"><br>
 </th>
 <th>
-<input type='checkbox'>Jueves
+<input type="checkbox" name="jueves[]" value="3pm-4pm"><br>
 </th>
 <th>
-<input type='checkbox'>Viernes
-</th><th>
-<input type='checkbox'>Sábado
+<input type="checkbox" name="viernes[]" value="3pm-4pm"><br>
+</th>
+<th>
+<input type="checkbox" name="sabado[]" value="3pm-4pm"><br>
+</th>
+<th>
+<input type="checkbox" name="domingo[]" value="3pm-4pm"><br>
 </th>
 </tr>
 <tr>
 <th>
-<input type='checkbox'>2pm-3pm
+5pm-6pm
 </th>
 <th>
-<input type='checkbox'>Lunes
+<input type="checkbox" name="lunes[]" value="5pm-6pm"><br>
 </th>
 <th>
-<input type='checkbox'>Martes
+<input type="checkbox" name="martes[]" value="5pm-6pm"><br>
 </th>
 <th>
-<input type='checkbox'>Miercoles
+<input type="checkbox" name="miercoles[]" value="5pm-6pm"><br>
 </th>
 <th>
-<input type='checkbox'>Jueves
+<input type="checkbox" name="jueves[]" value="5pm-6pm"><br>
 </th>
 <th>
-<input type='checkbox'>Viernes
-</th><th>
-<input type='checkbox'>Sábado
+<input type="checkbox" name="viernes[]" value="5pm-6pm"><br>
+</th>
+<th>
+<input type="checkbox" name="sabado[]" value="5pm-6pm"><br>
+</th>
+<th>
+<input type="checkbox" name="domingo[]" value="5pm-6pm"><br>
 </th>
 </tr>
 <tr>
 <th>
-<input type='checkbox'>3pm-4pm
+7pm-8pm
 </th>
 <th>
-<input type='checkbox'>Lunes
+<input type="checkbox" name="lunes[]" value="7pm-8pm"><br>
 </th>
 <th>
-<input type='checkbox'>Martes
+<input type="checkbox" name="martes[]" value="7pm-8pm"><br>
 </th>
 <th>
-<input type='checkbox'>Miercoles
+<input type="checkbox" name="miercoles[]" value="7pm-8pm"><br>
 </th>
 <th>
-<input type='checkbox'>Jueves
+<input type="checkbox" name="jueves[]" value="7pm-8pm"><br>
 </th>
 <th>
-<input type='checkbox'>Viernes
-</th><th>
-<input type='checkbox'>Sábado
+<input type="checkbox" name="viernes[]" value="7pm-8pm"><br>
+</th>
+<th>
+<input type="checkbox" name="sabado[]" value="7pm-8pm"><br>
+</th>
+<th>
+<input type="checkbox" name="domingo[]" value="7pm-8pm"><br>
 </th>
 </tr>
 <tr>
 <th>
-<input type='checkbox'>4pm-5pm
+8pm-9pm
 </th>
 <th>
-<input type='checkbox'>Lunes
+<input type="checkbox" name="lunes[]" value="8pm-9pm"><br>
 </th>
 <th>
-<input type='checkbox'>Martes
+<input type="checkbox" name="martes[]" value="8pm-9pm"><br>
 </th>
 <th>
-<input type='checkbox'>Miercoles
+<input type="checkbox" name="miercoles[]" value="8pm-9pm"><br>
 </th>
 <th>
-<input type='checkbox'>Jueves
+<input type="checkbox" name="jueves[]" value="8pm-9pm"><br>
 </th>
 <th>
-<input type='checkbox'>Viernes
-</th><th>
-<input type='checkbox'>Sábado
+<input type="checkbox" name="viernes[]" value="8pm-9pm"><br>
+</th>
+<th>
+<input type="checkbox" name="sabado[]" value="8pm-9pm"><br>
+</th>
+<th>
+<input type="checkbox" name="domingo[]" value="8pm-9pm"><br>
 </th>
 </tr>
 <tr>
 <th>
-<input type='checkbox'>5pm-6pm
+9pm-10pm
 </th>
 <th>
-<input type='checkbox'>Lunes
+<input type="checkbox" name="lunes[]" value="9pm-10pm"><br>
 </th>
 <th>
-<input type='checkbox'>Martes
+<input type="checkbox" name="martes[]" value="9pm-10pm"><br>
 </th>
 <th>
-<input type='checkbox'>Miercoles
+<input type="checkbox" name="miercoles[]" value="9pm-10pm"><br>
 </th>
 <th>
-<input type='checkbox'>Jueves
+<input type="checkbox" name="jueves[]" value="9pm-10pm"><br>
 </th>
 <th>
-<input type='checkbox'>Viernes
-</th><th>
-<input type='checkbox'>Sábado
+<input type="checkbox" name="viernes[]" value="9pm-10pm"><br>
+</th>
+<th>
+<input type="checkbox" name="sabado[]" value="9pm-10pm"><br>
+</th>
+<th>
+<input type="checkbox" name="domingo[]" value="9pm-10pm"><br>
 </th>
 </tr>
-
 </table>
-<input type="submit">
-<?php echo $form->renderHiddenFields(); 
-echo $form['id_identificacion']->render(array('value'=>$id));
+
+<br>
+<input type="submit" value="Agregar Turno">
+<?php echo $form_turnos->renderHiddenFields(); 
+echo $form_turnos['id_identificacion']->render(array('value'=>$id));
 ?>
 </form>
 <form action="<?php echo url_for('gestion/insertar_traslados?id='.$id); ?>" method="post">

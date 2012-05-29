@@ -30,9 +30,12 @@ echo $form['id_identificacion']->render(array('value'=>$id));
   <tr style="height: 30px">
 <?php if (isset($nivel_formacion_facilitador)){
 ?>
-<th colspan='2'>Lista Nivel de Formación</th>
+<th colspan='3'>Lista Nivel de Formación</th>
   </tr>
 <tr>
+<th>
+Acciones
+</th>
 <th>
 Nº
 </th>
@@ -42,6 +45,13 @@ Nivel de Formación
 </tr>
 <?php $cont=1; foreach($nivel_formacion_facilitador as $nff): ?>
   <tr style="height: 30px">
+       <td> 
+      <?php echo link_to(
+  '[Eliminar]',
+  'gestion/insertar_nivel_formacion_facilitador?id_formacion='.$nff->getId().'&id='.$id,
+  array('method' => 'delete', 'confirm' => 'Seguro Desea Eliminar?')
+) ?> 
+      </td>
       <td><?php echo $cont; ?></td>
       <td><?php echo $nff->getEstudios()->getnombre_estudio(); ?></td>
       <?php $cont +=1; ?>
