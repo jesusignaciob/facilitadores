@@ -10,7 +10,7 @@
 <form action="<?php echo url_for('gestion/buscar'); ?>" method="post">
   <table style="border: 0">
     <tr>
-      <th style="text-align:right; height: 30px"><?php echo $form['nombre']->renderLabel(); ?></th>
+      <th style="text-align:right; height: 30px; margin: 5"><?php echo $form['nombre']->renderLabel(); ?></th>
       <td><?php echo $form['nombre']->render(); ?></td>
       <td></td>
     </tr>
