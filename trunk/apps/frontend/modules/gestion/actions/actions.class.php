@@ -29,13 +29,31 @@ class gestionActions extends sfActions
     $id = $request->getParameter('id');
    //Realizar la consulta a la tabla telefonos referenciando el id y la enviamos al formulario insertartelefonoSuccess.php
    $this->telefonos = Doctrine_Core::getTable('Telefonos')->obtenerTelefonosPorFacilitador($id);
+   //Obtiene el id del telefono
+   $id_telefono = $request->getParameter('id_telefono');
+   //Si la variable id del telefono existe, realiza la eliminacion y redirecciona
+   //de nuevo a insertartelefono
+   if (isset($id_telefono))
+   {
+   Doctrine_Core::getTable('Telefonos')->eliminarTelefono($id_telefono);
+   $this->redirect('gestion/insertartelefono?id='.$id);
+   }
   }
   public function executeInsertarcorreo(sfWebRequest $request)
   {
 	$this->form = new CorreosForm();
-        $id = $request->getParameter('id');
+    $id = $request->getParameter('id');
    //Realizar la consulta a la tabla correos referenciando el id y la enviamos al formulario insertarcorreoSuccess.php
    $this->correos = Doctrine_Core::getTable('Correos')->obtenerCorreosPorFacilitador($id);
+   //Obtiene el id del correo
+   $id_correo = $request->getParameter('id_correo');
+   //Si la variable id del correo existe, realiza la eliminacion y redirecciona
+   //de nuevo a insertarcorreo
+   if (isset($id_correo))
+   {
+   Doctrine_Core::getTable('Correos')->eliminarCorreo($id_correo);
+   $this->redirect('gestion/insertarcorreo?id='.$id);
+   }
   }
   public function executeInsertar_areas_formacion_facilitador(sfWebRequest $request)
   {
@@ -44,14 +62,32 @@ class gestionActions extends sfActions
    $id = $request->getParameter('id');
    //Realizar la consulta a la tabla areas_formacion y areas_formacion_facilitador referenciando el id y la enviamos al formulario insertar_areas_formacion_facilitadorSuccess.php
    $this->areas_formacion_facilitador = Doctrine_Core::getTable('AreasFormacionFacilitador')->obtenerAreasFormacionPorFacilitador($id);
+   //Obtiene el id del Area Formacion Facilitador
+   $id_area = $request->getParameter('id_area');
+   //Si la variable id del area existe, realiza la eliminacion y redirecciona
+   //de nuevo a insertar_areas_formacion_facilitador
+   if (isset($id_area))
+   {
+   Doctrine_Core::getTable('AreasFormacionFacilitador')->eliminarAreasFormacion($id_area);
+   $this->redirect('gestion/insertar_areas_formacion_facilitador?id='.$id);
+   }
   }
   public function executeInsertar_nivel_formacion_facilitador(sfWebRequest $request)
   {
-	$this->form = new NivelFormacionForm();
-        //obtener el id que pertenece al identificador
+   $this->form = new NivelFormacionForm();
+   //obtener el id que pertenece al identificador
    $id = $request->getParameter('id');
    //Realizar la consulta a la tabla nivel_formacion referenciando el id y la enviamos al formulario insertar_nivel_formacion_facilitadorSuccess.php
    $this->nivel_formacion_facilitador = Doctrine_Core::getTable('NivelFormacion')->obtenerNivelFormacionPorFacilitador($id);
+   //Obtiene el id del Nivel Formacion Facilitador
+   $id_nivel = $request->getParameter('id_formacion');
+   //Si la variable id_nivel existe, realiza la eliminacion y redirecciona
+   //de nuevo a insertar_nivel_formacion_facilitador
+   if (isset($id_nivel))
+   {
+   Doctrine_Core::getTable('NivelFormacion')->eliminarNivelFormacion($id_nivel);	
+   $this->redirect('gestion/insertar_nivel_formacion_facilitador?id='.$id);
+   }
   }
 public function executeInsertar_profesion(sfWebRequest $request)
   {
@@ -60,6 +96,15 @@ public function executeInsertar_profesion(sfWebRequest $request)
    $id = $request->getParameter('id');
    //Realizar la consulta a la tabla profesion referenciando el id y la enviamos al formulario insertar_profesionSuccess.php
    $this->profesion_facilitador = Doctrine_Core::getTable('Profesion')->obtenerProfesionPorFacilitador($id);
+   //Obtiene el id del Nivel Formacion Facilitador
+   $id_profesion = $request->getParameter('id_profesion');
+   //Si la variable id_profesion existe, realiza la eliminacion y redirecciona
+   //de nuevo a insertar_profesion
+   if (isset($id_profesion))
+   {
+   Doctrine_Core::getTable('Profesion')->eliminarProfesion($id_profesion);
+   $this->redirect('gestion/insertar_profesion?id='.$id);
+   }
   }
 public function executeInsertar_ocupacion(sfWebRequest $request)
   {
@@ -68,11 +113,21 @@ public function executeInsertar_ocupacion(sfWebRequest $request)
    $id = $request->getParameter('id');
    //Realizar la consulta a la tabla ocupacion referenciando el id y la enviamos al formulario insertar_ocupacionSuccess.php
    $this->ocupacion_facilitador = Doctrine_Core::getTable('Ocupacion')->obtenerOcupacionPorFacilitador($id);
+   //Obtiene el id de la Ocupacion
+   $id_ocupacion = $request->getParameter('id_ocupacion');
+   //Si la variable id_ocupacion existe, realiza la eliminacion y redirecciona
+   //de nuevo a insertar_ocupacion
+   if (isset($id_ocupacion))
+   {
+   Doctrine_Core::getTable('Ocupacion')->eliminarOcupacion($id_ocupacion);
+   $this->redirect('gestion/insertar_ocupacion?id='.$id);
+   }
   }
 public function executeInsertar_dias_turno(sfWebRequest $request)
   {
     
-   $this->form = new DisponibilidadTurnosForm();
+   $this->form_turnos = new DisponibilidadTurnosForm();
+   $this->form_dias = new DisponibilidadDiasForm();
    //obtener el id que pertenece al identificador
    $id = $request->getParameter('id');
    //Realizar la consulta a la tabla ocupacion referenciando el id y la enviamos al formulario insertar_ocupacionSuccess.php
@@ -84,9 +139,27 @@ public function executeInsertar_traslados(sfWebRequest $request)
    $this->form = new DisponibilidadTrasladoEstadoForm();
    //obtener el id que pertenece al identificador
    $id = $request->getParameter('id');
-   //Realizar la consulta a la tabla ocupacion referenciando el id y la enviamos al formulario insertar_ocupacionSuccess.php
-   //$this->ocupacion_facilitador = Doctrine_Core::getTable('Ocupacion')->obtenerOcupacionPorFacilitador($id);
+   //Realizar la consulta a la tabla DisponibilidadTrasladoEstado referenciando el id y la enviamos al formulario insertar_trasladosSuccess.php
+   $this->traslados_facilitador = Doctrine_Core::getTable('DisponibilidadTrasladoEstado')->obtenerDisponibilidadTraslado($id);
+   //Obtiene el id del Traslado
+   $id_traslado = $request->getParameter('id_traslado');
+   //Si la variable id_traslado existe, realiza la eliminacion y redirecciona
+   //de nuevo a insertar_traslado
+   if (isset($id_traslado))
+   {
+   Doctrine_Core::getTable('DisponibilidadTrasladoEstado')->eliminarTraslados($id_traslado);	
+   $this->redirect('gestion/insertar_traslados?id='.$id);
+   }
   }
+public function executeInsertar_secciones(sfWebRequest $request)
+  {
+    
+   $this->form = new SeccionesForm();
+   //obtener el id que pertenece al identificador
+   $id = $request->getParameter('id');
+   //Realizar la consulta a la tabla AreasFormacionFacilitador referenciando el id y la enviamos al formulario insertar_seccionesSuccess.php
+   $this->areas_formacion_facilitador = Doctrine_Core::getTable('AreasFormacionFacilitador')->obtenerAreasFormacionPorFacilitador($id);
+  }  
 //Funcion para validar las entradas de datos de Identificacion
   public function executeCreate(sfWebRequest $request)
  {
@@ -106,7 +179,7 @@ public function executeInsertar_traslados(sfWebRequest $request)
    {
      $result = $form->save();
      $id = $form->getObject()->id;
-     $this->redirect('gestion/insertartelefono?id='.$id);
+     //$this->redirect('gestion/insertartelefono?id='.$id);
    }
  }
 //Funcion para validar las entradas de datos de Telefonos
@@ -183,6 +256,11 @@ public function executeCreateAreasFormacionFacilitador(sfWebRequest $request)
    if ($form->isValid())
    {
      $result = $form->save();
+     $id = $form->getObject()->id; 
+     $bitacora= new BitacoraFormacionFacilitador();
+     $bitacora->setIdAreaFormacionFacilitador($id);
+     $bitacora->setFecha(date('Y-m-d'));
+     $bitacora->save();
    }
  }
 //Funcion para validar las entradas de datos de Nivel de Formación Facilitador
@@ -266,27 +344,45 @@ public function executeCreateOcupacion(sfWebRequest $request)
 //Funcion para validar las entradas de datos de Turnos disponibles
 public function executeCreateTurnoDisponible(sfWebRequest $request)
  {
-   $this->form = new DisponibilidadTurnosForm();
+
+   $dias[] = $request->getParameter('lunes');
+   $dias[] = $request->getParameter('martes');
+   $dias[] = $request->getParameter('miercoles');
+   $dias[] = $request->getParameter('jueves');
+   $dias[] = $request->getParameter('viernes');
+   $dias[] = $request->getParameter('sabado');
+   $dias[] = $request->getParameter('domingo');
+   $this->x = $dias;
+
+   foreach($dias as $key=>$dia) {
+       if(!empty($dia)) {
+         $d = new DisponibilidadDias();
+         $d->setIdIdentificacion($request->getParameter('id'));
+         $d->setDia($key);
+         $d->save();
+       }
+     foreach($dia as $t) {
+       $turnos = new DisponibilidadTurnos();
+       $turnos->setIdDisponibilidadDia($d->getId());
+       $turnos->setTurno($t);
+       $turnos->save();
+     }
+   }
+
+   $this->redirect('gestion/insertar_dias_turno?id='.$request->getParameter('id'));
+   $id = $request->getParameter('id');
+   //Realizar la consulta a la tabla ocupacion referenciando el id y la enviamos al formulario insertar_ocupacionSuccess.php
+   $this->consultar_horas_turno = Doctrine_Core::getTable('DisponibilidadDias')->obtenerDiasPorFacilitador($id);
+
+  /* $this->form_turnos = new DisponibilidadTurnosForm();
+   $this->form_dias = new DisponibilidadDiasForm();
    $this->processDisponibilidadTurnos($request, $this->form);
    $this->setTemplate('insertar_dias_turno');
    //obtener el id que pertenece al identificador
-   $id = $request->getParameter('id');
+   $id = $request->getParameter('id');*/
    //Realizar la consulta a la tabla ocupacion referenciando el id y la enviamos al formulario insertar_ocupacionSuccess.php
    //$this->ocupacion_facilitador = Doctrine_Core::getTable('Ocupacion')->obtenerOcupacionPorFacilitador($id);
- }
-//Si pasa la funcion anterior, almacena los registros de Ocupacion
-  protected function processDisponibilidadTurnos(sfWebRequest $request, sfForm $form)
-  {
-   $form->bind(
 
-     $request->getParameter($form->getName()),
-     $request->getFiles($form->getName())
-   );
-
-   if ($form->isValid())
-   {
-     $result = $form->save();
-   }
  }
 
 //Funcion para validar las entradas de datos de Disponbilidad traslados
@@ -297,8 +393,8 @@ public function executeCreateDisponibilidadtraslados(sfWebRequest $request)
    $this->setTemplate('insertar_traslados');
    //obtener el id que pertenece al identificador
    $id = $request->getParameter('id');
-   //Realizar la consulta a la tabla ocupacion referenciando el id y la enviamos al formulario insertar_ocupacionSuccess.php
-   //$this->ocupacion_facilitador = Doctrine_Core::getTable('Ocupacion')->obtenerOcupacionPorFacilitador($id);
+   //Realizar la consulta a la tabla DisponibilidadTrasladoEstado referenciando el id y la enviamos al formulario insertar_trasladosSuccess.php
+   $this->traslados_facilitador = Doctrine_Core::getTable('DisponibilidadTrasladoEstado')->obtenerDisponibilidadTraslado($id);
  }
 //Si pasa la funcion anterior, almacena los registros de Disponbilidad traslados
   protected function processDisponibilidadTrasladoEstado(sfWebRequest $request, sfForm $form)
@@ -413,6 +509,7 @@ public function executeCreateDisponibilidadtraslados(sfWebRequest $request)
 
 public function executeCargarMunicipiosTraslados(sfWebRequest $request)
   {
+    
     $this->forwardUnless($query = $request->getParameter('query'), 'gestion', 'insertar_traslados');
     if('*' != $query){
       $this->municipios = Doctrine_Core::getTable('Municipio')->obtenerMunicipiosPorEstado($query);
@@ -427,7 +524,7 @@ public function executeCargarMunicipiosTraslados(sfWebRequest $request)
       return $this->renderPartial('gestion/municipiosListTraslados', array('municipios' => $this->municipios));
     }
   }
-  public function executeCargarParroquiasTraslados(sfWebRequest $request)
+public function executeCargarParroquiasTraslados(sfWebRequest $request)
   {
    $this->forwardUnless($query = $request->getParameter('query'), 'gestion', 'insertar_traslados');
     if('*' != $query){

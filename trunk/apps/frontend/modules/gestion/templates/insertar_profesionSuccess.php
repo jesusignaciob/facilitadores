@@ -31,13 +31,23 @@ echo $form['id_identificacion']->render(array('value'=>$id));
   <tr style="height: 30px">
 <?php if (isset($profesion_facilitador)){
 ?>
-<th colspan='2'>Lista de Profesiones</th>
+<th colspan='3'>Lista de Profesiones</th>
 </tr>
-<tr><th>Nº</th>
-<th>Profesión</th></tr>
+<tr>
+<th>Acciones</th>
+<th>Nº</th>
+<th>Profesión</th>
+</tr>
   </tr>
 <?php $cont = 1; foreach($profesion_facilitador as $pf): ?>
   <tr style="height: 30px">
+        <td> 
+      <?php echo link_to(
+  '[Eliminar]',
+  'gestion/insertar_profesion?id_profesion='.$pf->getId().'&id='.$id,
+  array('method' => 'delete', 'confirm' => 'Seguro Desea Eliminar?')
+) ?> 
+      </td>
       <td><?php echo $cont ?></td>
       <td><?php echo $pf->getnombre_profesion(); ?></td>
       <?php $cont += 1; ?>

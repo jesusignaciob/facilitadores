@@ -14,8 +14,13 @@ class NivelFormacionForm extends BaseNivelFormacionForm
   {
     $this->widgetSchema['id_identificacion'] = new sfWidgetFormInputHidden();
 	
-	  $this->validatorSchema['id_estudios'] = new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Estudios'), 'required' => true), array('required'=> "Seleccione el estudio"));
+	  $this->widgetSchema['id_estudios'] = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Estudios'), 'add_empty' => true));
 	
+	  $this->widgetSchema->setLabels(array(
+          'id_estudios'    => 'Estudios',
+        ));
+	
+	  $this->validatorSchema['id_estudios'] = new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Estudios'), 'required' => true), array('required'=> "Seleccione el estudio"));
 	
 	  $this->validatorSchema->setPostValidator(new sfValidatorAnd(array(
             new sfValidatorDoctrineUnique(array('model' => 'NivelFormacion', 'column' => array('id_estudios','id_identificacion')), array('invalid'=> "Nivel de Formación ya fue asignada al Facilitador")),

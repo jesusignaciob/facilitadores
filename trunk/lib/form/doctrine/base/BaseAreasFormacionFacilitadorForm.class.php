@@ -25,7 +25,7 @@ abstract class BaseAreasFormacionFacilitadorForm extends BaseFormDoctrine
       'id'                => new sfValidatorChoice(array('choices' => array($this->getObject()->get('id')), 'empty_value' => $this->getObject()->get('id'), 'required' => false)),
       'id_identificacion' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Identificacion'))),
       'id_area_formacion' => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('AreasFormacion'))),
-      'estatus'           => new sfValidatorInteger(array('required' => false)),
+      'estatus'           => new sfValidatorInteger(),
     ));
 
     $this->widgetSchema->setNameFormat('areas_formacion_facilitador[%s]');

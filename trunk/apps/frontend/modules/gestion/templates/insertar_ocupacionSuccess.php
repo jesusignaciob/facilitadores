@@ -31,9 +31,12 @@ echo $form['id_identificacion']->render(array('value'=>$id));
   <tr style="height: 30px">
 <?php if (isset($ocupacion_facilitador)){
 ?>
-<th colspan='2'>Lista de Ocupaciones</th>
+<th colspan='3'>Lista de Ocupaciones</th>
   </tr>
 <tr>
+<th>
+Acciones
+</th>
 <th>
 Nº
 </th>
@@ -41,10 +44,17 @@ Nº
 Ocupación
 </th>
 </tr>
-<?php $cont=1; foreach($ocupacion_facilitador as $pf): ?>
+<?php $cont=1; foreach($ocupacion_facilitador as $of): ?>
   <tr style="height: 30px">
+       <td> 
+      <?php echo link_to(
+  '[Eliminar]',
+  'gestion/insertar_ocupacion?id_ocupacion='.$of->getId().'&id='.$id,
+  array('method' => 'delete', 'confirm' => 'Seguro Desea Eliminar?')
+) ?> 
+      </td>
       <td><?php echo $cont; ?></td>
-      <td><?php echo $pf->getnombre_ocupacion(); ?></td>
+      <td><?php echo $of->getnombre_ocupacion(); ?></td>
       <?php $cont +=1; ?>
   </tr>
   <?php endforeach; 

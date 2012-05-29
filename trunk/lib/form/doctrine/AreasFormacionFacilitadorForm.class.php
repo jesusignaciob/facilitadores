@@ -15,7 +15,13 @@ class AreasFormacionFacilitadorForm extends BaseAreasFormacionFacilitadorForm
     $this->widgetSchema['id_identificacion'] = new sfWidgetFormInputHidden();
 	  $this->widgetSchema['estatus'] = new sfWidgetFormChoice(array('choices' => Doctrine_Core::getTable('AreasFormacionFacilitador')->getstatus()));
      
-     $this->validatorSchema['id_area_formacion'] = new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('AreasFormacion'), 'required' => true), array('required'=> "Seleccione el áreas de formación"));
+     $this->widgetSchema['id_area_formacion'] = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('AreasFormacion'), 'add_empty' => true));
+     
+     $this->widgetSchema->setLabels(array(
+          'id_area_formacion'    => 'Areas de Formación',
+        ));
+     
+     $this->validatorSchema['id_area_formacion'] = new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('AreasFormacion'), 'required' => true), array('required'=> "Seleccione las Áreas de Formación"));
      $this->validatorSchema['estatus'] = new sfValidatorInteger(array('required' => true), array('required'=> "Seleccione un Estatus"));
      
      $this->validatorSchema->setPostValidator(new sfValidatorAnd(array(

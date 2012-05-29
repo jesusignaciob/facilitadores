@@ -1,6 +1,9 @@
 <?php $id=($sf_params->get ('id')) ?> 
 <button class="back-button" onclick="javascript:parent.location='<?php echo url_for('principal/index'); ?>'">Ir al menú Principal</button>
 <button class="back-button" onclick="javascript:parent.location='<?php echo url_for('gestion/insertar'); ?>'">Regresar</button>
+<div id="dialog-confirm" title="Eliminar Teléfono" style="display: none; min-height: 100px;">
+	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>¿Esta seguro de eliminar el teléfono?</p>
+</div>
 <br>
 <h4>
 Configuración de Teléfonos Facilitador
@@ -32,9 +35,12 @@ echo $form['id_identificacion']->render(array('value'=>$id));
 <?php $cont=1; if (isset($telefonos)){
 ?>
 <tr>
-<th colspan='2'>Lista de Teléfonos</th>
+<th colspan='3'>Lista de Teléfonos</th>
 </tr>
 <tr>
+<th>
+Acciones
+</th>
 <th>
 Nº
 </th>
@@ -44,8 +50,16 @@ Nº de Teléfonos
 </tr>
 <?php foreach($telefonos as $tf): ?>
      <tr style="height: 30px">
+      <td> 
+      <?php echo link_to(
+  '[Eliminar]',
+  'gestion/insertartelefono?id_telefono='.$tf->getId().'&id='.$id,
+  array('method' => 'delete', 'confirm' => 'Seguro Desea Eliminar?')
+) ?> 
+      </td>
       <td><?php echo $cont; ?> </td>
       <td><?php echo $tf->getnumero(); ?></td>
+      
       <?php $cont+=1; ?>
   </tr>
   <?php endforeach; 

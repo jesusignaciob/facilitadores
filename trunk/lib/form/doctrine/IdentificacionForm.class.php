@@ -12,7 +12,9 @@ class IdentificacionForm extends BaseIdentificacionForm
 {
   public function configure()
   {
-          $this->widgetSchema->setLabels(array(
+        $this->widgetSchema['id_estado'] = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Estado'), 'add_empty' => true));
+        
+        $this->widgetSchema->setLabels(array(
           'id_estado'    => 'Estado',
           'id_municipio'   => 'Municipio',
           'id_parroquia' => 'Parroquia',
@@ -25,10 +27,9 @@ class IdentificacionForm extends BaseIdentificacionForm
         $this->validatorSchema['direccion'] = new sfValidatorString(array('max_length' => 100,'required' => true), array('required'=> "Ingrese la dirección"));
         $this->validatorSchema['sector'] = new sfValidatorString(array('max_length' => 100,'required' => true), array('required'=> "Ingrese el sector"));
         $this->validatorSchema['situacion_laboral'] = new sfValidatorString(array('max_length' => 50,'required' => true), array('required'=> "Ingrese situación laboral"));
-        $this->validatorSchema['formacion_politica'] = new sfValidatorBoolean(array('required' => true), array('required'=> "Seleccione situación laboral"));
-        $this->validatorSchema['nombre_estado'] = new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Estado'), 'required' => true), array('required'=> "Seleccione el estado"));
-        $this->validatorSchema['nombre_municipio'] = new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Municipio'), 'required' => true), array('required'=> "Seleccione el municipio"));
-        $this->validatorSchema['nombre_parroquia'] = new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Parroquia'), 'required' => true), array('required'=> "Seleccione la parroquia"));
+        $this->validatorSchema['id_estado'] = new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Estado'), 'required' => true), array('required'=> "Seleccione el estado"));
+        $this->validatorSchema['id_municipio'] = new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Municipio'), 'required' => true), array('required'=> "Seleccione el municipio"));
+        $this->validatorSchema['id_parroquia'] = new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Parroquia'), 'required' => true), array('required'=> "Seleccione la parroquia"));
         
         $this->validatorSchema->setPostValidator(new sfValidatorAnd(array(
             new sfValidatorDoctrineUnique(array('model' => 'Identificacion', 'column' => array('cedula_pasaporte')), array('invalid'=> "Esta cédula ó pasaporte ya fue asignada al Facilitador")),

@@ -57,7 +57,6 @@ abstract class BaseDisponibilidadTrasladoEstado extends sfDoctrineRecord
              ));
         $this->hasColumn('requiere_traslado', 'boolean', 1, array(
              'type' => 'boolean',
-             'notnull' => true,
              'default' => false,
              'length' => 1,
              ));

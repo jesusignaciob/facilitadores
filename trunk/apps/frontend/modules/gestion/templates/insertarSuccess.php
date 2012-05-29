@@ -65,4 +65,5 @@
 </table>
 <input type="submit" value="Insertar">
 <?php echo $form->renderHiddenFields(); ?>
+<?php echo $form->renderGlobalErrors(); ?>
 </form>

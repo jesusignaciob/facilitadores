@@ -13,14 +13,16 @@ class DisponibilidadTrasladoEstadoForm extends BaseDisponibilidadTrasladoEstadoF
   public function configure()
   {
     $this->widgetSchema['id_identificacion'] = new sfWidgetFormInputHidden();
+    
+    $this->widgetSchema['id_estado'] = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Estado'), 'add_empty' => true));
+    
      $this->widgetSchema->setLabels(array(
           'id_estado'    => 'Estado',
           'id_municipio'   => 'Municipio',
         ));
         
-      $this->validatorSchema['id_estado'] = new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Estado'), 'required' => true), array('required'=> "Seleccione el estado"));
-      $this->validatorSchema['id_municipio'] = new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Municipio'), 'required' => true));
-      $this->validatorSchema['requiere_traslado'] = new sfValidatorBoolean(array('required' => true), array('required'=> "Seleccione requiere traslado"));
+      $this->validatorSchema['id_estado'] = new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Estado'), 'required' => true), array('required'=> "Seleccione el Estado"));
+      $this->validatorSchema['id_municipio'] = new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Municipio'), 'required' => true), array('required'=> "Seleccione el Municipio"));
       
       $this->validatorSchema->setPostValidator(new sfValidatorAnd(array(
             new sfValidatorDoctrineUnique(array('model' => 'DisponibilidadTrasladoEstado', 'column' => array('id_identificacion','id_estado','id_municipio','requiere_traslado')), array('invalid'=> "Ruta de traslado ya fue asignada al Facilitador")),

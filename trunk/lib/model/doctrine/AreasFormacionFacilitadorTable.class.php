@@ -28,7 +28,7 @@ class AreasFormacionFacilitadorTable extends Doctrine_Table
     
     static protected $estatus = array(
       '' => '',
-      '0' => 'En fomación',
+      '0' => 'En Formación',
       '1' => 'Formado',
       '2' => 'Convocado',
       '3' => 'Activo',
@@ -39,4 +39,13 @@ class AreasFormacionFacilitadorTable extends Doctrine_Table
     {
 		  return self::$estatus;
 	  }
+
+    public static function eliminarAreasFormacion($id_area)
+	{
+ 	 $deleted = Doctrine_Query::create()
+ 	 ->delete()
+  	->from('AreasFormacionFacilitador aff','BitacoraFormacionFacilitador b')
+  	->andWhere('aff.id = ?', $id_area)
+  	->execute();	
+	}
 }

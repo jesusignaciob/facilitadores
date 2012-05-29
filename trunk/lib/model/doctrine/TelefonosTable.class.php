@@ -23,4 +23,14 @@ class TelefonosTable extends Doctrine_Table
 
         return $querystring->execute();
     }
+
+public static function eliminarTelefono($id_telefono)
+    {
+  $deleted = Doctrine_Query::create()
+  ->delete()
+  ->from('Telefonos')
+  ->andWhere('id = ?', $id_telefono)
+  ->execute();
+    }
+
 }

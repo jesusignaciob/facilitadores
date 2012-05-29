@@ -27,7 +27,6 @@ AreasFormacionFacilitador:
     estatus:
       type: integer(1)
       notnull: true
-      default: 0
   relations:
     AreasFormacion:
       local: id_area_formacion
@@ -132,7 +131,6 @@ DisponibilidadTrasladoEstado:
       notnull: true
     requiere_traslado:
       type: boolean(1)
-      notnull: true
       default: false
   relations:
     Estado:
@@ -265,7 +263,6 @@ Identificacion:
       default: false
     habilitado:
       type: boolean(1)
-      notnull: true
       default: true
     id_estado:
       type: integer(4)

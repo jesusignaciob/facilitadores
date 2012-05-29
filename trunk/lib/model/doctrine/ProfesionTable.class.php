@@ -24,4 +24,13 @@ class ProfesionTable extends Doctrine_Table
                 
         return $q->execute();
     }
+     
+        public static function eliminarProfesion($id_profesion)
+	{
+ 	 $deleted = Doctrine_Query::create()
+  	->delete()
+  	->from('Profesion')
+  	->andWhere('id = ?', $id_profesion)
+  	->execute();
+	}
 }

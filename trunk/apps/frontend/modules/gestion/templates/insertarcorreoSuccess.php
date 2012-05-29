@@ -31,7 +31,7 @@ echo $form['id_identificacion']->render(array('value'=>$id));
   <tr style="height: 30px">
 <?php if (isset($correos)){
 ?>
-<th colspan='2'>Lista Correos Electrónicos</th>
+<th colspan='3'>Lista Correos Electrónicos</th>
   </tr>
 <tr>
 <th>
@@ -40,9 +40,19 @@ Nº
 <th>
 Correos Electrónicos
 </th>
+<th>
+Acciones
+</th>
 </tr>
 <?php $cont=1; foreach($correos as $cf): ?>
   <tr style="height: 30px">
+      <td> 
+      <?php echo link_to(
+  '[Eliminar]',
+  'gestion/insertarcorreo?id_correo='.$cf->getId().'&id='.$id,
+  array('method' => 'delete', 'confirm' => 'Seguro Desea Eliminar?')
+) ?> 
+      </td>
       <td><?php echo $cont; ?></td>
       <td><?php echo $cf->getcorreo(); ?></td>
       <?php $cont +=1; ?>
