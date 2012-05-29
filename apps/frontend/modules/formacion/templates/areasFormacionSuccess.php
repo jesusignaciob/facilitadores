@@ -11,7 +11,27 @@
 <button class="back-button" onclick="javascript:parent.location='<?php echo url_for('formacion/index'); ?>'">Regresar</button>
 <button class="back-button" onclick="javascript:parent.location='/frontend_dev.php/principal'">Ir al menú Principal</button><br/><br/>
 <div id="sf_gmstv_container">
-  <h1>Lista de Areas de Formacion</h1>
+  <h1>Lista de Areas de Formacion</h1> 
+<div id="sf_gmstv_bar">    
+  <div class="sf_gmstv_filter">
+    <form action="<?php echo url_for('formacion/areasFiltro');?>" method="post">
+      <table cellspacing="0">
+        <tfoot>
+          <tr>
+
+            <td colspan="2">           
+              <?php echo $filter->renderHiddenFields(); ?>
+              <input type="submit" value="Filtrar" />
+            </td>
+          </tr>
+        </tfoot>
+        <tbody>
+          <?php echo $filter; ?>
+        </tbody>
+      </table>
+    </form>
+  </div>
+</div>
   <div id="sf_gmstv_content">
     <div class="sf_gmstv_list">
       <table cellspacing="0">

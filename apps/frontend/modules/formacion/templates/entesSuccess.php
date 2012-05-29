@@ -12,6 +12,26 @@
 <button class="back-button" onclick="javascript:parent.location='/frontend_dev.php/principal'">Ir al menú Principal</button><br/><br/>
 <div id="sf_gmstv_container">
   <h1>Lista de Entes</h1>
+<div id="sf_gmstv_bar">    
+  <div class="sf_gmstv_filter">
+    <form action="<?php echo url_for('formacion/entesFiltro');?>" method="post">
+      <table cellspacing="0">
+        <tfoot>
+          <tr>
+
+            <td colspan="2">           
+              <?php echo $filter->renderHiddenFields(); ?>
+              <input type="submit" value="Filtrar" />
+            </td>
+          </tr>
+        </tfoot>
+        <tbody>
+          <?php echo $filter; ?>
+        </tbody>
+      </table>
+    </form>
+  </div>
+</div>
   <div id="sf_gmstv_content">
     <div class="sf_gmstv_list">
       <table cellspacing="0">
@@ -19,18 +39,24 @@
 
           <tr>
             <th class="sf_gmstv_text" style="min-width: 100px;">Nombre</th>
+            <th class="sf_gmstv_text" style="min-width: 100px;">Estado</th>
+            <th class="sf_gmstv_text" style="min-width: 100px;">Municipio</th>
+            <th class="sf_gmstv_text" style="min-width: 100px;">Parroquia</th>
             <th id="sf_gmstv_list_th_actions">Acciones</th>
           </tr>
         </thead>
         <tfoot>
           <tr>
-            <th colspan="4"><?php echo count($entes); ?> Resultado(s)</th>
+            <th colspan="5"><?php echo count($entes); ?> Resultado(s)</th>
           </tr>
         </tfoot>
         <tbody>
           <?php foreach($entes as $e): ?>
           <tr class="sf_gmstv_row odd">
               <td class="sf_gmstv_text sf_gmstv_list_td_name"><?php echo $e->getNombreEnte(); ?></td>
+              <td class="sf_gmstv_text sf_gmstv_list_td_name"><?php echo $e->getEstado(); ?></td>
+              <td class="sf_gmstv_text sf_gmstv_list_td_name"><?php echo $e->getMunicipio(); ?></td>
+              <td class="sf_gmstv_text sf_gmstv_list_td_name"><?php echo $e->getParroquia(); ?></td>
               <td>
                 <ul class="sf_gmstv_td_actions">
                   <li class="sf_gmstv_action_edit"><?php echo link_to('Editar','formacion/entesEditar?id='.$e->getId()); ?></li>

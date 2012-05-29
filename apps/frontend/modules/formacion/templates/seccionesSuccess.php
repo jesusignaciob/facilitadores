@@ -13,8 +13,8 @@
 <div id="sf_gmstv_container">
   <h1>Lista de Secciones</h1>
   
-<div id="sf_admin_bar">    
-  <div class="sf_admin_filter">
+<div id="sf_gmstv_bar">    
+  <div class="sf_gmstv_filter">
     <form action="<?php echo url_for('formacion/seccionesFiltro');?>" method="post">
       <table cellspacing="0">
         <tfoot>

@@ -12,5 +12,10 @@ class EnteFormFilter extends BaseEnteFormFilter
 {
   public function configure()
   {
+    unset($this['id_municipio']);
+    unset($this['id_parroquia']);
+    $this->widgetSchema->setLabels(array(
+      'id_estado'    => 'Estado',
+    ));
   }
 }
