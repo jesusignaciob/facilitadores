@@ -91,28 +91,25 @@
 </table>
 <br>
 <br>
-<table border="1" style="border-collapse:collapse; width: 100%">
-  <tr>
-    <th>Teléfonos</th>
-  </tr>
-  <?php foreach($telefonos as $tels): ?>
-  <tr style="height: 30px">
-    <td><?php echo $tels->getNumero(); ?></td>
-  <tr>
-  <?php endforeach; ?>
-</table>
-<br>
-<br>
-<table border="1" style="border-collapse:collapse; width: 100%">
-  <tr>
-    <th>Correos</th>
-  </tr>
-  <?php foreach($correos as $c): ?>
-  <tr style="height: 30px">
-    <td><?php echo $c->getCorreo(); ?></td>
-  <tr>
-  <?php endforeach; ?>
-</table>
+      <table border="1" style="border-collapse:collapse; width: 100%">
+        <tr>
+          <th style="width: 50%">Teléfonos</th>
+          <th style="width: 50%">Correos</th>
+        </tr>
+        <tr style="height: 30px">
+          <td>
+            <?php foreach($telefonos as $tels): ?>
+            <?php echo $tels->getNumero(); ?><br>
+            <?php endforeach; ?>
+          </td>
+            <td>
+            <?php foreach($correos as $c): ?>
+            <?php echo $c->getCorreo(); ?><br>
+            <?php endforeach; ?>
+            </td>
+        <tr>
+      </table>
+    </td>
 <br>
 <br>
 <table border="1" style="border-collapse:collapse; width: 100%">
@@ -134,7 +131,7 @@
   <?php foreach($facilitador->getOcupacion() as $ocupacion): ?>
   <tr style="height: 30px">
     <td><?php echo $ocupacion->getNombreOcupacion(); ?></td>
-  <tr>
+  </tr>
   <?php endforeach; ?>
 </table>
 <br>
@@ -204,11 +201,39 @@
 <br>
 <table border="1" style="border-collapse:collapse; width: 100%">
   <tr>
-    <th colspan="4">Disponibilidad Diaria</th>
+    <th colspan="7">Disponibilidad Diaria</th>
   </tr>
   <tr>
   <?php foreach($facilitador->getDisponibilidadDias() as $dia): ?>
-    <th><?php echo $dia->getDia(); ?></th>
+    <th>
+      <?php
+        $x = $dia->getDia();
+        switch ($x)
+        {
+          case 0:
+            echo "Lunes";
+            break;
+          case 1:
+            echo "Martes";
+            break;
+          case 2:
+            echo "Miercoles";
+            break;
+          case 3:
+            echo "Jueves";
+            break;
+          case 4:
+            echo "Viernes";
+            break;
+          case 5:
+            echo "Sabado";
+            break;
+          case 6:
+            echo "Domingo";
+            break;
+        }
+      ?>
+    </th>
   <?php endforeach; ?>
   </tr>
   <tr style="height: 30px">
