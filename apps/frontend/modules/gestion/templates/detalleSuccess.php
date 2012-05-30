@@ -246,3 +246,4 @@
   <?php endforeach; ?>
   <tr>
 </table>
+<br>

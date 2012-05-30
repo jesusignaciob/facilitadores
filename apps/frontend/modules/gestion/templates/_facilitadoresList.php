@@ -23,9 +23,10 @@
   <?php foreach($facilitadores as $f): ?>
   <tr style="height: 30px">
       <td>
-        [<a href="<?php echo url_for('gestion/detalle?id='.$f->getId()) ?>">Consultar<a>]
-        <!--[<a href="#">Modificar<a>]-->
-        [<a href="#" onclick="eliminarFacilitador($('#estado').val(), $('#municipio').val(), $('#parroquia').val(), $('#estatus').val(), $('#area').val(), <?php echo $f->getId(); ?>); return false;">Eliminar<a>]
+        [<a href="<?php echo url_for('gestion/detalle?id='.$f->getId()) ?>">Consultar<a>]<br>
+        [<a href="<?php echo url_for('gestion/insertar?id='.$f->getId()) ?>">Modificar<a>]<br>
+        [<a href="#" onclick="eliminarFacilitador($('#estado').val(), $('#municipio').val(), $('#parroquia').val(), $('#estatus').val(), $('#area').val(), <?php echo $f->getId(); ?>); return false;">Eliminar<a>]<br>
+        [<a href="<?php echo url_for('gestion/asignarSecciones?id='.$f->getId()) ?>">Asignar Secciones<a>]<br>
       </td>
       <td><?php echo $f->getCedulaPasaporte(); ?></td>
       <td><?php echo $f->getNombre(); ?></td>
@@ -65,3 +66,4 @@
   </tr>
   <?php endforeach; ?>
 </table>
+<?php echo $cuantosFacilitadores; ?>
