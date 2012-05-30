@@ -17,6 +17,55 @@ class IdentificacionTable extends Doctrine_Table
         return Doctrine_Core::getTable('Identificacion');
     }
 
+    public function obtenerEstadisticasPorEspecialidad($estado, $estatus, $area)
+    {
+        $cantFacPorEstadoEspc = $this->getInstance()->obtenerCantFacilitadorePorEsp($estado, $estatus, $area);
+        $cantFacPorEstado = $this->getInstance()->obtenerCantFacilitadorePorEsp($estado, $estatus, "");
+        
+        return ($cantFacPorEstadoEspc / $cantFacPorEstado) * 100;
+    }
+    
+    public function obtenerEstadisticasPorEstado($estado, $estatus, $area)
+    {
+        $cantFacPorEstadoEspc = $this->getInstance()->obtenerCantFacilitadorePorEsp($estado, $estatus, $area);
+        $cantFacPorEstado = $this->getInstance()->obtenerCantFacilitadorePorEsp("", $estatus, $area);
+        
+        return ($cantFacPorEstadoEspc / $cantFacPorEstado) * 100;
+    }
+
+    /*public function obtenerEstPorEstatus($estatus, $area)
+    {
+        $estados = Doctrine_Core::getTable('Estados')->getEstados();
+        
+        $estadisticas = array();
+        foreach($estados as $estado)
+        {
+          $porc
+          $estadisticas(''
+        }
+          
+    }*/
+
+    public static function obtenerCantFacilitadorePorEsp($estado, $estatus, $area)
+    {
+        $w = "i.habilitado = true";
+        if (strlen($estado) > 0)
+          $w = $w. " and i.id_estado = $estado";
+            
+        if (strlen($estatus) > 0 && strlen($area) == 0)
+          $w = $w. " and aff.estatus = $estatus";
+        
+        if (strlen($estatus) == 0 && strlen($area) > 0)
+          $w = $w. " and aff.id_area_formacion = $area";
+        
+        if (strlen($estatus) > 0 && strlen($area) > 0)
+          $w = $w. " and aff.estatus = $estatus and aff.id_area_formacion = $area";
+        
+        $q = Doctrine_Core::getTable('Identificacion')->createQuery("SELECT i FROM Identificacion i JOIN i.AreasFormacionFacilitador aff")->where($w);
+        
+        return $q->count();
+    }
+
     public static function obtenerFacilitadores($cedula, $nombre, $apellido, $estado, $municipio, $parroquia, $estatus, $area)
     {
         $w = "";
