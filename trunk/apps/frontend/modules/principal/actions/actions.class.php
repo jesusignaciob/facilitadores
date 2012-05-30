@@ -19,4 +19,9 @@ class principalActions extends sfActions
   {
     
   }
+  public function executeNoCredentials(sfWebRequest $request)
+  {
+    $this->getUser()->setFlash('mensaje', '¡No tienes permiso para acceder a esta página!');
+    $this->redirect('principal/index');
+  }
 }
