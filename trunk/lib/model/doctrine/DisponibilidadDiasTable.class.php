@@ -16,4 +16,21 @@ class DisponibilidadDiasTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('DisponibilidadDias');
     }
+
+      public static function obtenerDiasTurnoFacilitador($idFacilitador)
+    {
+      $querystring = Doctrine_Core::getTable('DisponibilidadDias')->createQuery()->where('id_identificacion=?',$idFacilitador);
+
+        return $querystring->execute();
+    }
+    
+    public static function eliminarDias($id)
+    {
+	   $deleted = Doctrine_Query::create()
+	  ->delete()
+	  ->from('DisponibilidadDias')
+	  ->andWhere('id_identificacion = ?', $id)
+	  ->execute(); 
+  
+    }
 }
