@@ -20,9 +20,18 @@ class gestionActions extends sfActions
    // $this->forward('default', 'module');
   }
   public function executeInsertar(sfWebRequest $request)
-  {
-    $this->form = new IdentificacionForm();
+  { 
+    $this->id = $request->getParameter('id');
+    
+    if (isset($this->id))
+    {
+      $facilitador = Doctrine_Core::getTable('Identificacion')->find($this->id);
+      $this->form = new IdentificacionForm($facilitador);
+    }
+    else
+      $this->form = new IdentificacionForm();
   }
+  
   public function executeInsertartelefono(sfWebRequest $request)
   {
     $this->form = new TelefonosForm();
@@ -182,6 +191,18 @@ public function executeInsertar_secciones(sfWebRequest $request)
      $this->redirect('gestion/insertartelefono?id='.$id);
    }
  }
+ 
+ public function executeUpdate(sfWebRequest $request)
+ {
+   $id = $request->getParameter('id');
+    
+   $facilitador = Doctrine_Core::getTable('Identificacion')->find($id);
+   $this->form = new IdentificacionForm($facilitador);
+      
+   $this->processForm($request, $this->form);
+   $this->setTemplate('insertar');
+ }
+ 
 //Funcion para validar las entradas de datos de Telefonos
  public function executeCreateTelefono(sfWebRequest $request)
  {
