@@ -33,7 +33,7 @@ echo $form->renderHiddenFields();
 echo $form['id_identificacion']->render(array('value'=>$id));
 ?>
 </form>
-<form action="<?php echo url_for('gestion/insertar_secciones?id='.$id); ?>" method="post">
+<form action="<?php echo url_for('gestion/asignarSecciones?id='.$id); ?>" method="post">
 <input type="submit" value="Siguiente">
 </form>
 <br>
