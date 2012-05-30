@@ -22,7 +22,10 @@ class IdentificacionTable extends Doctrine_Table
         $cantFacPorEstadoEspc = $this->getInstance()->obtenerCantFacilitadorePorEsp($estado, $estatus, $area);
         $cantFacPorEstado = $this->getInstance()->obtenerCantFacilitadorePorEsp($estado, $estatus, "");
         
-        return ($cantFacPorEstadoEspc / $cantFacPorEstado) * 100;
+        if ($cantFacPorEstado == 0)
+          $cantFacPorEstado = 1;
+        
+        return number_format( ($cantFacPorEstadoEspc / $cantFacPorEstado) * 100 , 2 );
     }
     
     public function obtenerEstadisticasPorEstado($estado, $estatus, $area)
@@ -30,21 +33,39 @@ class IdentificacionTable extends Doctrine_Table
         $cantFacPorEstadoEspc = $this->getInstance()->obtenerCantFacilitadorePorEsp($estado, $estatus, $area);
         $cantFacPorEstado = $this->getInstance()->obtenerCantFacilitadorePorEsp("", $estatus, $area);
         
-        return ($cantFacPorEstadoEspc / $cantFacPorEstado) * 100;
+        if ($cantFacPorEstado == 0)
+          $cantFacPorEstado = 1;
+        
+        return number_format( ($cantFacPorEstadoEspc / $cantFacPorEstado) * 100 , 2 );
     }
 
-    /*public function obtenerEstPorEstatus($estatus, $area)
+    public function obtenerEstPorEstados($estatus, $area)
     {
-        $estados = Doctrine_Core::getTable('Estados')->getEstados();
+        $estados = Doctrine_Core::getTable('Estado')->getEstados();
         
         $estadisticas = array();
         foreach($estados as $estado)
         {
-          $porc
-          $estadisticas(''
+          $porcFacPorEstado = $this->obtenerEstadisticasPorEstado($estado->getId(), $estatus, $area);
+          $estadisticas[$estado->getNombreEstado()] = $porcFacPorEstado;
         }
-          
-    }*/
+        
+        return $estadisticas;
+    }
+    
+    public function obtenerEstPorEspecialidad($estado, $estatus)
+    {
+        $areas = Doctrine_Core::getTable('AreasFormacion')->getAreasFormacion();
+        
+        $estadisticas = array();
+        foreach($areas as $areaActual)
+        {
+          $porcFacPorArea = $this->obtenerEstadisticasPorEspecialidad($estado, $estatus, $areaActual->getId());
+          $estadisticas[$areaActual->getNombreArea()] = $porcFacPorArea;
+        }
+        
+        return $estadisticas;
+    }
 
     public static function obtenerCantFacilitadorePorEsp($estado, $estatus, $area)
     {
