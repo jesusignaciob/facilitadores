@@ -342,40 +342,7 @@ class formacionActions extends sfActions
 
   /***************************** END SECCIONES *********************************/
 
-  
-  /**************************** ASIGNAR SECCIONES ******************************/
-  
-  public function executeAsignarSecciones(sfWebRequest $request)
-  {
-    $this->secciones = Doctrine_Core::getTable('Secciones')->getSeccionesForFacilitador($request->getParameter('id'));
-    
-    $this->asignados = Doctrine_Core::getTable('Secciones')->findBy('id_identificacion', $request->getParameter('id'));
-  }
-  public function executeAsignarSeccionesUpdate(sfWebRequest $request)
-  {
-    if($request->getParameter('seccion')=='' or $request->getParameter('id')=='') {
-      $this->getUser()->setFlash('error', 'Todos los campos son requeridos');
-      $this->redirect('formacion/asignarSecciones?id='.$request->getParameter('id'));
-    }
-    
-    $seccion = Doctrine_Core::getTable('Secciones')->find($request->getParameter('seccion'));
-    $seccion->setIdIdentificacion($request->getParameter('id'));
-    $seccion->save();
-    
-    $bitacora = new BitacoraSecciones();
-    $bitacora->setIdSecciones($seccion->getId());
-    $bitacora->setIdIdentificacion($request->getParameter('id'));
-    $bitacora->setFecha(date("Y-m-d"));
-    $bitacora->save();    
-    $this->getUser()->setFlash('mensaje', '¡Registro asignado con exito!');
-    $this->redirect('formacion/asignarSecciones?id='.$request->getParameter('id'));
-    
-  }
-  /****************************************************************************/
-
-
-
-  public function executeCargarMunicipios(sfWebRequest $request)
+    public function executeCargarMunicipios(sfWebRequest $request)
   {
     $this->forwardUnless($query = $request->getParameter('query'), 'formacion', 'insertar');
 
