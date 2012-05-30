@@ -3,9 +3,6 @@
   <button class="cajaicono" onclick="javascript:parent.location='<?php echo url_for('users/index'); ?>'"><?php echo image_tag(''); ?><br/>
   Permisos
 </button>
-  <button class="cajaicono" onclick="javascript:parent.location='<?php echo url_for('geografia/index'); ?>'"><?php echo image_tag(''); ?><br/>
-  Datos Geográficos 
-</button>
   <button class="cajaicono" onclick="javascript:parent.location='<?php echo url_for('formacion/index')?>'"><?php echo image_tag('formacion.png'); ?><br/>
   Datos de formación 
 </button>
