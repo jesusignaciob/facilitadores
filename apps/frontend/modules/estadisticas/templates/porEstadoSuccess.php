@@ -8,7 +8,7 @@
 <br>
 <br>
 
-<form action="<?php echo url_for('estadisticas/generarGrafico?estatusAreaFormacion=0'); ?>" method="post">
+<form action="." method="post">
   <table style="border: 0">
     <tr>
       <th style="text-align:right; height: 30px">Estatus</th>
@@ -25,7 +25,7 @@
       <td><input id="estatusAreaFormacion" value="" type="hidden"></td>
     </tr>
   </table>
-  <input type="submit" value="Generar Grafico">
+  <input type="submit" value="Generar Grafico" onclick="var path='<?php echo url_for('estadisticas/porEstado'); ?>/estatusAreaFormacion/' + javascript:obtenerValorEstatus(); javascript:parent.location=path; return false;">
 </form>
 <br>
 <br>
