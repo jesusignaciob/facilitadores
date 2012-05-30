@@ -12,16 +12,4 @@
  */
 class DisponibilidadDias extends BaseDisponibilidadDias
 {
-  public static function obtenerDiasPorFacilitador($idFacilitador)
-    {
-      $querystring = Doctrine_Core::getTable('DisponibilidadDias')->createQuery()->where('id_identificacion=?',$idFacilitador);
-
-        return $querystring->execute();
-  }
-    
-    public static function eliminarDiasPorFacilitador($idcorreo)
-    {
-	   
-  
-    }
 }
