@@ -21,7 +21,7 @@
   <div id="sf_gmstv_content">
     <div class="sf_gmstv_form">
       
-      <form method="post" action="<?php echo url_for('formacion/asignarSeccionesUpdate'); ?>">
+      <form method="post" action="<?php echo url_for('gestion/asignarSeccionesUpdate'); ?>">
     <fieldset id="sf_fieldset_usuario">
         <div class="sf_gmstv_form_row sf_gmstv_text">
           <!-- aqui va el render error -->
@@ -42,7 +42,8 @@
 
 
     <ul class="sf_gmstv_actions">
-      <li class="sf_gmstv_action_save"><input type="submit" value="Guardar" /></li>
+      <li class="sf_gmstv_action_save"><input type="submit" value="Guardar" />
+      <li class="sf_gmstv_action_list"><?php echo link_to('Finalizar','gestion/insertar');?></li>
     </ul>
   </form>
     </div>

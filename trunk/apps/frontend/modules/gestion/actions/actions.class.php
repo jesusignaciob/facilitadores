@@ -540,5 +540,39 @@ public function executeCargarParroquiasTraslados(sfWebRequest $request)
       return $this->renderPartial('gestion/parroquiasListTraslados', array('parroquias' => $this->parroquias));
     }
   }
+  
+  
+  
+  /**************************** ASIGNAR SECCIONES ******************************/
+  
+  public function executeAsignarSecciones(sfWebRequest $request)
+  {
+    $this->secciones = Doctrine_Core::getTable('Secciones')->getSeccionesForFacilitador($request->getParameter('id'));
+    
+    $this->asignados = Doctrine_Core::getTable('Secciones')->findBy('id_identificacion', $request->getParameter('id'));
+  }
+  public function executeAsignarSeccionesUpdate(sfWebRequest $request)
+  {
+    if($request->getParameter('seccion')=='' or $request->getParameter('id')=='') {
+      $this->getUser()->setFlash('error', 'Todos los campos son requeridos');
+      $this->redirect('gestion/asignarSecciones?id='.$request->getParameter('id'));
+    }
+    
+    $seccion = Doctrine_Core::getTable('Secciones')->find($request->getParameter('seccion'));
+    $seccion->setIdIdentificacion($request->getParameter('id'));
+    $seccion->save();
+    
+    $bitacora = new BitacoraSecciones();
+    $bitacora->setIdSecciones($seccion->getId());
+    $bitacora->setIdIdentificacion($request->getParameter('id'));
+    $bitacora->setFecha(date("Y-m-d"));
+    $bitacora->save();    
+    $this->getUser()->setFlash('mensaje', '¡Registro asignado con exito!');
+    $this->redirect('gestion/asignarSecciones?id='.$request->getParameter('id'));
+    
+  }
+  /****************************************************************************/
+
+
 
 }
