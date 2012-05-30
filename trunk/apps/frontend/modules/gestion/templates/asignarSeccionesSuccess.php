@@ -8,6 +8,9 @@
  */
 
 ?>
+<button class="back-button" onclick="javascript:parent.location='<?php echo url_for('principal/index'); ?>'">Ir al menú Principal</button>
+<button class="back-button" onclick="javascript:parent.location='<?php echo url_for('gestion/insertar_traslados?id='.$sf_request->getParameter('id')); ?>'">Regresar</button>
+<br><br>
 <div id="sf_gmstv_container">
   <h1>Asignar Secciones</h1>
   
