@@ -23,6 +23,7 @@ test:
     etag:                   false
 
 all:
+  i18n: on
   .settings:
     # Form security secret (CSRF protection)
     csrf_secret:            de1ab710d2aca8f2f5e7b17506be9846c625972f
