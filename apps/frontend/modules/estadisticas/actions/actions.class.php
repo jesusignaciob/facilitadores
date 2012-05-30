@@ -26,6 +26,18 @@ public function executeLinea(sfWebRequest $request)
 public function executeBarra(sfWebRequest $request)
   {
   }
+  
+public function executePorEstado(sfWebRequest $request)
+  {
+    $this->estatusValor = $request->getParameter('estatusAreaFormacion');
+    
+    $this->setTemplate('porEstado');
+  }
+  
+public function executeGenerarGrafico(sfWebRequest $request)
+  {
+    
+  }
 
 public function executeCircular(sfWebRequest $request)
   {
@@ -87,6 +99,58 @@ public function executeGraficoBarras()
   return sfView::NONE;
 }
 
+public function executeGraficoPorEstados()
+{
+  $chartData = array();
+ 
+  //Array with sample random data
+  for( $i = 0; $i < 25; $i++ )
+  {
+    $chartData[] = rand(1,20);
+  }
+ 
+  //To create a bar chart we need to create a stBarOutline Object
+  $bar = new stBarOutline( 80, '#78B9EC', '#3495FE' );
+  $bar->key( 'Porcentaje por Estado', 10 );
+ 
+  //Passing the random data to bar chart
+  $bar->data = $chartData;
+ 
+  //Creating a stGraph object
+  $g = new stGraph();
+  $g->title( '% Facilitadores por Estados', '{font-size: 20px;}' );
+  $g->bg_colour = '#E4F5FC';
+  $g->set_inner_background( '#E3F0FD', '#CBD7E6', 150 );
+  $g->x_axis_colour( '#8499A4', '#E4F5FC' );
+  $g->y_axis_colour( '#8499A4', '#E4F5FC' );
+ 
+  //Pass stBarOutline object i.e. $bar to graph
+  $g->data_sets[] = $bar;
+ 
+  //Setting labels for X-Axis
+  $estados = Doctrine_Core::getTable('Estado')->getEstados();
+  foreach ($estados as $e){
+      $lista_estados[] = $e->getNombreEstado(); 
+  }
+  //$g->set_x_labels(array( 'Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday' ));
+  $g->set_x_labels($lista_estados);
+  // to set the format of labels on x-axis e.g. font, color, step
+  $g->set_x_label_style( 10, '#18A6FF', 1 );
+ 
+  // To tick the values on x-axis
+  // 2 means tick every 2nd value
+  $g->set_x_axis_steps( 1 );
+ 
+  //set maximum value for y-axis
+  //we can fix the value as 20, 10 etc.
+  //but its better to use max of data
+  $g->set_y_max( max($chartData) );
+  $g->y_label_steps( 10 );
+  $g->set_y_legend( 'Porcentaje', 12, '#18A6FF' );
+  echo $g->render();
+ 
+  return sfView::NONE;
+}
 
 public function executeGraficoCircular()
 {
