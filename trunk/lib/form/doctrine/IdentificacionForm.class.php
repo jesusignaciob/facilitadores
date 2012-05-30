@@ -13,6 +13,8 @@ class IdentificacionForm extends BaseIdentificacionForm
   public function configure()
   {
         $this->widgetSchema['id_estado'] = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Estado'), 'add_empty' => true));
+        $this->widgetSchema['id_municipio'] = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Municipio'), 'add_empty' => true));
+        $this->widgetSchema['id_parroquia'] = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Parroquia'), 'add_empty' => true));
         
         $this->widgetSchema->setLabels(array(
           'id_estado'    => 'Estado',
