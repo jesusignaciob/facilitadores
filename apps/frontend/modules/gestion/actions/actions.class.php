@@ -130,8 +130,8 @@ public function executeInsertar_dias_turno(sfWebRequest $request)
    $this->form_dias = new DisponibilidadDiasForm();
    //obtener el id que pertenece al identificador
    $id = $request->getParameter('id');
-   //Realizar la consulta a la tabla ocupacion referenciando el id y la enviamos al formulario insertar_ocupacionSuccess.php
-   //$this->ocupacion_facilitador = Doctrine_Core::getTable('Ocupacion')->obtenerOcupacionPorFacilitador($id);
+   //Realizar la consulta a la tabla ocupacion referenciando el id y la enviamos al formulario insertar_dias_turnoSuccess.php
+   $this->obtener_dias_turno = Doctrine_Core::getTable('DisponibilidadDias')->obtenerDiasTurnoFacilitador($id);
   }
 public function executeInsertar_traslados(sfWebRequest $request)
   {
@@ -344,7 +344,10 @@ public function executeCreateOcupacion(sfWebRequest $request)
 //Funcion para validar las entradas de datos de Turnos disponibles
 public function executeCreateTurnoDisponible(sfWebRequest $request)
  {
-
+   $id = $request->getParameter('id');
+   //Realiza el Borrado de la tabla DisponibilidadDias asignado al id del Facilitador
+   Doctrine_Core::getTable('DisponibilidadDias')->eliminarDias($id);	
+     
    $dias[] = $request->getParameter('lunes');
    $dias[] = $request->getParameter('martes');
    $dias[] = $request->getParameter('miercoles');
@@ -370,20 +373,10 @@ public function executeCreateTurnoDisponible(sfWebRequest $request)
    }
 
    $this->redirect('gestion/insertar_dias_turno?id='.$request->getParameter('id'));
-   $id = $request->getParameter('id');
+   
    //Realizar la consulta a la tabla ocupacion referenciando el id y la enviamos al formulario insertar_ocupacionSuccess.php
    $this->consultar_horas_turno = Doctrine_Core::getTable('DisponibilidadDias')->obtenerDiasPorFacilitador($id);
-
-  /* $this->form_turnos = new DisponibilidadTurnosForm();
-   $this->form_dias = new DisponibilidadDiasForm();
-   $this->processDisponibilidadTurnos($request, $this->form);
-   $this->setTemplate('insertar_dias_turno');
-   //obtener el id que pertenece al identificador
-   $id = $request->getParameter('id');*/
-   //Realizar la consulta a la tabla ocupacion referenciando el id y la enviamos al formulario insertar_ocupacionSuccess.php
-   //$this->ocupacion_facilitador = Doctrine_Core::getTable('Ocupacion')->obtenerOcupacionPorFacilitador($id);
-
- }
+}
 
 //Funcion para validar las entradas de datos de Disponbilidad traslados
 public function executeCreateDisponibilidadtraslados(sfWebRequest $request)
