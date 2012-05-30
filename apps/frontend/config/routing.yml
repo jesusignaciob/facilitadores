@@ -18,6 +18,21 @@ sf_guard_password:
   url:   /request_password
   param: { module: sfGuardAuth, action: password }
 
+grafico_barras:
+  url:   /grafico_barras
+  param: { module: estadisticas, action: graficoBarras }
+
+grafico_circular:
+  url:   /grafico_circular
+  param: { module: estadisticas, action: graficoCircular }
+
+grafico_linea:
+  url:   /grafico_linea
+  param: { module: estadisticas, action: graficoLinea }
+
+grafico_3d:
+  url:   /grafico_3d
+  param: { module: estadisticas, action: grafico3d }
 
 # generic rules
 # please, remove them by adding more specific rules
