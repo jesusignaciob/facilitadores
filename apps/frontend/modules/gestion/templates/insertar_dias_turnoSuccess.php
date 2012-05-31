@@ -1,15 +1,11 @@
 <?php $id=($sf_params->get ('id')) ?> 
 <button class="back-button" onclick="javascript:parent.location='<?php echo url_for('principal/index'); ?>'">Ir al menú Principal</button>
 <button class="back-button" onclick="javascript:parent.location='<?php echo url_for('gestion/insertar_ocupacion?id='.$id); ?>'">Regresar</button>
-<br>
-<h4>
-Configuración de Turnos Disponibles
-</h4>
+<br/><br/>
+<div id="sf_gmstv_container">
+  <h1>Turnos Disponibles del Facilitador</h1>
 <br>
 <form action="<?php echo url_for('gestion/CreateTurnoDisponible?id='.$id); ?>" method="post">
-<table border="1" style="border-collapse:collapse; width: 100%">
-  <tr style="height: 30px">
-</table>
 <table border=1>
 <tr>
 <th>

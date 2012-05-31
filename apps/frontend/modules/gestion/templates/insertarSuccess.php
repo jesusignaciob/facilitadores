@@ -1,16 +1,14 @@
 <button class="back-button" onclick="javascript:parent.location='<?php echo url_for('principal/index'); ?>'">Ir al menú Principal</button>
 <button class="back-button" onclick="javascript:parent.location='<?php echo url_for('gestion/index'); ?>'">Regresar</button>
-
-<br>
-<br>
+<br/><br/>
+<div id="sf_gmstv_container">
+  <h1>Datos Basicos del Facilitador</h1> 
 <?php if (empty($id)): ?>
 <form id="identificacion" action="<?php echo url_for('gestion/create'); ?>" method="post">
 <?php else: ?>
 <form id="identificacion" action="<?php echo url_for('gestion/update?id='.$form->getObject()->getId()); ?>" method="post">
 <?php endif; ?>
 <table style="border: 0">
-<tr><th colspan="3">Datos Basicos del Facilitador</th></tr>
-<tr><th colspan="3"><br></th></tr>
 <tr>
   <th style="text-align:right; height: 30px"><?php echo $form['nombre']->renderLabel(); ?></th>
   <td><?php echo $form['nombre']->render(); ?></td>

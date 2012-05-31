@@ -1,13 +1,11 @@
 <?php $id=($sf_params->get ('id')) ?> 
 <button class="back-button" onclick="javascript:parent.location='<?php echo url_for('principal/index'); ?>'">Ir al menú Principal</button>
 <button class="back-button" onclick="javascript:parent.location='<?php echo url_for('gestion/insertar_profesion?id='.$id); ?>'">Regresar</button>
-<br>
-<h4>
-Configuración de Ocupación Facilitador
-</h4>
+<br/><br/>
+<div id="sf_gmstv_container">
+  <h1>Ocupación del Facilitador</h1>
 <br>
 <form action="<?php echo url_for('gestion/CreateOcupacion?id='.$id); ?>" method="post">
-
 <table border=0>
 <tr>
   <th style="text-align:right; height: 30px"><?php echo $form['nombre_ocupacion']->renderLabel(); ?></th>
@@ -28,7 +26,6 @@ echo $form['id_identificacion']->render(array('value'=>$id));
 </form>
 <br>
 <table border="1" style="border-collapse:collapse; width: 100%">
-  <tr style="height: 30px">
 <?php if (isset($ocupacion_facilitador)){
 ?>
 <th colspan='3'>Lista de Ocupaciones</th>
