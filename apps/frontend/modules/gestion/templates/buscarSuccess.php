@@ -10,37 +10,37 @@
 <form action="<?php echo url_for('gestion/buscar'); ?>" method="post">
   <table style="border: 0">
     <tr>
-      <th style="text-align:right; margin: 5"><?php echo $form['nombre']->renderLabel(); ?></th>
+      <th style="text-align:right;"><?php echo $form['nombre']->renderLabel(); ?></th>
       <td><?php echo $form['nombre']->render(); ?></td>
       <td></td>
     </tr>
     <tr>
-      <th style="text-align:right; height: 30px"><?php echo $form['apellido']->renderLabel(); ?></th>
+      <th style="text-align:right; "><?php echo $form['apellido']->renderLabel(); ?></th>
       <td><?php echo $form['apellido']->render(); ?></td>
       <td></td>
     </tr>
     <tr>
-      <th style="text-align:right; height: 30px"><?php echo $form['cedula_pasaporte']->renderLabel(); ?></th>
+      <th style="text-align:right; "><?php echo $form['cedula_pasaporte']->renderLabel(); ?></th>
       <td><?php echo $form['cedula_pasaporte']->render(); ?></td>
       <td></td>
     </tr>
     <tr>
-      <th style="text-align:right; height: 30px"><?php echo $form['id_estado']->renderLabel(); ?></th>
+      <th style="text-align:right; "><?php echo $form['id_estado']->renderLabel(); ?></th>
       <td><?php echo $form['id_estado']->render(); ?></td>
       <td><input id="estado" value="" type="hidden"></td>
     </tr>
     <tr>
-      <th style="text-align:right; height: 30px"><?php echo $form['id_municipio']->renderLabel(); ?></th>
+      <th style="text-align:right; "><?php echo $form['id_municipio']->renderLabel(); ?></th>
       <td id="td_municipio"></td>
       <td><input id="municipio" value="" type="hidden"></td>
     </tr>
     <tr>
-      <th style="text-align:right; height: 30px"><?php echo $form['id_parroquia']->renderLabel(); ?></th>
+      <th style="text-align:right; "><?php echo $form['id_parroquia']->renderLabel(); ?></th>
       <td id="td_parroquia"></td>
       <td><input id="parroquia" value="" type="hidden"></td>
     </tr>
     <tr>
-      <th style="text-align:right; height: 30px"><label>Areas de Formación</label></th>
+      <th style="text-align:right; "><label>Areas de Formación</label></th>
       <td>
         <select id="areas">
           <option value=""></option>
@@ -52,7 +52,7 @@
       <td><input id="areaFormacion" value="" type="hidden"></td>
     </tr>
     <tr>
-      <th style="text-align:right; height: 30px"><label>Estatus</label></th>
+      <th style="text-align:right; "><label>Estatus</label></th>
       <td>
         <select id="estatus">
           <option value=""></option>
