@@ -93,7 +93,7 @@ Estatus
 } 
 else 
 { 
-echo "Aún no has configurado Áreas de Formación del Facilitador"; 
+echo "Aún no has configurado las Áreas de Formación del Facilitador"; 
 } ?>
 </table>
 <?php echo $form->renderGlobalErrors(); ?>

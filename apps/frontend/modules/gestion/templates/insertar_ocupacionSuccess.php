@@ -58,6 +58,6 @@ Ocupación
 } 
 else 
 { 
-echo "Aún no haz configurado Ocupación del Facilitador"; 
+echo "Aún no has configurado las Ocupaciones del Facilitador"; 
 } ?>
 </table>

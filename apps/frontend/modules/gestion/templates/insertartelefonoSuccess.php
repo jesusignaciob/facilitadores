@@ -62,7 +62,7 @@ Nº de Teléfonos
 } 
 else 
 { 
-echo "Aún no has agregado números de teléfono"; 
+echo "Aún no has agregado números de teléfono del facilitador"; 
 } ?>
 </table>
 </div>

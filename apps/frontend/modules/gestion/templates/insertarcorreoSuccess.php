@@ -58,6 +58,6 @@ Acciones
 } 
 else 
 { 
-echo "Aún no haz configurado correos electrónicos"; 
+echo "Aún no has configurado los correos electrónicos del facilitador"; 
 } ?>
 </table>
