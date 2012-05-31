@@ -5,12 +5,12 @@
 	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>¿Esta seguro de eliminar al Facilitador?</p>
 </div>
 
-<br>
-<br>
+<div id="sf_gmstv_container">
+  <h1>Consultar Facilitadores</h1> 
 <form action="<?php echo url_for('gestion/buscar'); ?>" method="post">
   <table style="border: 0">
     <tr>
-      <th style="text-align:right; height: 30px; margin: 5"><?php echo $form['nombre']->renderLabel(); ?></th>
+      <th style="text-align:right; margin: 5"><?php echo $form['nombre']->renderLabel(); ?></th>
       <td><?php echo $form['nombre']->render(); ?></td>
       <td></td>
     </tr>
@@ -40,7 +40,7 @@
       <td><input id="parroquia" value="" type="hidden"></td>
     </tr>
     <tr>
-      <th style="text-align:right; height: 30px">Areas de Formacion</th>
+      <th style="text-align:right; height: 30px"><label>Areas de Formación</label></th>
       <td>
         <select id="areas">
           <option value=""></option>
@@ -52,7 +52,7 @@
       <td><input id="areaFormacion" value="" type="hidden"></td>
     </tr>
     <tr>
-      <th style="text-align:right; height: 30px">Estatus</th>
+      <th style="text-align:right; height: 30px"><label>Estatus</label></th>
       <td>
         <select id="estatus">
           <option value=""></option>
@@ -66,6 +66,7 @@
       <td><input id="estatusAreaFormacion" value="" type="hidden"></td>
     </tr>
   </table>
+  <input id="identificacion_id" type="hidden" value="">
 <input type="submit" onclick="cargarFacilitadores($('#estado').val(), $('#municipio').val(), $('#parroquia').val(), $('#estatusAreaFormacion').val(), $('#areaFormacion').val(),''); return false;" value="Consultar">
 <?php echo $form->renderHiddenFields(); ?>
 </form>
@@ -74,3 +75,4 @@
 <form action="<?php echo url_for('gestion/modificar'); ?>" method="post">
     <div id="facilitadoresConsultados"></div>
 </form>
+</div>
