@@ -36,7 +36,20 @@
   </tr>
   <tr>
     <th><?php echo $form['formacion_politica']->renderLabel(); ?></th>
-    <td><?php echo $facilitador->getFormacionPolitica(); ?></td>
+    <td>
+    <?php
+        $x = $facilitador->getFormacionPolitica();
+        switch ($x)
+        {
+          case 0:
+            echo "No";
+            break;
+          case 1:
+            echo "Si";
+            break;
+          }
+      ?>
+    </td>
   </tr>
   <tr>
     <th><?php echo $form['id_estado']->renderLabel(); ?></th>
