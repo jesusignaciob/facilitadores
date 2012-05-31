@@ -30,13 +30,15 @@ $(document).ready(function()
   $('#identificacion_id_estado').change(function(key)
   {
     $('#estado').attr('value', this.value);
-    var idEstado = (this.value=='' ? '*' : this.value)
+    var idEstado = (this.value=='' ? '*' : this.value);
     $('#td_parroquia').html('');
     if ($('#identificacion_id').attr('value') != "")
     {
       estadoChange(idEstado, "../../");
     }
     else
+    {
       estadoChange(idEstado, "");
+    }
   });
 });
