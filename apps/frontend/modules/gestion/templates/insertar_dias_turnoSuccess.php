@@ -255,6 +255,32 @@ function is_checked($dia, $turno, $obtener_dias_turno) {
 </tr>
 <tr>
 <th>
+4pm-5pm
+</th>
+<th>
+<input type="checkbox" name="lunes[]" value="4pm-5pm" <?php echo ((is_checked ('0','4pm-5pm',$obtener_dias_turno)=='1') ? 'checked="true"' : '')?>><br>
+</th>
+<th>
+<input type="checkbox" name="martes[]" value="4pm-5pm" <?php echo ((is_checked ('1','4pm-5pm',$obtener_dias_turno)=='1') ? 'checked="true"' : '')?>><br>
+</th>
+<th>
+<input type="checkbox" name="miercoles[]" value="4pm-5pm" <?php echo ((is_checked ('2','4pm-5pm',$obtener_dias_turno)=='1') ? 'checked="true"' : '')?>><br>
+</th>
+<th>
+<input type="checkbox" name="jueves[]" value="4pm-5pm" <?php echo ((is_checked ('3','4pm-5pm',$obtener_dias_turno)=='1') ? 'checked="true"' : '')?>><br>
+</th>
+<th>
+<input type="checkbox" name="viernes[]" value="4pm-5pm" <?php echo ((is_checked ('4','4pm-5pm',$obtener_dias_turno)=='1') ? 'checked="true"' : '')?>><br>
+</th>
+<th>
+<input type="checkbox" name="sabado[]" value="4pm-5pm" <?php echo ((is_checked ('5','4pm-5pm',$obtener_dias_turno)=='1') ? 'checked="true"' : '')?>><br>
+</th>
+<th>
+<input type="checkbox" name="domingo[]" value="4pm-5pm" <?php echo ((is_checked ('6','4pm-5pm',$obtener_dias_turno)=='1') ? 'checked="true"' : '')?>><br>
+</th>
+</tr>
+<tr>
+<th>
 5pm-6pm
 </th>
 <th>
