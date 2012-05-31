@@ -6,7 +6,27 @@
 </div>
 <br/><br/>
 <div id="sf_gmstv_container">
-  <h1>Teléfonos del Facilitador</h1> 
+  <h1>Teléfonos del Facilitador</h1>
+  
+<table border="1" style="border-collapse:collapse; width: 100%">
+  <tr>
+    <th colspan="2">Datos básicos del facilitador</th>
+  </tr>
+  <tr>
+    <th><label>Nombre</label></th>
+    <td><?php echo $facilitador->getNombre(); ?></td>
+  </tr>
+  <tr>
+    <th><label>Apellido</label></th>
+    <td><?php echo $facilitador->getApellido(); ?></td>
+  </tr>
+  <tr>
+    <th><label>Cedula o Pasaporte</label></th>
+    <td><?php echo $facilitador->getCedulaPasaporte(); ?></td>
+  </tr>
+</table>
+<br>
+<br>
 <form action="<?php echo url_for('gestion/CreateTelefono?id='.$id); ?>" method="post">
 <table border=0>
 <tr>

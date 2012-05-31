@@ -2,6 +2,9 @@
 <button class="back-button" onclick="javascript:parent.location='<?php echo url_for('gestion/buscar'); ?>'">Regresar</button>
 <br>
 <br>
+<div id="sf_gmstv_container">
+  <h1>Datos del Facilitador</h1>
+<br>
 <table border="1" style="border-collapse:collapse; width: 100%">
   <tr>
     <th colspan="2">Datos básicos del facilitador</th>
@@ -259,4 +262,4 @@
   <?php endforeach; ?>
   <tr>
 </table>
-<br>
+</div>
