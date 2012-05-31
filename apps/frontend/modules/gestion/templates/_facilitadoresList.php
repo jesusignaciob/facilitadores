@@ -8,6 +8,7 @@
   <input id="area" type="hidden" value="<?php echo $area; ?>" />
 
 <table border="1" style="border-collapse:collapse; width: 100%">
+  <thead>
   <tr style="height: 30px">
       <th rowspan="2">Acciones</th>
       <th rowspan="2">Cédula</th>
@@ -20,6 +21,8 @@
     <th>Nombre</th>
     <th>Estatus</th>
   </tr>
+  </thead>
+  <tbody>
   <?php foreach($facilitadores as $f): ?>
   <tr style="height: 30px">
       <td>
@@ -65,5 +68,10 @@
       </td>
   </tr>
   <?php endforeach; ?>
+  </tbody>
+  <tfoot>
+  <tr>
+    <th colspan="7"><?php echo count($facilitadores); ?> Resultado(s)</th>
+  </tr>
+  </tfoot>
 </table>
-<?php echo $cuantosFacilitadores; ?>
