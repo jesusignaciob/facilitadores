@@ -58,6 +58,6 @@ Nivel de Formación
 } 
 else 
 { 
-echo "Aún no haz configurado Nivel de Formación del Facilitador"; 
+echo "Aún no has configurado los Niveles de Formación del Facilitador"; 
 } ?>
 </table>

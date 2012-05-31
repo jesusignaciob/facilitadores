@@ -53,6 +53,6 @@ echo $form['id_identificacion']->render(array('value'=>$id));
 } 
 else 
 { 
-echo "Aún no haz configurado Profesión del Facilitador"; 
+echo "Aún no has configurado la(s) Profesión del Facilitador"; 
 } ?>
 </table>

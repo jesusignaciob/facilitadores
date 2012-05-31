@@ -53,7 +53,7 @@ Nº
 Estado
 </th>
 <th>
-Mucnicipio
+Municipio
 </th>
 <th>
 Requiere Traslado
@@ -90,6 +90,6 @@ Requiere Traslado
 } 
 else 
 { 
-echo "Aún no haz configurado traslados facilitadores"; 
+echo "Aún no has configurado traslados para el facilitador"; 
 } ?>
 </table>
