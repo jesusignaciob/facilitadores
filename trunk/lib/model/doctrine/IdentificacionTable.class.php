@@ -91,7 +91,7 @@ class IdentificacionTable extends Doctrine_Table
     {
         $w = "";
         if (strlen($cedula) > 0)
-          $w = $w. "and i.cedula_pasaporte like '%$cedula%'";
+          $w = $w. " and i.cedula_pasaporte like '%$cedula%'";
 
         if (strlen($nombre) > 0)
         {
