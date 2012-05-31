@@ -1,10 +1,9 @@
 <?php $id=($sf_params->get ('id')) ?> 
 <button class="back-button" onclick="javascript:parent.location='<?php echo url_for('principal/index'); ?>'">Ir al menú Principal</button>
 <button class="back-button" onclick="javascript:parent.location='<?php echo url_for('gestion/insertar_dias_turno?id='.$id); ?>'">Regresar</button>
-<br>
-<h4>
-Configuración de Traslados Facilitador
-</h4>
+<br/><br/>
+<div id="sf_gmstv_container">
+  <h1>Traslados del Facilitador</h1>
 <br>
 <form action="<?php echo url_for('gestion/CreateDisponibilidadtraslados?id='.$id); ?>" method="post">
 <table style="border: 0">
@@ -38,7 +37,6 @@ echo $form['id_identificacion']->render(array('value'=>$id));
 </form>
 <br>
 <table border="1" style="border-collapse:collapse; width: 100%">
-  <tr style="height: 30px">
 <?php $cont=1; if (isset($traslados_facilitador)){
 ?>
 <tr>

@@ -1,6 +1,6 @@
 <button class="back-button" onclick="javascript:parent.location='<?php echo url_for('principal/index'); ?>'">Ir al menú Principal</button>
 <button class="back-button" onclick="javascript:parent.location='<?php echo url_for('gestion/index'); ?>'">Regresar</button>
-
+<br/><br/>
 <div id="dialog-confirm" title="Eliminar Facilitador" style="display: none; min-height: 100px;">
 	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>¿Esta seguro de eliminar al Facilitador?</p>
 </div>

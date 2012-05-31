@@ -4,13 +4,10 @@
 <div id="dialog-confirm" title="Eliminar Teléfono" style="display: none; min-height: 100px;">
 	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>¿Esta seguro de eliminar el teléfono?</p>
 </div>
-<br>
-<h4>
-Configuración de Teléfonos Facilitador
-</h4>
-<br>
+<br/><br/>
+<div id="sf_gmstv_container">
+  <h1>Teléfonos del Facilitador</h1> 
 <form action="<?php echo url_for('gestion/CreateTelefono?id='.$id); ?>" method="post">
-
 <table border=0>
 <tr>
   <th style="text-align:right; height: 30px"><?php echo $form['numero']->renderLabel(); ?></th>
@@ -31,7 +28,6 @@ echo $form['id_identificacion']->render(array('value'=>$id));
 </form>
 <br>
 <table border="1" style="border-collapse:collapse; width: 100%">
-  <tr style="height: 30px">
 <?php $cont=1; if (isset($telefonos)){
 ?>
 <tr>
@@ -66,10 +62,10 @@ Nº de Teléfonos
 } 
 else 
 { 
-echo "Aún no haz configurado números de teléfonos"; 
+echo "Aún no has agregado números de teléfono"; 
 } ?>
 </table>
-
+</div>
       
   
 
