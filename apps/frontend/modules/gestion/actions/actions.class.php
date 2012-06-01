@@ -226,19 +226,18 @@ public function executeInsertar_secciones(sfWebRequest $request)
 //Si pasa la funcion anterior, almacena los registros de Telefonos
   protected function processFormTelefono(sfWebRequest $request, sfForm $form)
   {
-   $form->bind(
+    $form->bind(
+      $request->getParameter($form->getName()),
+      $request->getFiles($form->getName())
+    );
 
-
-     $request->getParameter($form->getName()),
-     $request->getFiles($form->getName())
-   );
-
-   if ($form->isValid())
-   {
-   $result = $form->save();
-    
-   }
-   }
+    if ($form->isValid())
+    {
+      $result = $form->save();
+      $this->getUser()->setFlash('mensaje',sfConfig::get('app_mensaje_insertado'));
+      $this->redirect('gestion/insertartelefono?id='.$request->getParameter('id'));
+    }
+  }
 //Funcion para validar las entradas de datos de Correos
 public function executeCreateCorreo(sfWebRequest $request)
  {
@@ -263,7 +262,8 @@ public function executeCreateCorreo(sfWebRequest $request)
    if ($form->isValid())
    {
      $result = $form->save();
-      
+      $this->getUser()->setFlash('mensaje',sfConfig::get('app_mensaje_insertado'));
+      $this->redirect('gestion/insertarcorreo?id='.$request->getParameter('id'));
    }
  }
 //Funcion para validar las entradas de datos de Areas de Formación Facilitador
@@ -295,7 +295,8 @@ public function executeCreateAreasFormacionFacilitador(sfWebRequest $request)
      $bitacora->setIdAreaFormacionFacilitador($id);
      $bitacora->setFecha(date('Y-m-d'));
      $bitacora->save();
-      
+      $this->getUser()->setFlash('mensaje',sfConfig::get('app_mensaje_insertado'));
+      $this->redirect('gestion/insertar_areas_formacion_facilitador?id='.$request->getParameter('id'));
    }
  }
 //Funcion para validar las entradas de datos de Nivel de Formación Facilitador
@@ -322,7 +323,8 @@ public function executeCreateNivelFormacionFacilitador(sfWebRequest $request)
    if ($form->isValid())
    {
      $result = $form->save();
-      
+      $this->getUser()->setFlash('mensaje',sfConfig::get('app_mensaje_insertado'));
+      $this->redirect('gestion/insertar_nivel_formacion_facilitador?id='.$request->getParameter('id'));
    }
  }
 
@@ -350,7 +352,8 @@ public function executeCreateProfesion(sfWebRequest $request)
    if ($form->isValid())
    {
      $result = $form->save();
-      
+      $this->getUser()->setFlash('mensaje',sfConfig::get('app_mensaje_insertado'));
+      $this->redirect('gestion/insertar_profesion?id='.$request->getParameter('id'));
    }
  }
 
@@ -378,7 +381,8 @@ public function executeCreateOcupacion(sfWebRequest $request)
    if ($form->isValid())
    {
      $result = $form->save();
-      
+      $this->getUser()->setFlash('mensaje',sfConfig::get('app_mensaje_insertado'));
+      $this->redirect('gestion/insertar_ocupacion?id='.$request->getParameter('id'));
    }
  }
 
@@ -412,13 +416,12 @@ public function executeCreateTurnoDisponible(sfWebRequest $request)
        $turnos->save();
      }
    }
-
-   $this->redirect('gestion/insertar_dias_turno?id='.$request->getParameter('id'));
    
    //Realizar la consulta a la tabla ocupacion referenciando el id y la enviamos al formulario insertar_ocupacionSuccess.php
-   $this->consultar_horas_turno = Doctrine_Core::getTable('DisponibilidadDias')->obtenerDiasPorFacilitador($id);
    $this->facilitador = Doctrine::getTable('Identificacion')->find($id);
-    
+   
+   $this->getUser()->setFlash('mensaje',sfConfig::get('app_mensaje_insertado'));
+   $this->redirect('gestion/insertar_dias_turno?id='.$request->getParameter('id'));
 }
 
 //Funcion para validar las entradas de datos de Disponbilidad traslados
@@ -445,7 +448,8 @@ public function executeCreateDisponibilidadtraslados(sfWebRequest $request)
    if ($form->isValid())
    {
      $result = $form->save();
-      
+      $this->getUser()->setFlash('mensaje',sfConfig::get('app_mensaje_insertado'));
+      $this->redirect('gestion/insertar_traslados?id='.$request->getParameter('id'));
    }
  }
 
