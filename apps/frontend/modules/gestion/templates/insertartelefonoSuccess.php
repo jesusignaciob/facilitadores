@@ -1,6 +1,7 @@
 <?php $id=($sf_params->get ('id')) ?> 
-<button class="back-button" onclick="javascript:parent.location='<?php echo url_for('principal/index'); ?>'">Ir al menú Principal</button>
+<button class="home" onclick="javascript:parent.location='<?php echo url_for('principal/index'); ?>'">Ir al menú Principal</button>
 <button class="back-button" onclick="javascript:parent.location='<?php echo url_for('gestion/insertar'); ?>'">Regresar</button>
+<button class="forward-button" onclick="javascript:parent.location='<?php echo url_for('gestion/insertarcorreo?id='.$id); ?>'">Siguiente</button>
 <div id="dialog-confirm" title="Eliminar Teléfono" style="display: none; min-height: 100px;">
 	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>¿Esta seguro de eliminar el teléfono?</p>
 </div>

@@ -1,6 +1,7 @@
 <?php $id=($sf_params->get ('id')) ?> 
-<button class="back-button" onclick="javascript:parent.location='<?php echo url_for('principal/index'); ?>'">Ir al menú Principal</button>
+<button class="home" onclick="javascript:parent.location='<?php echo url_for('principal/index'); ?>'">Ir al menú Principal</button>
 <button class="back-button" onclick="javascript:parent.location='<?php echo url_for('gestion/insertartelefono?id='.$id); ?>'">Regresar</button>
+<button class="forward-button" onclick="javascript:parent.location='<?php echo url_for('gestion/insertar_areas_formacion_facilitador?id='.$id); ?>'">Siguiente</button>
 <br/><br/>
 <div id="sf_gmstv_container">
   <h1>Correos Electrónicos del Facilitador</h1>
@@ -51,13 +52,13 @@ echo $form['id_identificacion']->render(array('value'=>$id));
   </tr>
 <tr>
 <th>
+Acciones
+</th>
+<th>
 Nº
 </th>
 <th>
 Correos Electrónicos
-</th>
-<th>
-Acciones
 </th>
 </tr>
 <?php $cont=1; foreach($correos as $cf): ?>

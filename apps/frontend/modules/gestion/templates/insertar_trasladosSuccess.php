@@ -1,6 +1,7 @@
 <?php $id=($sf_params->get ('id')) ?> 
-<button class="back-button" onclick="javascript:parent.location='<?php echo url_for('principal/index'); ?>'">Ir al menú Principal</button>
+<button class="home" onclick="javascript:parent.location='<?php echo url_for('principal/index'); ?>'">Ir al menú Principal</button>
 <button class="back-button" onclick="javascript:parent.location='<?php echo url_for('gestion/insertar_dias_turno?id='.$id); ?>'">Regresar</button>
+<button class="forward-button" onclick="javascript:parent.location='<?php echo url_for('gestion/asignarSecciones?id='.$id); ?>'">Siguiente</button>
 <br/><br/>
 <div id="sf_gmstv_container">
   <h1>Traslados del Facilitador</h1>
@@ -50,9 +51,6 @@
 echo $form->renderHiddenFields(); 
 echo $form['id_identificacion']->render(array('value'=>$id));
 ?>
-</form>
-<form action="<?php echo url_for('gestion/asignarSecciones?id='.$id); ?>" method="post">
-<input type="submit" value="Siguiente">
 </form>
 <br>
 <table border="1" style="border-collapse:collapse; width: 100%">
