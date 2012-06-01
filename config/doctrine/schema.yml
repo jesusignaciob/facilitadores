@@ -19,10 +19,10 @@ AreasFormacionFacilitador:
   tableName: areas_formacion_facilitador
   columns:
     id_identificacion:
-      type: integer(4)
+      type: integer
       notnull: true
     id_area_formacion:
-      type: integer(4)
+      type: integer
       notnull: true
     estatus:
       type: integer(1)
@@ -45,7 +45,7 @@ BitacoraFormacionFacilitador:
   tableName: bitacora_formacion_facilitador
   columns:
     id_area_formacion_facilitador:
-      type: integer(4)
+      type: integer
       notnull: true
     fecha:
       type: date(25)
@@ -65,10 +65,10 @@ BitacoraSecciones:
   tableName: bitacora_secciones
   columns:
     id_secciones:
-      type: integer(4)
+      type: integer
       notnull: true
     id_identificacion:
-      type: integer(4)
+      type: integer
       notnull: true
     fecha:
       type: date(25)
@@ -87,7 +87,7 @@ Correos:
   tableName: correos
   columns:
     id_identificacion:
-      type: integer(4)
+      type: integer
       notnull: true
     correo:
       type: string(50)
@@ -102,7 +102,7 @@ DisponibilidadDias:
   tableName: disponibilidad_dias
   columns:
     id_identificacion:
-      type: integer(4)
+      type: integer
       notnull: true
     dia:
       type: integer(1)
@@ -121,13 +121,13 @@ DisponibilidadTrasladoEstado:
   tableName: disponibilidad_traslado_estado
   columns:
     id_identificacion:
-      type: integer(4)
+      type: integer
       notnull: true
     id_estado:
-      type: integer(4)
+      type: integer
       notnull: true
     id_municipio:
-      type: integer(4)
+      type: integer
       notnull: true
     requiere_traslado:
       type: boolean(1)
@@ -150,7 +150,7 @@ DisponibilidadTurnos:
   tableName: disponibilidad_turnos
   columns:
     id_disponibilidad_dia:
-      type: integer(4)
+      type: integer
       notnull: true
     turno:
       type: string(20)
@@ -170,13 +170,13 @@ Ente:
       notnull: true
       unique: true
     id_estado:
-      type: integer(4)
+      type: integer
       notnull: true
     id_municipio:
-      type: integer(4)
+      type: integer
       notnull: true
     id_parroquia:
-      type: integer(4)
+      type: integer
       notnull: true
   relations:
     Estado:
@@ -265,13 +265,13 @@ Identificacion:
       type: boolean(1)
       default: true
     id_estado:
-      type: integer(4)
+      type: integer
       notnull: true
     id_municipio:
-      type: integer(4)
+      type: integer
       notnull: true
     id_parroquia:
-      type: integer(4)
+      type: integer
       notnull: true
   relations:
     Estado:
@@ -334,7 +334,7 @@ Municipio:
       type: string(50)
       notnull: true
     id_estado:
-      type: integer(4)
+      type: integer
       notnull: true
   relations:
     Estado:
@@ -358,10 +358,10 @@ NivelFormacion:
   tableName: nivel_formacion
   columns:
     id_identificacion:
-      type: integer(4)
+      type: integer
       notnull: true
     id_estudios:
-      type: integer(4)
+      type: integer
       notnull: true
   relations:
     Estudios:
@@ -377,7 +377,7 @@ Ocupacion:
   tableName: ocupacion
   columns:
     id_identificacion:
-      type: integer(4)
+      type: integer
       notnull: true
     nombre_ocupacion:
       type: string(50)
@@ -395,7 +395,7 @@ Parroquia:
       type: string(50)
       notnull: true
     id_municipio:
-      type: integer(4)
+      type: integer
       notnull: true
   relations:
     Municipio:
@@ -415,7 +415,7 @@ Profesion:
   tableName: profesion
   columns:
     id_identificacion:
-      type: integer(4)
+      type: integer
       notnull: true
     nombre_profesion:
       type: string(50)
@@ -430,16 +430,16 @@ Secciones:
   tableName: secciones
   columns:
     id_identificacion:
-      type: integer(4)
+      type: integer
       notnull: false
     id_area_formacion:
-      type: integer(4)
+      type: integer
       notnull: true
     nombre_seccion:
       type: string(50)
       notnull: true
     id_ente:
-      type: integer(4)
+      type: integer
       notnull: true
   relations:
     AreasFormacion:
@@ -459,7 +459,7 @@ Telefonos:
   tableName: telefonos
   columns:
     id_identificacion:
-      type: integer(4)
+      type: integer
       notnull: true
     numero:
       type: string(12)
