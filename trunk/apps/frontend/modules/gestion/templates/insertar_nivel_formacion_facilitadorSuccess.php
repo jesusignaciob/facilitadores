@@ -34,7 +34,7 @@
 </tr>
 </table>
 <br>
-<input type="submit" value="Agregar Formación">
+<input type="submit" value="Agregar Nivel de Formación">
 <?php echo $form->renderHiddenFields(); 
 echo $form['id_identificacion']->render(array('value'=>$id));
 ?>
