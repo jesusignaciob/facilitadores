@@ -10,32 +10,32 @@
     <?php include_javascripts() ?>
     <script>
       $(function() {
-	$( ".button" ).button({
-        })
-      });
-      $(function() {
-	$( ".create-button" ).button({
+	      $( ".button" ).button({
+          });
+          
+        $( ".create-button" ).button({
           icons: { primary: "ui-icon-plusthick" }
-        })
-      });
-      $(function() {
-	$( ".edit-button" ).button({
+        });
+        
+        $( ".edit-button" ).button({
           icons: { primary: "ui-icon-pencil" }
-        })
-      });
-      $(function() {
-	$( ".delete-button" ).button({
+        });
+        
+        $( ".delete-button" ).button({
           icons: { primary: "ui-icon-closethick" }
-        })
-      });
-      $(function() {
-	$( ".back-button" ).button({
+        });
+        
+        $( ".home" ).button({
+          icons: { primary: "ui-icon-home" }
+        });
+        
+        $( ".back-button" ).button({
           icons: { primary: "ui-icon-arrowreturnthick-1-w" }
-        })
-      });
-      $(function() {
-	$( "button" ).button({
-        })
+        });
+        
+        $( ".forward-button" ).button({
+          icons: { primary: "ui-icon-arrowreturnthick-1-e" }
+        });
       });
     </script>
   </head>
