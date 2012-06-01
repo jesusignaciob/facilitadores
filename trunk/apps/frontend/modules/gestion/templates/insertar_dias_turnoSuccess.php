@@ -1,6 +1,7 @@
 <?php $id=($sf_params->get ('id')) ?> 
-<button class="back-button" onclick="javascript:parent.location='<?php echo url_for('principal/index'); ?>'">Ir al menú Principal</button>
+<button class="home" onclick="javascript:parent.location='<?php echo url_for('principal/index'); ?>'">Ir al menú Principal</button>
 <button class="back-button" onclick="javascript:parent.location='<?php echo url_for('gestion/insertar_ocupacion?id='.$id); ?>'">Regresar</button>
+<button class="forward-button" onclick="javascript:parent.location='<?php echo url_for('gestion/insertar_traslados?id='.$id); ?>'">Siguiente</button>
 <br/><br/>
 <div id="sf_gmstv_container">
   <h1>Turnos Disponibles del Facilitador</h1>
@@ -406,8 +407,4 @@ function is_checked($dia, $turno, $obtener_dias_turno) {
 <?php echo $form_turnos->renderHiddenFields(); 
 echo $form_turnos['id_identificacion']->render(array('value'=>$id));
 ?>
-</form>
-<br>
-<form action="<?php echo url_for('gestion/insertar_traslados?id='.$id); ?>" method="post">
-<input type="submit" value="Siguiente">
 </form>
