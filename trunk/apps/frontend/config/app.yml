@@ -7,3 +7,6 @@ all:
     insertado: ¡Registro insertado con exito!
     modificado: ¡Registro modificado con exito!
     eliminado: ¡Registro eliminado con exito!
+
+  sf_guard_plugin:
+    success_signin_url: principal/index
