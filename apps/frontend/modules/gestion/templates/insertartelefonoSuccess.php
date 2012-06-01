@@ -44,9 +44,6 @@ echo $form['id_identificacion']->render(array('value'=>$id));
 <br>
 <br>
 </form>
-<form action="<?php echo url_for('gestion/insertarcorreo?id='.$id); ?>" method="post">
-<input type="submit" value="Siguiente">
-</form>
 <br>
 <table border="1" style="border-collapse:collapse; width: 100%">
 <?php $cont=1; if (isset($telefonos)){
