@@ -1,4 +1,4 @@
-<button class="back-button" onclick="javascript:parent.location='<?php echo url_for('principal/index'); ?>'">Ir al menú Principal</button>
+<button class="home" onclick="javascript:parent.location='<?php echo url_for('principal/index'); ?>'">Ir al menú Principal</button>
 <button class="back-button" onclick="javascript:parent.location='<?php echo url_for('estadisticas/index'); ?>'">Regresar</button>
 
 <div id="dialog-confirm" title="Eliminar Facilitador" style="display: none; min-height: 100px;">
@@ -7,7 +7,9 @@
 
 <br>
 <br>
-
+<div id="sf_gmstv_container">
+  <h1>Estadisticas</h1>
+  
 <form action="." method="post">
   <table style="border: 0">
     <tr>
@@ -37,3 +39,4 @@
   }
   ?>
 </P>
+</div>
