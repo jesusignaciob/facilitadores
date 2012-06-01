@@ -29,6 +29,10 @@
           icons: { primary: "ui-icon-home" }
         });
         
+        $( ".note" ).button({
+          icons: { primary: "ui-icon-note" }
+        });
+        
         $( ".back-button" ).button({
           icons: { primary: "ui-icon-arrowreturnthick-1-w" }
         });
