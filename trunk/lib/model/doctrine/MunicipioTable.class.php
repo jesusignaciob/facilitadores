@@ -19,7 +19,7 @@ class MunicipioTable extends Doctrine_Table
 
     public static function obtenerMunicipiosPorEstado($idEstado)
     {
-        $querystring = Doctrine_Core::getTable('Municipio')->createQuery()->where('id_estado=?',$idEstado);
+        $querystring = Doctrine_Core::getTable('Municipio')->createQuery()->where('id_estado=?',$idEstado)->orderBy('nombre_municipio');
 
         return $querystring->execute();
     }
