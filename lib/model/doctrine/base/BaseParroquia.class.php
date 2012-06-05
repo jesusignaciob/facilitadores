@@ -39,10 +39,9 @@ abstract class BaseParroquia extends sfDoctrineRecord
              'notnull' => true,
              'length' => 50,
              ));
-        $this->hasColumn('id_municipio', 'integer', 4, array(
+        $this->hasColumn('id_municipio', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
-             'length' => 4,
              ));
     }
 

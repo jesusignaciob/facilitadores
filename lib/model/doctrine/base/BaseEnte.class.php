@@ -49,20 +49,17 @@ abstract class BaseEnte extends sfDoctrineRecord
              'unique' => true,
              'length' => 50,
              ));
-        $this->hasColumn('id_estado', 'integer', 4, array(
+        $this->hasColumn('id_estado', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
-             'length' => 4,
              ));
-        $this->hasColumn('id_municipio', 'integer', 4, array(
+        $this->hasColumn('id_municipio', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
-             'length' => 4,
              ));
-        $this->hasColumn('id_parroquia', 'integer', 4, array(
+        $this->hasColumn('id_parroquia', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
-             'length' => 4,
              ));
     }
 

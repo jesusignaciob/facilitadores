@@ -31,10 +31,9 @@ abstract class BaseBitacoraFormacionFacilitador extends sfDoctrineRecord
     public function setTableDefinition()
     {
         $this->setTableName('bitacora_formacion_facilitador');
-        $this->hasColumn('id_area_formacion_facilitador', 'integer', 4, array(
+        $this->hasColumn('id_area_formacion_facilitador', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
-             'length' => 4,
              ));
         $this->hasColumn('fecha', 'date', 25, array(
              'type' => 'date',
