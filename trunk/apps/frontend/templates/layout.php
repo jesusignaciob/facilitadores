@@ -40,6 +40,9 @@
         $( ".forward-button" ).button({
           icons: { primary: "ui-icon-arrowreturnthick-1-e" }
         });
+        
+        $( "button" ).button({
+          });
       });
     </script>
   </head>
