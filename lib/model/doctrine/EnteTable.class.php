@@ -22,4 +22,11 @@ class EnteTable extends Doctrine_Table
                     ->orderBy('nombre_ente');
       return $query->execute();
     }
+    
+     public function getEntesPorEstado($estado) {
+      $query = $this->getInstance()->createQuery()
+                    ->where('id_estado = ?', $estado)
+                    ->orderBy('nombre_ente');
+      return $query->execute();
+    }
 }
