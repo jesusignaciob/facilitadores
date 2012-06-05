@@ -120,12 +120,14 @@ class IdentificacionTable extends Doctrine_Table
     
     public static function obtenerCantFacilitadorePorEnte($estado, $estatus, $area, $ente)
     {
-        $w = "i.habilitado = true and aff.estatus != 0";
+        $w = "i.habilitado = true";
         if (strlen($estado) > 0)
           $w = $w. " and en.id_estado = $estado";
             
-        //if (strlen($estatus) > 0)
-        //  $w = $w. " and aff.estatus != 0";
+        if (strlen($estatus) > 0)
+          $w = $w. " and aff.estatus = $estatus";
+        else
+          $w = $w. " and aff.estatus != 0";
         
         if (strlen($area) > 0)
           $w = $w. " and aff.id_area_formacion = $area";
