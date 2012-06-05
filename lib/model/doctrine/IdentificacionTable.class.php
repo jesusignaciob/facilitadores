@@ -67,6 +67,58 @@ class IdentificacionTable extends Doctrine_Table
         return $estadisticas;
     }
 
+    public function obtenerEstadisticasPorEnte($estado, $area, $ente)
+    {
+        $cantFacPorEnte = $this->getInstance()->obtenerCantFacilitadoresPorEnte($estado, $area, $ente);
+        $cantFacPorEntes = $this->getInstance()->obtenerCantFacilitadoresPorEnte($estado, $area, "");
+        
+        if ($cantFacPorEntes == 0)
+          $cantFacPorEntes = 1;
+        
+        return number_format( ($cantFacPorEnte / $cantFacPorEntes) * 100 , 2 );
+        //return $cantFacPorEnte;
+    }
+
+    public function obtenerEstPorEntes($estado, $area)
+    {
+        $entes = Doctrine_Core::getTable('Ente')->getEntes();
+        
+        $estadisticas = array();
+        foreach($entes as $ente)
+        {
+          $porcFacPorEnte = $this->obtenerEstadisticasPorEnte($estado, $area, $ente->getId());
+          $estadisticas[$ente->getNombreEnte()] = $porcFacPorEnte;
+        }
+        
+        return $estadisticas;
+    }
+
+    public static function obtenerCantFacilitadoresPorEnte($estado, $area, $ente)
+    {
+        //$w = "i.habilitado = true and aff.estatus = 2 or aff.estatus = 3 or aff.estatus = 4 or aff.estatus = 5";
+        $w = "i.habilitado = true";
+        
+        if (strlen($estado) > 0)
+          $w = $w. " and i.id_estado = $estado";
+        
+        /*if (strlen($ente) > 0)
+          $w = $w. " and sec.id_ente = $ente";*/
+        
+        $w = $w. " and sec.id_ente = 1";
+        
+        /*if (strlen($area) > 0)
+          $w = $w. " and aff.id_area_formacion = $area";*/
+          
+        if (strlen($area) > 0)
+          $w = $w. " and sec.id_area_formacion = $area";
+        
+        $q = Doctrine_Core::getTable('Identificacion')->createQuery("SELECT i FROM Identificacion i")
+          ->leftJoin("i.Secciones sec")
+          ->where($w);
+        
+        return $q->count();
+    }
+
     public static function obtenerCantFacilitadorePorEsp($estado, $estatus, $area)
     {
         $w = "i.habilitado = true";
