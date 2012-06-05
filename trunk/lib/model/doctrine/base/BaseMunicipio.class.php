@@ -45,10 +45,9 @@ abstract class BaseMunicipio extends sfDoctrineRecord
              'notnull' => true,
              'length' => 50,
              ));
-        $this->hasColumn('id_estado', 'integer', 4, array(
+        $this->hasColumn('id_estado', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
-             'length' => 4,
              ));
     }
 

@@ -34,15 +34,13 @@ abstract class BaseBitacoraSecciones extends sfDoctrineRecord
     public function setTableDefinition()
     {
         $this->setTableName('bitacora_secciones');
-        $this->hasColumn('id_secciones', 'integer', 4, array(
+        $this->hasColumn('id_secciones', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
-             'length' => 4,
              ));
-        $this->hasColumn('id_identificacion', 'integer', 4, array(
+        $this->hasColumn('id_identificacion', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
-             'length' => 4,
              ));
         $this->hasColumn('fecha', 'date', 25, array(
              'type' => 'date',

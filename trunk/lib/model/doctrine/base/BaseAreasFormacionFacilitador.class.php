@@ -37,15 +37,13 @@ abstract class BaseAreasFormacionFacilitador extends sfDoctrineRecord
     public function setTableDefinition()
     {
         $this->setTableName('areas_formacion_facilitador');
-        $this->hasColumn('id_identificacion', 'integer', 4, array(
+        $this->hasColumn('id_identificacion', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
-             'length' => 4,
              ));
-        $this->hasColumn('id_area_formacion', 'integer', 4, array(
+        $this->hasColumn('id_area_formacion', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
-             'length' => 4,
              ));
         $this->hasColumn('estatus', 'integer', 1, array(
              'type' => 'integer',

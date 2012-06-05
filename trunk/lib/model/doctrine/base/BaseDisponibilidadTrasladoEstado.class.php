@@ -40,20 +40,17 @@ abstract class BaseDisponibilidadTrasladoEstado extends sfDoctrineRecord
     public function setTableDefinition()
     {
         $this->setTableName('disponibilidad_traslado_estado');
-        $this->hasColumn('id_identificacion', 'integer', 4, array(
+        $this->hasColumn('id_identificacion', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
-             'length' => 4,
              ));
-        $this->hasColumn('id_estado', 'integer', 4, array(
+        $this->hasColumn('id_estado', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
-             'length' => 4,
              ));
-        $this->hasColumn('id_municipio', 'integer', 4, array(
+        $this->hasColumn('id_municipio', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
-             'length' => 4,
              ));
         $this->hasColumn('requiere_traslado', 'boolean', 1, array(
              'type' => 'boolean',
