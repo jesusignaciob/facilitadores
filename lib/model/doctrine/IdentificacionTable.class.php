@@ -39,6 +39,7 @@ class IdentificacionTable extends Doctrine_Table
         return number_format( ($cantFacPorEstadoEspc / $cantFacPorEstado) * 100 , 2 );
     }
 
+    //Metodo final para el calculo de Estadisticas por Estados
     public function obtenerEstPorEstados($estatus, $area)
     {
         $estados = Doctrine_Core::getTable('Estado')->getEstados();
@@ -53,6 +54,7 @@ class IdentificacionTable extends Doctrine_Table
         return $estadisticas;
     }
     
+    //Metodo final para el calculo de Estadisticas por Especialidades
     public function obtenerEstPorEspecialidad($estado, $estatus)
     {
         $areas = Doctrine_Core::getTable('AreasFormacion')->getAreasFormacion();
@@ -65,6 +67,35 @@ class IdentificacionTable extends Doctrine_Table
         }
         
         return $estadisticas;
+    }
+    
+    //Metodo final para el calculo de Estadisticas por Ente
+    public function obtenerEstPorEntes($estado, $estatus, $area)
+    {
+        if (strlen($estado) > 0)
+          $entes = Doctrine_Core::getTable('Ente')->getEntesPorEstado($estado);
+        else
+          $entes = Doctrine_Core::getTable('Ente')->getEntes();
+        
+        $estadisticas = array();
+        foreach($entes as $enteActual)
+        {
+          $porcFacPorEnte = $this->obtenerEstadisticasPorEnte($estado, $estatus, $area, $enteActual->getId());
+          $estadisticas[$enteActual->getNombreEnte()] = $porcFacPorEnte;
+        }
+        
+        return $estadisticas;
+    }
+    
+    public function obtenerEstadisticasPorEnte($estado, $estatus, $area, $ente)
+    {
+        $cantFacPorEstadoEnte = $this->getInstance()->obtenerCantFacilitadorePorEnte($estado, $estatus, $area, $ente);
+        $cantFacPorEstado = $this->getInstance()->obtenerCantFacilitadorePorEnte($estado, $estatus, $area, "");
+        
+        if ($cantFacPorEstado == 0)
+          $cantFacPorEstado = 1;
+        
+        return number_format( ($cantFacPorEstadoEnte / $cantFacPorEstado) * 100 , 2 );
     }
 
     public function obtenerEstadisticasPorEnte($estado, $area, $ente)
@@ -138,6 +169,41 @@ class IdentificacionTable extends Doctrine_Table
         
         return $q->count();
     }
+    
+    public static function obtenerCantFacilitadorePorEnte($estado, $estatus, $area, $ente)
+    {
+        $w = "i.habilitado = true and aff.estatus != 0";
+        if (strlen($estado) > 0)
+          $w = $w. " and en.id_estado = $estado";
+            
+        //if (strlen($estatus) > 0)
+        //  $w = $w. " and aff.estatus != 0";
+        
+        if (strlen($area) > 0)
+          $w = $w. " and aff.id_area_formacion = $area";
+        
+        if (strlen($ente) > 0)
+          $w = $w. " and sec.id_ente = $ente";
+        
+        if (strlen($estado) > 0)
+        {
+          $q = Doctrine_Core::getTable('Identificacion')->createQuery("SELECT i FROM Identificacion i")
+            ->leftJoin("i.Secciones sec")
+            ->leftJoin("i.Secciones.Ente en")
+            ->leftJoin("i.AreasFormacionFacilitador aff")
+            ->where($w);
+        }
+        
+        else
+        {
+          $q = Doctrine_Core::getTable('Identificacion')->createQuery("SELECT i FROM Identificacion i")
+             ->leftJoin("i.Secciones sec")
+              ->leftJoin("i.AreasFormacionFacilitador aff")
+             ->where($w);
+        }
+        
+        return $q->count();
+    }
 
     public static function obtenerFacilitadores($cedula, $nombre, $apellido, $estado, $municipio, $parroquia, $estatus, $area)
     {
@@ -178,6 +244,47 @@ class IdentificacionTable extends Doctrine_Table
         $q = Doctrine_Core::getTable('Identificacion')->createQuery("SELECT i FROM Identificacion i JOIN i.AreasFormacionFacilitador aff")->where("i.habilitado = true" . $w);
         
         return $q->execute();
+    }
+    
+    public static function obtenerTotalFacilitadores($cedula, $nombre, $apellido, $estado, $municipio, $parroquia, $estatus, $area)
+    {
+        $w = "";
+        if (strlen($cedula) > 0)
+          $w = $w. " and i.cedula_pasaporte like '%$cedula%'";
+
+        if (strlen($nombre) > 0)
+        {
+          $nombre = strtolower($nombre);
+          $w = $w. " and lower(i.nombre) like '%$nombre%'";
+        }
+
+        if (strlen($apellido) > 0)
+        {
+          $apellido = strtolower($apellido);
+          $w = $w. " and lower(i.apellido) like '%$apellido%'";
+        }
+
+        if (strlen($estado) > 0)
+          $w = $w. " and i.id_estado = $estado";
+
+        if (strlen($municipio) > 0)
+          $w = $w. " and i.id_municipio = $municipio";
+
+        if (strlen($parroquia) > 0)
+          $w = $w. " and i.id_parroquia = $parroquia";
+            
+        if (strlen($estatus) > 0 && strlen($area) == 0)
+          $w = $w. " and i.habilitado = true and aff.estatus = $estatus";
+        
+        if (strlen($estatus) == 0 && strlen($area) > 0)
+          $w = $w. " and i.habilitado = true and aff.id_area_formacion = $area";
+        
+        if (strlen($estatus) > 0 && strlen($area) > 0)
+          $w = $w. " and i.habilitado = true and aff.estatus = $estatus and aff.id_area_formacion = $area";
+        
+        $q = Doctrine_Core::getTable('Identificacion')->createQuery("SELECT i FROM Identificacion i JOIN i.AreasFormacionFacilitador aff")->where("i.habilitado = true" . $w);
+        
+        return $q->count();
     }
     
     public static function eliminarFacilitador($id)
