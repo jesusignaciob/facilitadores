@@ -1,4 +1,4 @@
-<button class="back-button" onclick="javascript:parent.location='<?php echo url_for('principal/index'); ?>'">Ir al menú Principal</button>
+<button class="home" onclick="javascript:parent.location='<?php echo url_for('principal/index'); ?>'">Ir al menú Principal</button>
 <button class="back-button" onclick="javascript:parent.location='<?php echo url_for('gestion/index'); ?>'">Regresar</button>
 <br/><br/>
 <div id="dialog-confirm" title="Eliminar Facilitador" style="display: none; min-height: 100px;">
@@ -52,16 +52,9 @@
       <td><input id="areaFormacion" value="" type="hidden"></td>
     </tr>
     <tr>
-      <th style="text-align:right; "><label>Estatus</label></th>
+      <th style="text-align:right; "><?php echo $form['estatus']->renderLabel(); ?></th>
       <td>
-        <select id="estatus">
-          <option value=""></option>
-          <option value="0">En Formacion</option>
-          <option value="1">Formado</option>
-          <option value="2">Convocado</option>
-          <option value="3">Activo</option>
-          <option value="4">Inactivo</option>
-        </select>
+        <?php echo $form['estatus']->render(); ?>
       </td>
       <td><input id="estatusAreaFormacion" value="" type="hidden"></td>
     </tr>
