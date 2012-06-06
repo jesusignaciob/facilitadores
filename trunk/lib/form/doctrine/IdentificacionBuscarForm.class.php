@@ -16,6 +16,7 @@ class IdentificacionBuscarForm extends BaseIdentificacionBuscarForm
           'id_estado'    => 'Estado',
           'id_municipio'   => 'Municipio',
           'id_parroquia' => 'Parroquia',
+          'estatus' => 'Estatus',
         ));
 
   }
