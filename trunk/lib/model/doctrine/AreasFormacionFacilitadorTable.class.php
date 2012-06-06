@@ -35,7 +35,7 @@ class AreasFormacionFacilitadorTable extends Doctrine_Table
       '4' => 'Inactivo',
     );
     
-    public function getstatus()
+    static public function getstatus()
     {
 		  return self::$estatus;
 	  }
