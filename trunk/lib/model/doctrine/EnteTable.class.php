@@ -23,9 +23,25 @@ class EnteTable extends Doctrine_Table
       return $query->execute();
     }
     
-     public function getEntesPorEstado($estado) {
+    public function getEntesPorEstado($estado) {
       $query = $this->getInstance()->createQuery()
                     ->where('id_estado = ?', $estado)
+                    ->orderBy('nombre_ente');
+      return $query->execute();
+    }
+
+    public function getEntesPorUbicacionGeografica($estado, $municipio, $parroquia) {
+      $w = "";
+
+      if (strlen($estado) > 0)
+	$w = strlen($w) > 0 ? $w." and id_estado = $estado" : $w."id_estado = $estado";
+      if (strlen($municipio) > 0)
+	$w = strlen($w) > 0 ? $w." and id_municipio = $municipio" : $w."id_municipio = $municipio";
+      if (strlen($parroquia) > 0)
+	$w = strlen($w) > 0 ? $w." and id_parroquia = $parroquia" : $w."id_parroquia = $parroquia";
+
+      $query = $this->getInstance()->createQuery()
+                    ->where($w)
                     ->orderBy('nombre_ente');
       return $query->execute();
     }

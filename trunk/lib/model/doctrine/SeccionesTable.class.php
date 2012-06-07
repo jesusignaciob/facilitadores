@@ -40,4 +40,36 @@ class SeccionesTable extends Doctrine_Table
               ->orderBy('s.nombre_seccion asc');
       return $query->execute();
     }
+
+    public static function obtenerSecciones($nombre, $ente, $area, $estado, $municipio, $parroquia)
+    {
+	$w = "sec.id_identificacion = null";
+
+        if (strlen($nombre) > 0)
+        {
+          $nombre = strtolower($nombre);
+          $w = $w. " and lower(sec.nombre_seccion) like '%$nombre%'";
+        }
+
+	if (strlen($ente) > 0)
+          $w = $w. " and sec.id_ente = $ente";
+	else
+	{
+	  if (strlen($estado) > 0)
+	    $w = $w. " and en.id_estado = $estado";
+            
+	  if (strlen($municipio) > 0)
+	    $w = $w. " and en.id_municipio = $municipio";
+
+	  if (strlen($parroquia) > 0)
+	    $w = $w. " and en.id_parroquia = $parroquia";
+	}
+        
+        if (strlen($area) > 0)
+          $w = $w. " and sec.id_area_formacion = $area";
+        
+        $q = $this->getInstance()->createQuery("SELECT sec FROM Secciones sec JOIN sec.Ente en")->where($w);
+        
+        return $q->execute();
+    }
 }
