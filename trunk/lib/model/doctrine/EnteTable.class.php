@@ -34,11 +34,11 @@ class EnteTable extends Doctrine_Table
       $w = "";
 
       if (strlen($estado) > 0)
-	$w = strlen($w) > 0 ? $w." and id_estado = $estado" : $w."id_estado = $estado";
+	$w = $w.(strlen($w) > 0 ? " and id_estado = $estado" : "id_estado = $estado");
       if (strlen($municipio) > 0)
-	$w = strlen($w) > 0 ? $w." and id_municipio = $municipio" : $w."id_municipio = $municipio";
+	$w = $w.(strlen($w) > 0 ? " and id_municipio = $municipio" : "id_municipio = $municipio");
       if (strlen($parroquia) > 0)
-	$w = strlen($w) > 0 ? $w." and id_parroquia = $parroquia" : $w."id_parroquia = $parroquia";
+	$w = $w.(strlen($w) > 0 ? " and id_parroquia = $parroquia" : "id_parroquia = $parroquia");
 
       $query = $this->getInstance()->createQuery()
                     ->where($w)
