@@ -43,7 +43,7 @@ class SeccionesTable extends Doctrine_Table
 
     public static function obtenerSecciones($nombre, $ente, $area, $estado, $municipio, $parroquia)
     {
-	$w = "sec.id_identificacion = null";
+	$w = "sec.id_identificacion is NULL";
 
         if (strlen($nombre) > 0)
         {
@@ -51,8 +51,13 @@ class SeccionesTable extends Doctrine_Table
           $w = $w. " and lower(sec.nombre_seccion) like '%$nombre%'";
         }
 
+	if (strlen($area) > 0)
+          $w = $w. " and sec.id_area_formacion = $area";
+
 	if (strlen($ente) > 0)
           $w = $w. " and sec.id_ente = $ente";
+
+	  $q = $this->getInstance()->createQuery("SELECT sec FROM Secciones sec JOIN sec")->where($w);
 	else
 	{
 	  if (strlen($estado) > 0)
@@ -63,12 +68,9 @@ class SeccionesTable extends Doctrine_Table
 
 	  if (strlen($parroquia) > 0)
 	    $w = $w. " and en.id_parroquia = $parroquia";
+
+	  $q = $this->getInstance()->createQuery("SELECT sec FROM Secciones sec JOIN sec.Ente en")->where($w);
 	}
-        
-        if (strlen($area) > 0)
-          $w = $w. " and sec.id_area_formacion = $area";
-        
-        $q = $this->getInstance()->createQuery("SELECT sec FROM Secciones sec JOIN sec.Ente en")->where($w);
         
         return $q->execute();
     }
