@@ -236,6 +236,27 @@ class IdentificacionTable extends Doctrine_Table
         
         return $q->count();
     }
+
+    public static obtenerFacilitadoresCompatibles($estado, $municipio, $area)
+    {
+        $w = "i.habilitado = true and aff.estatus != 0";
+
+        if (strlen($estado) > 0)
+          $w = $w. " and dte.id_estado = $estado";
+
+        if (strlen($municipio) > 0)
+          $w = $w. " and dte.id_municipio = $municipio";
+        
+        if (strlen($area) > 0)
+          $w = $w. " and aff.id_area_formacion = $area";
+        
+        $q = Doctrine_Core::getTable('Identificacion')->createQuery("SELECT i FROM Identificacion i")
+	    ->leftJoin("i.AreasFormacionFacilitador aff")
+	    ->leftJoin("i.DisponibilidadTrasladoEstado dte")
+	    ->where($w);
+        
+        return $q->execute();
+    }
     
     public static function eliminarFacilitador($id)
     {
