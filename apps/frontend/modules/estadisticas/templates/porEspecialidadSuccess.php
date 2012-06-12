@@ -1,7 +1,7 @@
 <button class="home" onclick="javascript:parent.location='<?php echo url_for('principal/index'); ?>'">Ir al menú Principal</button>
 <button class="back-button" onclick="javascript:parent.location='<?php echo url_for('estadisticas/index'); ?>'">Regresar</button>
 
-<div id="dialog-confirm" title="Seleccione el Estatus del facilitador" style="display: none; min-height: 100px;">
+<div id="dialog-confirm" title="Seleccione el Estatus y el Estado" style="display: none; min-height: 100px;">
 	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>Seleccione el Estatus</p>
 </div>
 
@@ -10,10 +10,10 @@
 <div id="sf_gmstv_container">
   <h1>Estadisticas</h1>
   
-<form action="<?php echo url_for('estadisticas/porEstado')?>" method="post">
+<form action="<?php echo url_for('estadisticas/porEspecialidad')?>" method="post">
   <table style="border: 0">
     <tr>
-      <th style="text-align:right; height: 30px">Estatus</th>
+      <th style="text-align:right; height: 30px">Estatus:&nbsp</th>
       <td>
         <select id="estatus" name="estatus">
           <option value=""></option>
@@ -22,6 +22,16 @@
           <option value="2">Convocado</option>
           <option value="3">Activo</option>
           <option value="4">Inactivo</option>
+        </select>
+      </td>
+     <td>&nbsp</td>
+     <th style="text-align:right; height: 30px">Estado:&nbsp</th>
+      <td>
+        <select id="estado" name="estado">
+          <option value=""></option>
+          <?php foreach($estados as $es): ?>
+          <option value="<?php echo $es->getId(); ?>"><?php echo $es->getNombreEstado(); ?></option>
+          <?php endforeach; ?>
         </select>
       </td>
      <td>&nbsp</td>
@@ -41,10 +51,9 @@
 <br>
 <P>
   <?php
-  $e = 'todos';
   $a = 'todas';
   if (isset($estatusValor)) {
-     stOfc::createChart('90%', 450, "@graficos_estadisticas?opcion=1&estatus=$estatusValor&tipografico=$tipo_grafico&estado=$e&area_formacion=$a", false);
+     stOfc::createChart('90%', 450, "@graficos_estadisticas?opcion=2&estatus=$estatusValor&tipografico=$tipo_grafico&estado=$estadoValor&area_formacion=$a", false);
   }
   ?>
 </P>
