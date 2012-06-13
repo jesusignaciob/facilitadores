@@ -22,6 +22,13 @@ class SeccionesTable extends Doctrine_Table
                     ->orderBy('nombre_seccion');
       return $query->execute();
     }
+
+    public function getSeccionesForEnte($ente) {
+      $query = $this->getInstance()->createQuery()
+                    ->where('id_ente = ?', $ente)
+                    ->orderBy('nombre_seccion');
+      return $query->execute();
+    }
     
     public function getSeccionesForFacilitador($id_facilitador){
       $query = Doctrine_Query::create()
@@ -41,9 +48,11 @@ class SeccionesTable extends Doctrine_Table
       return $query->execute();
     }
 
+
     public static function obtenerSecciones($nombre, $ente, $area, $estado, $municipio, $parroquia)
     {
-	$w = "sec.id_identificacion is NULL";
+	    //$w = "sec.id_identificacion is NULL";
+        $w = "1=1";
 
         if (strlen($nombre) > 0)
         {
@@ -51,27 +60,32 @@ class SeccionesTable extends Doctrine_Table
           $w = $w. " and lower(sec.nombre_seccion) like '%$nombre%'";
         }
 
-	if (strlen($area) > 0)
+	    if (strlen($area) > 0)
           $w = $w. " and sec.id_area_formacion = $area";
 
-	if (strlen($ente) > 0)
+	    if (strlen($ente) > 0)
+      {
           $w = $w. " and sec.id_ente = $ente";
 
-	  $q = $this->getInstance()->createQuery("SELECT sec FROM Secciones sec JOIN sec")->where($w);
-	else
-	{
-	  if (strlen($estado) > 0)
-	    $w = $w. " and en.id_estado = $estado";
+	        $q = Doctrine_Core::getTable('Secciones')->createQuery("SELECT sec FROM Secciones sec")->where($w)
+      ->orderBy('nombre_seccion asc');
+      }
+	    else
+	    {
+	      if (strlen($estado) > 0)
+	        $w = $w. " and en.id_estado = $estado";
             
-	  if (strlen($municipio) > 0)
-	    $w = $w. " and en.id_municipio = $municipio";
+	      if (strlen($municipio) > 0)
+	        $w = $w. " and en.id_municipio = $municipio";
 
-	  if (strlen($parroquia) > 0)
-	    $w = $w. " and en.id_parroquia = $parroquia";
+	      if (strlen($parroquia) > 0)
+	        $w = $w. " and en.id_parroquia = $parroquia";
 
-	  $q = $this->getInstance()->createQuery("SELECT sec FROM Secciones sec JOIN sec.Ente en")->where($w);
-	}
+	      $q = Doctrine_Core::getTable('Secciones')->createQuery("SELECT sec FROM Secciones sec JOIN sec.Ente en")->where($w)
+        ->orderBy('nombre_seccion asc');
+	    }
         
-        return $q->execute();
-    }
+      return $q->execute();
+   }
+
 }
