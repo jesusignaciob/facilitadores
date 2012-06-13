@@ -74,8 +74,7 @@
 
 
     <ul class="sf_gmstv_actions">
-      <li class="sf_gmstv_action_save"><input type="submit" value="Guardar" />
-
+      
       
 
     </ul>
