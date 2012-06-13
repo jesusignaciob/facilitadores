@@ -237,7 +237,7 @@ class IdentificacionTable extends Doctrine_Table
         return $q->count();
     }
 
-    public static obtenerFacilitadoresCompatibles($estado, $municipio, $area)
+    public static function obtenerFacilitadoresCompatibles($estado, $municipio, $area)
     {
         $w = "i.habilitado = true and aff.estatus != 0";
 
@@ -265,4 +265,25 @@ class IdentificacionTable extends Doctrine_Table
         ->where('i.id = ?', $id)
         ->execute();
     }
+
+
+/*
+select * from identificacion i, secciones s, ente e, disponibilidad_traslado_estado d, areas_formacion_facilitador af  where s.id='1' and (i.id=s.id_identificacion or s.id_identificacion is null)  and s.id_ente=e.id and 
+((e.id_estado=d.id_estado and e.id_municipio=d.id_municipio) or (e.id_estado=i.id_estado and e.id_municipio=i.id_municipio)) and s.id_area_formacion=af.id_area_formacion and af.id_area_formacion=1
+*/
+
+ public function obtenerSeccionesFacilitador($id_seccion){
+      $query = Doctrine_Query::create()
+              ->select('i.*')
+              ->from("identificacion as i, secciones as se, ente as e, DisponibilidadTrasladoEstado as d, AreasFormacionFacilitador af")
+              ->where("(se.id = '$id_seccion')")              
+              ->andWhere("(se.id_identificacion is NULL or se.id_identificacion != i.id)")
+              ->andWhere("(se.id_ente = e.id)")
+              ->andWhere("((e.id_estado=d.id_estado and e.id_municipio=d.id_municipio) or (e.id_estado=i.id_estado and e.id_municipio=i.id_municipio))")
+              ->andWhere("(se.id_area_formacion = af.id_area_formacion)")
+              ->andWhere("af.id_identificacion = i.id")
+              ->orderBy('i.cedula_pasaporte asc');
+      return $query->execute();
+    }
+
 }
