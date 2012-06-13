@@ -51,7 +51,7 @@ class gestionActions extends sfActions
   }
   public function executeInsertarcorreo(sfWebRequest $request)
   {
-	$this->form = new CorreosForm();
+	  $this->form = new CorreosForm();
     $id = $request->getParameter('id');
    //Realizar la consulta a la tabla correos referenciando el id y la enviamos al formulario insertarcorreoSuccess.php
    $this->correos = Doctrine_Core::getTable('Correos')->obtenerCorreosPorFacilitador($id);
@@ -168,6 +168,59 @@ public function executeInsertar_traslados(sfWebRequest $request)
    $this->redirect('gestion/insertar_traslados?id='.$id);
    }
   }
+
+public function executeBuscar_ente(sfWebRequest $request)
+  {
+    $this->form = new EnteForm();
+    $this->setTemplate('buscar_ente');
+    $ente = $request->getParameter('ente');
+    $this->areas = Doctrine::getTable('AreasFormacion')->getAreasFormacion();
+  }
+
+public function executeCargarSecciones(sfWebRequest $request)
+  {
+   if (!$request->isXmlHttpRequest())
+      return $this->renderText('No hay registros');
+  
+    $nombre_seccion = $request->getParameter('nombre');
+    $estado = $request->getParameter('estado');
+    $municipio = $request->getParameter('municipio');
+    $parroquia = $request->getParameter('parroquia');
+    $ente = $request->getParameter('ente');
+    $area = $request->getParameter('area');
+
+    
+    $this->secciones = Doctrine_Core::getTable('Secciones')->obtenerSecciones($nombre_seccion, $ente, $area, $estado, $municipio, $parroquia);
+
+    return $this->renderPartial('gestion/seccionesList', array('secciones' => $this->secciones, 'nombre_seccion' => $nombre_seccion, 'estado' => $estado, 'municipio' => $municipio, 'parroquia' => $parroquia, 'ente' => $ente, 'area' => $area));
+  }
+
+public function executeAsignar_secciones_facilitador(sfWebRequest $request)
+  {
+    
+    $id_seccion = $request->getParameter('id_seccion');
+    $area = $request->getParameter('area');
+    if($request->hasParameter('id')){
+      $seccion = Doctrine_Core::getTable('Secciones')->find($id_seccion);
+    
+    $seccion->setIdIdentificacion($request->getParameter('id'));
+    $seccion->save();
+    
+    $bitacora = new BitacoraSecciones();
+    $bitacora->setIdSecciones($seccion->getId());
+    $bitacora->setIdIdentificacion($request->getParameter('id'));
+    $bitacora->setFecha(date("Y-m-d"));
+    $bitacora->save();
+    $this->redirect('gestion/asignar_secciones_facilitador?id_seccion='.$seccion->getId().'&area='.$area);
+    } 
+    
+
+    
+    $this->secciones = Doctrine_Core::getTable('Identificacion')->obtenerSeccionesFacilitador($id_seccion);
+}
+
+
+
 public function executeInsertar_secciones(sfWebRequest $request)
   {
     
@@ -476,7 +529,7 @@ public function executeCreateDisponibilidadtraslados(sfWebRequest $request)
      $this->redirect('gestion/buscar');
    }
  }
- 
+
  public function executeDetalle(sfWebRequest $request)
  {
     $id = $request->getParameter('id');
@@ -536,7 +589,7 @@ public function executeCreateDisponibilidadtraslados(sfWebRequest $request)
   public function executeCargarParroquias(sfWebRequest $request)
   {
    $this->forwardUnless($query = $request->getParameter('query'), 'gestion', 'insertar');
-//$this->forwardUnless($query = $request->getParameter('query'), 'gestion', 'insertar_traslados');
+
     if('*' != $query){
       $this->parroquias = Doctrine_Core::getTable('Parroquia')->obtenerParroquiaPorMunicipio($query);
     }
@@ -555,6 +608,7 @@ public function executeCargarMunicipiosTraslados(sfWebRequest $request)
   {
     
     $this->forwardUnless($query = $request->getParameter('query'), 'gestion', 'insertar_traslados');
+    
     if('*' != $query){
       $this->municipios = Doctrine_Core::getTable('Municipio')->obtenerMunicipiosPorEstado($query);
     }
@@ -570,7 +624,9 @@ public function executeCargarMunicipiosTraslados(sfWebRequest $request)
   }
 public function executeCargarParroquiasTraslados(sfWebRequest $request)
   {
-   $this->forwardUnless($query = $request->getParameter('query'), 'gestion', 'insertar_traslados');
+   $this->forwardUnless($query = $request->getParameter('query'), 'gestion',
+'insertar_traslados');
+       
     if('*' != $query){
       $this->parroquias = Doctrine_Core::getTable('Parroquia')->obtenerParroquiaPorMunicipio($query);
     }
@@ -585,12 +641,63 @@ public function executeCargarParroquiasTraslados(sfWebRequest $request)
     }
   }
   
+public function executeCargarMunicipiosEntes(sfWebRequest $request)
+  {
+    
+    $this->forwardUnless($query = $request->getParameter('query'), 'gestion','buscar_ente');
+    
+    if('*' != $query){
+      $this->municipios = Doctrine_Core::getTable('Municipio')->obtenerMunicipiosPorEstado($query);
+    }
+ 
+    if ($request->isXmlHttpRequest())
+    {
+      {
+        return $this->renderText('');
+      }
+      return $this->renderPartial('gestion/municipiosListEntes', array('municipios' => $this->municipios));
+    }
+  }
+public function executeCargarParroquiasEntes(sfWebRequest $request)
+  {
+   $this->forwardUnless($query = $request->getParameter('query'), 'gestion','buscar_ente');
+       
+    if('*' != $query){
+      $this->parroquias = Doctrine_Core::getTable('Parroquia')->obtenerParroquiaPorMunicipio($query);
+    }
+ 
+    if ($request->isXmlHttpRequest())
+    {
+      if ('*' == $query || !$this->parroquias)
+      {
+        return $this->renderText('');
+      }
+      return $this->renderPartial('gestion/parroquiasListEntes', array('parroquias' => $this->parroquias));
+    }
+  }
   
+
+public function executeCargarNombreEntes(sfWebRequest $request)
+  {
+if (!$request->isXmlHttpRequest())
+      return $this->renderText('No hay registros');
+  
+    $estado = $request->getParameter('idEstado');
+    $municipio = $request->getParameter('idMunicipio');
+    $parroquia = $request->getParameter('idParroquia');
+    $this->entes=Doctrine_Core::getTable('Ente')->getEntesPorUbicacionGeografica($estado, $municipio,$parroquia);
+
+  
+    return $this->renderPartial('gestion/entesList', array('entes'=>$this->entes));  
+
+}
+
   
   /**************************** ASIGNAR SECCIONES ******************************/
   
   public function executeAsignarSecciones(sfWebRequest $request)
   {
+    
     $this->secciones = Doctrine_Core::getTable('Secciones')->getSeccionesForFacilitador($request->getParameter('id'));
     
     $this->asignados = Doctrine_Core::getTable('Secciones')->findBy('id_identificacion', $request->getParameter('id'));
