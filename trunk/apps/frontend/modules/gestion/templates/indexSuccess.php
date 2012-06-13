@@ -6,5 +6,8 @@
   <button class="cajaicono" onclick="javascript:parent.location='<?php echo url_for('gestion/buscar'); ?>'"><?php echo image_tag('buscar.png'); ?><br/>
  Búsqueda / Actualización
 </button>
+<button class="cajaicono" onclick="javascript:parent.location='<?php echo url_for('gestion/buscar_ente'); ?>'"><?php echo image_tag('buscar.png'); ?><br/>
+ Agregar Secciones 
+</button>
 </div>
 
