@@ -22,6 +22,14 @@ class EnteTable extends Doctrine_Table
                     ->orderBy('nombre_ente');
       return $query->execute();
     }
+
+
+   public function obtenerfacilitadores() {
+      $querystring = Doctrine_Query::create()->from('Identificacion i', 'Ente e')
+	->where('i.id = 1');
+
+        return $querystring->execute();
+    }
     
     public function getEntesPorEstado($estado) {
       $query = $this->getInstance()->createQuery()
@@ -31,18 +39,28 @@ class EnteTable extends Doctrine_Table
     }
 
     public function getEntesPorUbicacionGeografica($estado, $municipio, $parroquia) {
-      $w = "";
+      $query = $this->getInstance()->createQuery();
+      
+      if (strlen($estado) > 0)
+        $query = $query->andWhere('id_estado = ?', $estado);
+      if (strlen($municipio) > 0)
+        $query = $query->andWhere('id_municipio = ?', $municipio);
+      if (strlen($parroquia) > 0)
+        $query = $query->andWhere('id_parroquia = ?', $parroquia);
+
+      $query = $query->orderBy('nombre_ente');
+
+      /*$w = "";
 
       if (strlen($estado) > 0)
-	$w = $w.(strlen($w) > 0 ? " and id_estado = $estado" : "id_estado = $estado");
+	      $w = $w.(strlen($w) > 0 ? " and id_estado = $estado" : "id_estado = $estado");
       if (strlen($municipio) > 0)
-	$w = $w.(strlen($w) > 0 ? " and id_municipio = $municipio" : "id_municipio = $municipio");
+	      $w = $w.(strlen($w) > 0 ? " and id_municipio = $municipio" : "id_municipio = $municipio");
       if (strlen($parroquia) > 0)
-	$w = $w.(strlen($w) > 0 ? " and id_parroquia = $parroquia" : "id_parroquia = $parroquia");
+	      $w = $w.(strlen($w) > 0 ? " and id_parroquia = $parroquia" : "id_parroquia = $parroquia");*/
 
-      $query = $this->getInstance()->createQuery()
-                    ->where($w)
-                    ->orderBy('nombre_ente');
+      
       return $query->execute();
     }
 }
+
