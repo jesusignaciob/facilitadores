@@ -12,7 +12,7 @@ class EnteForm extends BaseEnteForm
 {
   public function configure()
   {
-
+    
     $this->widgetSchema['id_estado'] = new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Estado'), 'add_empty' => true));
 
     $this->widgetSchema->setLabels(array(
@@ -20,5 +20,10 @@ class EnteForm extends BaseEnteForm
     'id_municipio'   => 'Municipio',
     'id_parroquia' => 'Parroquia',
     ));
+
+	$this->validatorSchema['id_estado'] = new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Estado'), 'required' => true), array('required'=> "Seleccione el Estado"));
+	$this->validatorSchema['id_municipio'] = new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Municipio'), 'required' => true), array('required'=> "Seleccione el Municipio"));
+	 $this->validatorSchema['id_parroquia'] = new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Parroquia'), 'required' => true), array('required'=> "Seleccione la Parroquia"));
+	 
   }
 }
