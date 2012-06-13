@@ -28,12 +28,3 @@ $(document).ready(function()
   estadotrasladoChange(idEstado);
   });
 });
- 
- 
- 
-
- 
- 
- 
- 
-
