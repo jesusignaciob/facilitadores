@@ -1,5 +1,5 @@
 <?php
-
+$p=($sf_params->get ('p'))
 /*
  *  Document   : asignarSessionesSuccess
  *  Created on : 23/05/2012, 10:39:10 AM
@@ -9,7 +9,13 @@
 
 ?>
 <button class="home" onclick="javascript:parent.location='<?php echo url_for('principal/index'); ?>'">Ir al menú Principal</button>
+<?php if (isset($p))
+{
+?>
+<button class="back-button" onclick="javascript:parent.location='<?php echo url_for('gestion/buscar_ente'); ?>'">Regresar</button>
+<?php } else { ?>
 <button class="back-button" onclick="javascript:parent.location='<?php echo url_for('gestion/insertar_traslados?id='.$sf_request->getParameter('id')); ?>'">Regresar</button>
+<?php } ?>
 <br><br>
 <div id="sf_gmstv_container">
   <h1>Asignar Secciones</h1>
@@ -46,7 +52,9 @@
 
     <ul class="sf_gmstv_actions">
       <li class="sf_gmstv_action_save"><input type="submit" value="Guardar" />
+<?php if (!isset($p)){ ?>
       <li class="sf_gmstv_action_list"><?php echo link_to('Finalizar','gestion/insertar');?></li>
+<?php } ?>
     </ul>
   </form>
     </div>
