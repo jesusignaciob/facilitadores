@@ -1,44 +1,61 @@
+<!--
+Document / Documento: action.class del Módulo Gestión 
+
+Created on / Creado : 23/05/2012, 10:39:10 AM
+
+Author / Desarrolladores:
+1. Raúl Lobo 04267711578 andrescerrada@gmail.com
+2. José Ruiz 04265752819 jruiz@cenditel.gob.ve joseph2283@gmail.com
+3. Jesús Becerra 04263779960 jbecerra@cenditel.gob.ve jesusignaciob@gmail.com
+4. Rodolfo Sumoza 04166342086 rsumoza@cenditel.gob.ve rsumoza@gmail.com
+
+Description / Comentarios:
+Este archivo genera las siguientes funciones:
+1- Insertar Datos Básicos del Facilitador.
+	1.1- Teléfonos.
+	1.2- Correo Electronico.
+	1.3- Areas de Formación.
+	1.4- Nivel de Formación.
+	1.5- Profesió.
+	1.6- Ocupación.
+	1.7- Turnos Disponibles.
+	1.8- Traslados.
+	1.9- Asignar Secciones.	
+-->
 <?php
 
-/**
- * gestion actions.
- *
- * @package    facilitadores
- * @subpackage gestion
- * @author     Your name here
- * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
- */
 class gestionActions extends sfActions
 {
- /**
-  * Executes index action
-  *
-  * @param sfRequest $request A request object
-  */
+//Función que invoca a la vista (indexSuccess) para mostrar el Menu Principal de Facilitadores
   public function executeIndex(sfWebRequest $request)
   {
-   // $this->forward('default', 'module');
+   //$this->forward('default', 'module');
   }
+
+//Función que invoca a la vista (insertarSuccess) para ingresar los Datos Básicos del Facilitador
   public function executeInsertar(sfWebRequest $request)
   { 
     $this->id = $request->getParameter('id');
-    
     if (isset($this->id))
     {
       $facilitador = Doctrine_Core::getTable('Identificacion')->find($this->id);
+      //$this->telefonos = Doctrine_Core::getTable('Telefonos')->obtenerTelefonos($ver_telefono);
       $this->form = new IdentificacionForm($facilitador);
     }
     else
       $this->form = new IdentificacionForm();
   }
-  
+
+//Función que invoca a la vista (insertartelefonoSuccess) para ingresar los teléfonos del facilitador
   public function executeInsertartelefono(sfWebRequest $request)
   {
     $this->form = new TelefonosForm();
     $id = $request->getParameter('id');
+    $this->ver_telefono= $request->getParameter('ver_telefono');
    //Realizar la consulta a la tabla telefonos referenciando el id y la enviamos al formulario insertartelefonoSuccess.php
    $this->telefonos = Doctrine_Core::getTable('Telefonos')->obtenerTelefonosPorFacilitador($id);
-   //Obtiene el id del telefono
+   
+    //Obtiene el id del telefono
    $id_telefono = $request->getParameter('id_telefono');
    //Si la variable id del telefono existe, realiza la eliminacion y redirecciona
    //de nuevo a insertartelefono
@@ -48,10 +65,19 @@ class gestionActions extends sfActions
    Doctrine_Core::getTable('Telefonos')->eliminarTelefono($id_telefono);
    $this->redirect('gestion/insertartelefono?id='.$id);
    }
+
+ /*if (isset($this->$ver_telefono))
+   {
+      $this->telefono = Doctrine_Core::getTable('Telefonos')->find(6);
+      $this->form = new TelefonosForm($this->telefono);
+    }
+*/
   }
+
+//Función que invoca a la vista (insertarcorreoSuccess) para ingresar los correos del facilitador
   public function executeInsertarcorreo(sfWebRequest $request)
   {
-	  $this->form = new CorreosForm();
+    $this->form = new CorreosForm();
     $id = $request->getParameter('id');
    //Realizar la consulta a la tabla correos referenciando el id y la enviamos al formulario insertarcorreoSuccess.php
    $this->correos = Doctrine_Core::getTable('Correos')->obtenerCorreosPorFacilitador($id);
@@ -66,10 +92,12 @@ class gestionActions extends sfActions
    $this->redirect('gestion/insertarcorreo?id='.$id);
    }
   }
+
+//Función que invoca a la vista (insertar_areas_formacion_facilitadorSuccess) para ingresar los áreas de formación del facilitador
   public function executeInsertar_areas_formacion_facilitador(sfWebRequest $request)
   {
-	$this->form = new AreasFormacionFacilitadorForm();
-        //obtener el id que pertenece al identificador
+   $this->form = new AreasFormacionFacilitadorForm();
+   //obtener el id que pertenece al identificador
    $id = $request->getParameter('id');
    //Realizar la consulta a la tabla areas_formacion y areas_formacion_facilitador referenciando el id y la enviamos al formulario insertar_areas_formacion_facilitadorSuccess.php
    $this->areas_formacion_facilitador = Doctrine_Core::getTable('AreasFormacionFacilitador')->obtenerAreasFormacionPorFacilitador($id);
@@ -84,6 +112,8 @@ class gestionActions extends sfActions
    $this->redirect('gestion/insertar_areas_formacion_facilitador?id='.$id);
    }
   }
+
+//Función que invoca a la vista (insertar_nivel_formacion_facilitadorSuccess) para ingresar los nivel de formación del facilitador
   public function executeInsertar_nivel_formacion_facilitador(sfWebRequest $request)
   {
    $this->form = new NivelFormacionForm();
@@ -102,9 +132,11 @@ class gestionActions extends sfActions
    $this->redirect('gestion/insertar_nivel_formacion_facilitador?id='.$id);
    }
   }
+
+//Función que invoca a la vista (insertar_profesionSuccess) para ingresar la profesión del facilitador
 public function executeInsertar_profesion(sfWebRequest $request)
   {
-	$this->form = new ProfesionForm();
+   $this->form = new ProfesionForm();
    //obtener el id que pertenece al identificador
    $id = $request->getParameter('id');
    //Realizar la consulta a la tabla profesion referenciando el id y la enviamos al formulario insertar_profesionSuccess.php
@@ -120,9 +152,11 @@ public function executeInsertar_profesion(sfWebRequest $request)
    $this->redirect('gestion/insertar_profesion?id='.$id);
    }
   }
+
+//Función que invoca a la vista (insertar_ocupacionSuccess) para ingresar la ocupación del facilitador
 public function executeInsertar_ocupacion(sfWebRequest $request)
   {
-	$this->form = new OcupacionForm();
+   $this->form = new OcupacionForm();
    //obtener el id que pertenece al identificador
    $id = $request->getParameter('id');
    //Realizar la consulta a la tabla ocupacion referenciando el id y la enviamos al formulario insertar_ocupacionSuccess.php
@@ -138,6 +172,8 @@ public function executeInsertar_ocupacion(sfWebRequest $request)
    $this->redirect('gestion/insertar_ocupacion?id='.$id);
    }
   }
+
+//Función que invoca a la vista (insertar_dias_turnoSuccess) para ingresar los turnos disponibles del facilitador
 public function executeInsertar_dias_turno(sfWebRequest $request)
   {
     
@@ -149,6 +185,8 @@ public function executeInsertar_dias_turno(sfWebRequest $request)
    $this->obtener_dias_turno = Doctrine_Core::getTable('DisponibilidadDias')->obtenerDiasTurnoFacilitador($id);
    $this->facilitador = Doctrine::getTable('Identificacion')->find($id);
   }
+
+//Función que invoca a la vista (insertar_dias_turnoSuccess) para ingresar los traslados del facilitador
 public function executeInsertar_traslados(sfWebRequest $request)
   {
     
@@ -169,6 +207,7 @@ public function executeInsertar_traslados(sfWebRequest $request)
    }
   }
 
+//Función que invoca a la vista (buscar_enteSuccess) para buscar las secciones a ser asignadas al facilitador
 public function executeBuscar_ente(sfWebRequest $request)
   {
     $this->form = new EnteForm();
@@ -177,6 +216,7 @@ public function executeBuscar_ente(sfWebRequest $request)
     $this->areas = Doctrine::getTable('AreasFormacion')->getAreasFormacion();
   }
 
+//Función que envia valores a la vista (seccionesList) para luego proceder a asignar facilitadores
 public function executeCargarSecciones(sfWebRequest $request)
   {
    if (!$request->isXmlHttpRequest())
@@ -195,9 +235,9 @@ public function executeCargarSecciones(sfWebRequest $request)
     return $this->renderPartial('gestion/seccionesList', array('secciones' => $this->secciones, 'nombre_seccion' => $nombre_seccion, 'estado' => $estado, 'municipio' => $municipio, 'parroquia' => $parroquia, 'ente' => $ente, 'area' => $area));
   }
 
+//Función que envia valores a la vista (seccionesList) para luego proceder a asignar facilitadores
 public function executeAsignar_secciones_facilitador(sfWebRequest $request)
   {
-    
     $id_seccion = $request->getParameter('id_seccion');
     $area = $request->getParameter('area');
     if($request->hasParameter('id')){
@@ -214,13 +254,10 @@ public function executeAsignar_secciones_facilitador(sfWebRequest $request)
     $this->redirect('gestion/asignar_secciones_facilitador?id_seccion='.$seccion->getId().'&area='.$area);
     } 
     
-
-    
     $this->secciones = Doctrine_Core::getTable('Identificacion')->obtenerSeccionesFacilitador($id_seccion);
 }
 
-
-
+//Función que invoca a la vista (insertar_seccionesSuccess) para asignar secciones al facilitador
 public function executeInsertar_secciones(sfWebRequest $request)
   {
     
@@ -229,15 +266,29 @@ public function executeInsertar_secciones(sfWebRequest $request)
    $id = $request->getParameter('id');
    //Realizar la consulta a la tabla AreasFormacionFacilitador referenciando el id y la enviamos al formulario insertar_seccionesSuccess.php
    $this->areas_formacion_facilitador = Doctrine_Core::getTable('AreasFormacionFacilitador')->obtenerAreasFormacionPorFacilitador($id);
-  }  
-//Funcion para validar las entradas de datos de Identificacion
+  }
+  
+//Funcion que recibe los (Datos Básicos del Facilitador), para realizar un nuevo ingreso.
   public function executeCreate(sfWebRequest $request)
  {
    $this->form = new IdentificacionForm();
    $this->processForm($request, $this->form);
    $this->setTemplate('insertar');
  }
-//Si pasa la funcion anterior, almacena los registros de Identificacion
+
+//Funcion que recibe los (Datos Básicos del Facilitador), para realizar una actualización.
+ public function executeUpdate(sfWebRequest $request)
+ {
+   $id = $request->getParameter('id');
+    
+   $facilitador = Doctrine_Core::getTable('Identificacion')->find($id);
+   $this->form = new IdentificacionForm($facilitador);
+      
+   $this->processForm($request, $this->form);
+   $this->setTemplate('insertar');
+ }
+
+//Al recibir los (Datos Básicos del Facilitador), los pasa a esta función que se encarga de almacenarlos ó actualizarlos en la Base de Datos.
   protected function processForm(sfWebRequest $request, sfForm $form)
   {
    $form->bind(
@@ -253,18 +304,7 @@ public function executeInsertar_secciones(sfWebRequest $request)
    }
  }
  
- public function executeUpdate(sfWebRequest $request)
- {
-   $id = $request->getParameter('id');
-    
-   $facilitador = Doctrine_Core::getTable('Identificacion')->find($id);
-   $this->form = new IdentificacionForm($facilitador);
-      
-   $this->processForm($request, $this->form);
-   $this->setTemplate('insertar');
- }
- 
-//Funcion para validar las entradas de datos de Telefonos
+//Funcion que recibe los (Datos de Teléfonos del Facilitador), para realizar un nuevo ingreso.
  public function executeCreateTelefono(sfWebRequest $request)
  {
    $this->form = new TelefonosForm();
@@ -276,7 +316,8 @@ public function executeInsertar_secciones(sfWebRequest $request)
    $this->telefonos = Doctrine_Core::getTable('Telefonos')->obtenerTelefonosPorFacilitador($id);
    $this->facilitador = Doctrine::getTable('Identificacion')->find($id);
  }
-//Si pasa la funcion anterior, almacena los registros de Telefonos
+
+//Al recibir los (Datos de Teléfonos del Facilitador), los pasa a esta función que se encarga de almacenarlos en la Base de Datos.
   protected function processFormTelefono(sfWebRequest $request, sfForm $form)
   {
     $form->bind(
@@ -291,7 +332,8 @@ public function executeInsertar_secciones(sfWebRequest $request)
       $this->redirect('gestion/insertartelefono?id='.$request->getParameter('id'));
     }
   }
-//Funcion para validar las entradas de datos de Correos
+
+//Funcion que recibe los (Datos de Correo Electrónico del Facilitador), para realizar un nuevo ingreso.
 public function executeCreateCorreo(sfWebRequest $request)
  {
    $this->form = new CorreosForm();
@@ -303,7 +345,8 @@ public function executeCreateCorreo(sfWebRequest $request)
    $this->correos = Doctrine_Core::getTable('Correos')->obtenerCorreosPorFacilitador($id);
    $this->facilitador = Doctrine::getTable('Identificacion')->find($id);
  }
-//Si pasa la funcion anterior, almacena los registros de Correos
+
+//Al recibir los (Datos de Correo Electrónico del Facilitador), los pasa a esta función que se encarga de almacenarlos en la Base de Datos.
   protected function processFormCorreos(sfWebRequest $request, sfForm $form)
   {
    $form->bind(
@@ -319,7 +362,8 @@ public function executeCreateCorreo(sfWebRequest $request)
       $this->redirect('gestion/insertarcorreo?id='.$request->getParameter('id'));
    }
  }
-//Funcion para validar las entradas de datos de Areas de Formación Facilitador
+
+//Funcion que recibe los (Datos de Areas Formación del Facilitador), para realizar un nuevo ingreso.
 public function executeCreateAreasFormacionFacilitador(sfWebRequest $request)
  {
    $this->form = new AreasFormacionFacilitadorForm();
@@ -331,7 +375,8 @@ public function executeCreateAreasFormacionFacilitador(sfWebRequest $request)
    $this->areas_formacion_facilitador = Doctrine_Core::getTable('AreasFormacionFacilitador')->obtenerAreasFormacionPorFacilitador($id);
    $this->facilitador = Doctrine::getTable('Identificacion')->find($id);
  }
-//Si pasa la funcion anterior, almacena los registros de AreasFormacionFacilitador
+
+//Al recibir los (Datos de Areas Formación del Facilitador), los pasa a esta función que se encarga de almacenarlos en la Base de Datos.
   protected function processAreasFormacionFacilitador(sfWebRequest $request, sfForm $form)
   {
    $form->bind(
@@ -352,7 +397,8 @@ public function executeCreateAreasFormacionFacilitador(sfWebRequest $request)
       $this->redirect('gestion/insertar_areas_formacion_facilitador?id='.$request->getParameter('id'));
    }
  }
-//Funcion para validar las entradas de datos de Nivel de Formación Facilitador
+
+//Funcion que recibe los (Datos de Nivel de Formación del Facilitador), para realizar un nuevo ingreso.
 public function executeCreateNivelFormacionFacilitador(sfWebRequest $request)
  {
    $this->form = new NivelFormacionForm();
@@ -364,7 +410,8 @@ public function executeCreateNivelFormacionFacilitador(sfWebRequest $request)
    $this->nivel_formacion_facilitador = Doctrine_Core::getTable('NivelFormacion')->obtenerNivelFormacionPorFacilitador($id);
    $this->facilitador = Doctrine::getTable('Identificacion')->find($id);
  }
-//Si pasa la funcion anterior, almacena los registros de NivelFormacionFacilitador
+
+//Al recibir los (Datos de Nivel de Formación del Facilitador), los pasa a esta función que se encarga de almacenarlos en la Base de Datos.
   protected function processNivelFormacionFacilitador(sfWebRequest $request, sfForm $form)
   {
    $form->bind(
@@ -381,7 +428,7 @@ public function executeCreateNivelFormacionFacilitador(sfWebRequest $request)
    }
  }
 
-//Funcion para validar las entradas de datos de Profesion
+//Funcion que recibe los (Datos de Profesión del Facilitador), para realizar un nuevo ingreso.
 public function executeCreateProfesion(sfWebRequest $request)
  {
    $this->form = new ProfesionForm();
@@ -393,7 +440,8 @@ public function executeCreateProfesion(sfWebRequest $request)
    $this->profesion_facilitador = Doctrine_Core::getTable('Profesion')->obtenerProfesionPorFacilitador($id);
    $this->facilitador = Doctrine::getTable('Identificacion')->find($id);
  }
-//Si pasa la funcion anterior, almacena los registros de Profesion
+
+//Al recibir los (Datos de Profesión del Facilitador), los pasa a esta función que se encarga de almacenarlos en la Base de Datos.
   protected function processProfesion(sfWebRequest $request, sfForm $form)
   {
    $form->bind(
@@ -410,7 +458,7 @@ public function executeCreateProfesion(sfWebRequest $request)
    }
  }
 
-//Funcion para validar las entradas de datos de Ocupacion
+//Funcion que recibe los (Datos de Ocupación del Facilitador), para realizar un nuevo ingreso.
 public function executeCreateOcupacion(sfWebRequest $request)
  {
    $this->form = new OcupacionForm();
@@ -422,7 +470,8 @@ public function executeCreateOcupacion(sfWebRequest $request)
    $this->ocupacion_facilitador = Doctrine_Core::getTable('Ocupacion')->obtenerOcupacionPorFacilitador($id);
    $this->facilitador = Doctrine::getTable('Identificacion')->find($id);
  }
-//Si pasa la funcion anterior, almacena los registros de Ocupacion
+
+//Al recibir los (Datos de Ocupación del Facilitador), los pasa a esta función que se encarga de almacenarlos en la Base de Datos.
   protected function processOcupacion(sfWebRequest $request, sfForm $form)
   {
    $form->bind(
@@ -439,7 +488,7 @@ public function executeCreateOcupacion(sfWebRequest $request)
    }
  }
 
-//Funcion para validar las entradas de datos de Turnos disponibles
+//Funcion que recibe los (Datos de Turno Disponible del Facilitador), que se encarga de almacenarlos en la Base de Datos.
 public function executeCreateTurnoDisponible(sfWebRequest $request)
  {
    $id = $request->getParameter('id');
@@ -477,7 +526,7 @@ public function executeCreateTurnoDisponible(sfWebRequest $request)
    $this->redirect('gestion/insertar_dias_turno?id='.$request->getParameter('id'));
 }
 
-//Funcion para validar las entradas de datos de Disponbilidad traslados
+//Funcion que recibe los (Datos de Disponbilidad Traslados del Facilitador), para realizar un nuevo ingreso.
 public function executeCreateDisponibilidadtraslados(sfWebRequest $request)
  {
    $this->form = new DisponibilidadTrasladoEstadoForm();
@@ -489,7 +538,8 @@ public function executeCreateDisponibilidadtraslados(sfWebRequest $request)
    $this->traslados_facilitador = Doctrine_Core::getTable('DisponibilidadTrasladoEstado')->obtenerDisponibilidadTraslado($id);
    $this->facilitador = Doctrine::getTable('Identificacion')->find($id);
  }
-//Si pasa la funcion anterior, almacena los registros de Disponbilidad traslados
+
+//Al recibir los (Datos de Disponbilidad Traslados del Facilitador), los pasa a esta función que se encarga de almacenarlos en la Base de Datos.
   protected function processDisponibilidadTrasladoEstado(sfWebRequest $request, sfForm $form)
   {
    $form->bind(
@@ -506,7 +556,7 @@ public function executeCreateDisponibilidadtraslados(sfWebRequest $request)
    }
  }
 
-
+//Funcion que recibe y consulta los (Datos de Facilitadores).
  public function executeBuscar(sfWebRequest $request)
  {
    $this->form = new IdentificacionBuscarForm();
@@ -516,6 +566,7 @@ public function executeCreateDisponibilidadtraslados(sfWebRequest $request)
    $this->areas = Doctrine::getTable('AreasFormacion')->getAreasFormacion();
  }
 
+//Al recibir los (Datos de Facilitadores), los pasa a esta función que se encarga de enviarlos a la vista BuscarSuccess.
   protected function buscarProcessForm(sfWebRequest $request, sfForm $form)
   {
    $form->bind(
@@ -530,6 +581,7 @@ public function executeCreateDisponibilidadtraslados(sfWebRequest $request)
    }
  }
 
+//Funcion que consulta los (Datos de Facilitadores) detalladamente.
  public function executeDetalle(sfWebRequest $request)
  {
     $id = $request->getParameter('id');
@@ -544,6 +596,7 @@ public function executeCreateDisponibilidadtraslados(sfWebRequest $request)
     $this->forward404Unless($this->facilitador);
  }
 
+//Funcion que consulta los (Datos de Facilitadores) y los envia a la vista facilitadoresList.
   public function executeCargarFacilitadores(sfWebRequest $request)
   {
     if (!$request->isXmlHttpRequest())
@@ -569,6 +622,7 @@ public function executeCreateDisponibilidadtraslados(sfWebRequest $request)
     return $this->renderPartial('gestion/facilitadoresList', array('facilitadores' => $this->facilitadores, 'cedula' => $cedula, 'nombre' => $nombre, 'apellido' => $apellido, 'estado' => $estado, 'municipio' => $municipio, 'parroquia' => $parroquia, 'estatus' => $estatus, 'area' => $area,));
   }
 
+//Funcion que consulta los (Municipios) y los envia a la vista municipiosList.
   public function executeCargarMunicipios(sfWebRequest $request)
   {
     $this->forwardUnless($query = $request->getParameter('query'), 'gestion', 'insertar');
@@ -586,6 +640,8 @@ public function executeCreateDisponibilidadtraslados(sfWebRequest $request)
       return $this->renderPartial('gestion/municipiosList', array('municipios' => $this->municipios));
     }
   }
+
+//Funcion que consulta las (Parroquias) y los envia a la vista parroquiasList.
   public function executeCargarParroquias(sfWebRequest $request)
   {
    $this->forwardUnless($query = $request->getParameter('query'), 'gestion', 'insertar');
@@ -604,6 +660,7 @@ public function executeCreateDisponibilidadtraslados(sfWebRequest $request)
     }
   }
 
+//Funcion que consulta los (Municipios) y los envia a la vista parroquiasListTraslados.
 public function executeCargarMunicipiosTraslados(sfWebRequest $request)
   {
     
@@ -622,6 +679,8 @@ public function executeCargarMunicipiosTraslados(sfWebRequest $request)
       return $this->renderPartial('gestion/municipiosListTraslados', array('municipios' => $this->municipios));
     }
   }
+
+//Funcion que consulta las (Parroquias) y los envia a la vista parroquiasListTraslados.
 public function executeCargarParroquiasTraslados(sfWebRequest $request)
   {
    $this->forwardUnless($query = $request->getParameter('query'), 'gestion',
@@ -640,7 +699,8 @@ public function executeCargarParroquiasTraslados(sfWebRequest $request)
       return $this->renderPartial('gestion/parroquiasListTraslados', array('parroquias' => $this->parroquias));
     }
   }
-  
+
+//Funcion que consulta los (Municipios) y los envia a la municipiosListEntes.  
 public function executeCargarMunicipiosEntes(sfWebRequest $request)
   {
     
@@ -658,6 +718,8 @@ public function executeCargarMunicipiosEntes(sfWebRequest $request)
       return $this->renderPartial('gestion/municipiosListEntes', array('municipios' => $this->municipios));
     }
   }
+
+//Funcion que consulta las (Parroquias) y los envia a la vista parroquiasListEntes.
 public function executeCargarParroquiasEntes(sfWebRequest $request)
   {
    $this->forwardUnless($query = $request->getParameter('query'), 'gestion','buscar_ente');
@@ -676,7 +738,7 @@ public function executeCargarParroquiasEntes(sfWebRequest $request)
     }
   }
   
-
+//Funcion que consulta los (Entes) y los envia a la vista entesList.
 public function executeCargarNombreEntes(sfWebRequest $request)
   {
 if (!$request->isXmlHttpRequest())
@@ -692,9 +754,7 @@ if (!$request->isXmlHttpRequest())
 
 }
 
-  
-  /**************************** ASIGNAR SECCIONES ******************************/
-  
+//Función que se encarga de ingresar secciones al facilitador.
   public function executeAsignarSecciones(sfWebRequest $request)
   {
     
@@ -702,6 +762,8 @@ if (!$request->isXmlHttpRequest())
     
     $this->asignados = Doctrine_Core::getTable('Secciones')->findBy('id_identificacion', $request->getParameter('id'));
   }
+
+//Función que se encarga de actualizar secciones del Facilitador.
   public function executeAsignarSeccionesUpdate(sfWebRequest $request)
   {
     if($request->getParameter('seccion')=='' or $request->getParameter('id')=='') {
@@ -722,8 +784,5 @@ if (!$request->isXmlHttpRequest())
     $this->redirect('gestion/asignarSecciones?id='.$request->getParameter('id'));
     
   }
-  /****************************************************************************/
-
-
 
 }
