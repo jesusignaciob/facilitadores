@@ -1,18 +1,26 @@
+<!--
+Document / Documento: asignarSessionesSuccess del Módulo Gestión 
+
+Created on / Creado : 23/05/2012, 10:39:10 AM
+
+Author / Desarrolladores:
+1. Raúl Lobo 04267711578 andrescerrada@gmail.com
+2. José Ruiz 04265752819 jruiz@cenditel.gob.ve joseph2283@gmail.com
+3. Jesús Becerra 04263779960 jbecerra@cenditel.gob.ve jesusignaciob@gmail.com
+4. Rodolfo Sumoza 04166342086 rsumoza@cenditel.gob.ve rsumoza@gmail.com
+
+Description / Comentarios:
+Este archivo genera las siguientes funciones:
+1- Asignar Secciones a los facilitadores.
+-->
 <?php
 $p=($sf_params->get ('p'))
-/*
- *  Document   : asignarSessionesSuccess
- *  Created on : 23/05/2012, 10:39:10 AM
- *  Author     : Jose Orlando Ruiz (joseph2283@gmail.com)
- *  Description:
- */
-
 ?>
-<button class="home" onclick="javascript:parent.location='<?php echo url_for('principal/index'); ?>'">Ir al menú Principal</button>
+<!--<button class="home" onclick="javascript:parent.location='<?php echo url_for('principal/index'); ?>'">Ir al menú Principal</button>-->
 <?php if (isset($p))
 {
 ?>
-<button class="back-button" onclick="javascript:parent.location='<?php echo url_for('gestion/buscar_ente'); ?>'">Regresar</button>
+<button class="back-button" onclick="javascript:parent.location='<?php echo url_for('gestion/buscar'); ?>'">Regresar</button>
 <?php } else { ?>
 <button class="back-button" onclick="javascript:parent.location='<?php echo url_for('gestion/insertar_traslados?id='.$sf_request->getParameter('id')); ?>'">Regresar</button>
 <?php } ?>

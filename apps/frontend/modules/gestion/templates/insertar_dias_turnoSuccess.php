@@ -1,5 +1,21 @@
+ <!--
+Document / Documento: insertar_dias_turnoSuccess del Módulo Gestión 
+
+Created on / Creado : 23/05/2012, 10:39:10 AM
+
+Author / Desarrolladores:
+1. Raúl Lobo 04267711578 andrescerrada@gmail.com
+2. José Ruiz 04265752819 jruiz@cenditel.gob.ve joseph2283@gmail.com
+3. Jesús Becerra 04263779960 jbecerra@cenditel.gob.ve jesusignaciob@gmail.com
+4. Rodolfo Sumoza 04166342086 rsumoza@cenditel.gob.ve rsumoza@gmail.com
+
+Description / Comentarios:
+Este archivo genera las siguientes funciones:
+1- Ingresar turnos disponibles del facilitador.
+2- Eliminar turnos disponibles.	
+-->
 <?php $id=($sf_params->get ('id')) ?> 
-<button class="home" onclick="javascript:parent.location='<?php echo url_for('principal/index'); ?>'">Ir al menú Principal</button>
+<!--<button class="home" onclick="javascript:parent.location='<?php echo url_for('principal/index'); ?>'">Ir al menú Principal</button>-->
 <button class="back-button" onclick="javascript:parent.location='<?php echo url_for('gestion/insertar_ocupacion?id='.$id); ?>'">Regresar</button>
 <button class="forward-button" onclick="javascript:parent.location='<?php echo url_for('gestion/insertar_traslados?id='.$id); ?>'">Siguiente</button>
 <br/><br/>
@@ -404,6 +420,8 @@ function is_checked($dia, $turno, $obtener_dias_turno) {
 
 <br>
 <input type="submit" value="Registrar Turno">
+<br>
+<br>
 <?php echo $form_turnos->renderHiddenFields(); 
 echo $form_turnos['id_identificacion']->render(array('value'=>$id));
 ?>

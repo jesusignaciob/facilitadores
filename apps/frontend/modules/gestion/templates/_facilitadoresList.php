@@ -1,3 +1,22 @@
+ <!--
+Document / Documento: facilitadoresList del Módulo Gestión 
+
+Created on / Creado : 23/05/2012, 10:39:10 AM
+
+Author / Desarrolladores:
+1. Raúl Lobo 04267711578 andrescerrada@gmail.com
+2. José Ruiz 04265752819 jruiz@cenditel.gob.ve joseph2283@gmail.com
+3. Jesús Becerra 04263779960 jbecerra@cenditel.gob.ve jesusignaciob@gmail.com
+4. Rodolfo Sumoza 04166342086 rsumoza@cenditel.gob.ve rsumoza@gmail.com
+
+Description / Comentarios:
+Este archivo genera las siguientes funciones:
+1- Realiza la carga de facilitadores para realizar las siguientes acciones:
+	1.1- Consultar.
+	1.2- Modificar.
+	1.3- Eliminar.
+	1.4- Asignar Secciones.	
+-->
   <input id="nombre" type="hidden" value="<?php echo $nombre; ?>" />
   <input id="apellido" type="hidden" value="<?php echo $apellido; ?>" />
   <input id="cedula" type="hidden" value="<?php echo $cedula; ?>" />
@@ -29,7 +48,7 @@
         [<a href="<?php echo url_for('gestion/detalle?id='.$f->getId()) ?>">Consultar<a>]<br>
         [<a href="<?php echo url_for('gestion/insertar?id='.$f->getId()) ?>">Modificar<a>]<br>
         [<a href="#" onclick="eliminarFacilitador($('#estado').val(), $('#municipio').val(), $('#parroquia').val(), $('#estatus').val(), $('#area').val(), <?php echo $f->getId(); ?>); return false;">Eliminar<a>]<br>
-        [<a href="<?php echo url_for('gestion/asignarSecciones?id='.$f->getId()) ?>">Asignar Secciones<a>]<br>
+        [<a href="<?php echo url_for('gestion/asignarSecciones?id='.$f->getId().'&p=') ?>">Asignar Secciones<a>]<br>
       </td>
       <td><?php echo $f->getCedulaPasaporte(); ?></td>
       <td><?php echo $f->getNombre(); ?></td>

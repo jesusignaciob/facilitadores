@@ -1,3 +1,26 @@
+<!--
+Document / Documento: buscarSuccess del Módulo Gestión 
+
+Created on / Creado : 23/05/2012, 10:39:10 AM
+
+Author / Desarrolladores:
+1. Raúl Lobo 04267711578 andrescerrada@gmail.com
+2. José Ruiz 04265752819 jruiz@cenditel.gob.ve joseph2283@gmail.com
+3. Jesús Becerra 04263779960 jbecerra@cenditel.gob.ve jesusignaciob@gmail.com
+4. Rodolfo Sumoza 04166342086 rsumoza@cenditel.gob.ve rsumoza@gmail.com
+
+Description / Comentarios:
+Este archivo genera las siguientes funciones:
+1- Realizar una búsqueda de facilitadores por:
+	1.1- Nombre
+	1.2- Apellido
+	1.3- Cedula pasaporte
+	1.4- Estado
+	1.5- Municipio
+	1.6- Parroquia
+	1.7- Areas de formacion
+	1.8- Estatus	
+-->
 <button class="home" onclick="javascript:parent.location='<?php echo url_for('principal/index'); ?>'">Ir al menú Principal</button>
 <button class="back-button" onclick="javascript:parent.location='<?php echo url_for('gestion/index'); ?>'">Regresar</button>
 <br/><br/>
