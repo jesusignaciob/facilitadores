@@ -1,6 +1,22 @@
+ <!--
+Document / Documento: insertartelefonoSuccess del Módulo Gestión 
+
+Created on / Creado : 23/05/2012, 10:39:10 AM
+
+Author / Desarrolladores:
+1. Raúl Lobo 04267711578 andrescerrada@gmail.com
+2. José Ruiz 04265752819 jruiz@cenditel.gob.ve joseph2283@gmail.com
+3. Jesús Becerra 04263779960 jbecerra@cenditel.gob.ve jesusignaciob@gmail.com
+4. Rodolfo Sumoza 04166342086 rsumoza@cenditel.gob.ve rsumoza@gmail.com
+
+Description / Comentarios:
+Este archivo genera las siguientes funciones:
+1- Ingresar teléfonos del facilitador.
+2- Eliminar teléfonos del facilitador.	
+-->
 <?php $id=($sf_params->get ('id')) ?> 
-<button class="home" onclick="javascript:parent.location='<?php echo url_for('principal/index'); ?>'">Ir al menú Principal</button>
-<button class="back-button" onclick="javascript:parent.location='<?php echo url_for('gestion/insertar'); ?>'">Regresar</button>
+<!--<button class="home" onclick="javascript:parent.location='<?php echo url_for('principal/index'); ?>'">Ir al menú Principal</button>-->
+<button class="back-button" onclick="javascript:parent.location='<?php echo url_for('gestion/insertar?id='.$id); ?>'">Regresar</button>
 <button class="forward-button" onclick="javascript:parent.location='<?php echo url_for('gestion/insertarcorreo?id='.$id); ?>'">Siguiente</button>
 <div id="dialog-confirm" title="Eliminar Teléfono" style="display: none; min-height: 100px;">
 	<p><span class="ui-icon ui-icon-alert" style="float:left; margin:0 7px 20px 0;"></span>¿Esta seguro de eliminar el teléfono?</p>
@@ -70,6 +86,7 @@ Nº de Teléfonos
   'gestion/insertartelefono?id_telefono='.$tf->getId().'&id='.$id,
   array('method' => 'delete', 'confirm' => 'Seguro Desea Eliminar?')
 ) ?> 
+      
       </td>
       <td><?php echo $cont; ?> </td>
       <td><?php echo $tf->getnumero(); ?></td>

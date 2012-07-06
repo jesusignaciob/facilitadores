@@ -1,3 +1,24 @@
+<!--
+Document / Documento: buscar_enteSuccess del Módulo Gestión 
+
+Created on / Creado : 23/05/2012, 10:39:10 AM
+
+Author / Desarrolladores:
+1. Raúl Lobo 04267711578 andrescerrada@gmail.com
+2. José Ruiz 04265752819 jruiz@cenditel.gob.ve joseph2283@gmail.com
+3. Jesús Becerra 04263779960 jbecerra@cenditel.gob.ve jesusignaciob@gmail.com
+4. Rodolfo Sumoza 04166342086 rsumoza@cenditel.gob.ve rsumoza@gmail.com
+
+Description / Comentarios:
+Este archivo genera las siguientes funciones:
+1- Realizar una búsqueda de secciones por:
+	1.1- Nombre Sección
+	1.2- Estado
+	1.3- Municipio
+	1.4- Parroquia
+	1.5- Ente
+	1.6- Areas de formación	
+-->
 <button class="back-button" onclick="javascript:parent.location='<?php echo url_for('principal/index'); ?>'">Ir al menú Principal</button>
 <button class="back-button" onclick="javascript:parent.location='<?php echo url_for('gestion/index'); ?>'">Regresar</button>
 <br>
