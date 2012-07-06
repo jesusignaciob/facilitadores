@@ -47,6 +47,7 @@ Este archivo genera las siguientes funciones:
   <td><?php echo $form['id_estado']->renderLabel(); ?></td>
   <td><?php echo $form['id_estado']->render(); ?></td>
   <td><?php echo $form['id_estado']->renderError(); ?></td>
+  <td style="text-align:left; height: 30px"><?php echo $form['id_identificacion']->renderError(); ?></td>
 </tr>
 <tr>
   <td><?php echo $form['id_municipio']->renderLabel(); ?></td>
