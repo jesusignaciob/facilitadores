@@ -1,3 +1,21 @@
+<!--
+Document / Documento: IdentificacionForm.class
+
+Created on / Creado : 23/05/2012, 10:39:10 AM
+
+Author / Desarrolladores:
+1. Raúl Lobo 04267711578 andrescerrada@gmail.com
+2. José Ruiz 04265752819 jruiz@cenditel.gob.ve joseph2283@gmail.com
+3. Jesús Becerra 04263779960 jbecerra@cenditel.gob.ve jesusignaciob@gmail.com
+4. Rodolfo Sumoza 04166342086 rsumoza@cenditel.gob.ve rsumoza@gmail.com
+
+Description / Comentarios:
+En este archivo se han configurado las siguientes controles:
+1- Cargar los Estados, Municipios y Parroquias en menus de selección.
+2- Personalización de las etiquetas de Estado, Municipio y Parroquia.
+3- Mensaje personalizado cuando falta por ingresar el Nombre, Apellido, Cedula, Nacionalidad, Direccion,  Sector, Situacion Laboral, Estado, Municipio y Parroquia.
+4- Mensaje personalizado cuando ya una Cédula ó Pasaporte existe para un facilitador.
+-->
 <?php
 
 /**

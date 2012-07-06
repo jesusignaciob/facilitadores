@@ -1,3 +1,22 @@
+<!--
+Document / Documento: NivelFormacionForm.class
+
+Created on / Creado : 23/05/2012, 10:39:10 AM
+
+Author / Desarrolladores:
+1. Raúl Lobo 04267711578 andrescerrada@gmail.com
+2. José Ruiz 04265752819 jruiz@cenditel.gob.ve joseph2283@gmail.com
+3. Jesús Becerra 04263779960 jbecerra@cenditel.gob.ve jesusignaciob@gmail.com
+4. Rodolfo Sumoza 04166342086 rsumoza@cenditel.gob.ve rsumoza@gmail.com
+
+Description / Comentarios:
+En este archivo se han configurado las siguientes controles:
+1- Campo Oculto del id del Facilitador.
+2- Cargar Estudios en menus de selección.
+3- Personalización de las etiquetas de Estudios.
+4- Mensaje personalizado cuando falta por ingresar el Estudio.
+5- Mensaje personalizado cuando ya un Estudio existe para un facilitador.
+-->
 <?php
 
 /**
