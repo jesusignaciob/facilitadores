@@ -1,3 +1,21 @@
+<!--
+Document / Documento: AreasFormacionFacilitadorTable.class
+
+Created on / Creado : 23/05/2012, 10:39:10 AM
+
+Author / Desarrolladores:
+1. Raúl Lobo 04267711578 andrescerrada@gmail.com
+2. José Ruiz 04265752819 jruiz@cenditel.gob.ve joseph2283@gmail.com
+3. Jesús Becerra 04263779960 jbecerra@cenditel.gob.ve jesusignaciob@gmail.com
+4. Rodolfo Sumoza 04166342086 rsumoza@cenditel.gob.ve rsumoza@gmail.com
+
+Description / Comentarios:
+Este archivo genera las siguientes funciones:
+1- Obtiene las Áreas Formación del Facilitador.
+2- Búsca Áreas Formación del Facilitador por id.
+3- Llena un combo estático.
+4- Elimina Áreas Formación del Facilitador.
+-->
 <?php
 
 /**
@@ -12,11 +30,14 @@ class AreasFormacionFacilitadorTable extends Doctrine_Table
      *
      * @return object AreasFormacionFacilitadorTable
      */
+
+//Función que Obtiene las Áreas Formación del Facilitador.
     public static function getInstance()
     {
         return Doctrine_Core::getTable('AreasFormacionFacilitador');
     }
-    
+
+//Función que Búsca Áreas Formación del Facilitador por id.    
     public static function obtenerAreasFormacionPorFacilitador($idFacilitador)
     {
         $q = Doctrine_Query::create()
@@ -25,7 +46,8 @@ class AreasFormacionFacilitadorTable extends Doctrine_Table
                 
         return $q->execute();
     }
-    
+
+//Llevado de un combo estático   
     static protected $estatus = array(
       '' => '',
       '0' => 'En Formación',
@@ -34,12 +56,14 @@ class AreasFormacionFacilitadorTable extends Doctrine_Table
       '3' => 'Activo',
       '4' => 'Inactivo',
     );
-    
+
+//Función que envia el combo.    
     static public function getstatus()
     {
 		  return self::$estatus;
 	  }
 
+//Función que Elimina Áreas Formación del Facilitador.
     public static function eliminarAreasFormacion($id_area)
 	{
  	 $deleted = Doctrine_Query::create()

@@ -1,3 +1,20 @@
+<!--
+Document / Documento: OcupacionTable.class
+
+Created on / Creado : 23/05/2012, 10:39:10 AM
+
+Author / Desarrolladores:
+1. Raúl Lobo 04267711578 andrescerrada@gmail.com
+2. José Ruiz 04265752819 jruiz@cenditel.gob.ve joseph2283@gmail.com
+3. Jesús Becerra 04263779960 jbecerra@cenditel.gob.ve jesusignaciob@gmail.com
+4. Rodolfo Sumoza 04166342086 rsumoza@cenditel.gob.ve rsumoza@gmail.com
+
+Description / Comentarios:
+Este archivo genera las siguientes funciones:
+1- Obtiene Ocupacion.
+2- Obtiene Ocupacion Por Facilitador.
+3- Elimina Ocupacion.
+-->
 <?php
 
 /**
@@ -12,10 +29,12 @@ class OcupacionTable extends Doctrine_Table
      *
      * @return object OcupacionTable
      */
+//Función que Obtiene Ocupacion.
     public static function getInstance()
     {
         return Doctrine_Core::getTable('Ocupacion');
     }
+//Función que Obtiene Ocupacion Por Facilitador.
      public static function obtenerOcupacionPorFacilitador($idFacilitador)
     {
         $q = Doctrine_Query::create()
@@ -24,7 +43,7 @@ class OcupacionTable extends Doctrine_Table
                 
         return $q->execute();
     }
-    
+//Función que Elimina Ocupacion.    
     public static function eliminarOcupacion($id_ocupacion)
 	{
  	 $deleted = Doctrine_Query::create()

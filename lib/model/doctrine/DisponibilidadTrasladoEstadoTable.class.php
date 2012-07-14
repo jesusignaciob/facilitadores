@@ -1,3 +1,20 @@
+<!--
+Document / Documento: DisponibilidadTrasladoEstadoTable.class
+
+Created on / Creado : 23/05/2012, 10:39:10 AM
+
+Author / Desarrolladores:
+1. Raúl Lobo 04267711578 andrescerrada@gmail.com
+2. José Ruiz 04265752819 jruiz@cenditel.gob.ve joseph2283@gmail.com
+3. Jesús Becerra 04263779960 jbecerra@cenditel.gob.ve jesusignaciob@gmail.com
+4. Rodolfo Sumoza 04166342086 rsumoza@cenditel.gob.ve rsumoza@gmail.com
+
+Description / Comentarios:
+Este archivo genera las siguientes funciones:
+1- Obtiene Disponibilidad Traslado Estado.
+2- Obtiene Disponibilidad Traslado Estado por Facilitador.
+3- Eliminar Disponibilidad Traslado Estado.
+-->
 <?php
 
 /**
@@ -12,11 +29,12 @@ class DisponibilidadTrasladoEstadoTable extends Doctrine_Table
      *
      * @return object DisponibilidadTrasladoEstadoTable
      */
+//Función que Obtiene Disponibilidad Traslado Estado.
     public static function getInstance()
     {
         return Doctrine_Core::getTable('DisponibilidadTrasladoEstado');
     }
-    
+//Función que Obtiene Disponibilidad Traslado Estado por Facilitador.
     public static function obtenerDisponibilidadTraslado($idFacilitador)
     {
         $q = Doctrine_Query::create()
@@ -25,7 +43,7 @@ class DisponibilidadTrasladoEstadoTable extends Doctrine_Table
                 
         return $q->execute();
     }
-
+//Función que Eliminar Disponibilidad Traslado Estado.
     public static function eliminarTraslados($id_traslado)
 	{
  	  $deleted = Doctrine_Query::create()

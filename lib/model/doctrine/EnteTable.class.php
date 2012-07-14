@@ -1,3 +1,22 @@
+<!--
+Document / Documento: EnteTable.class
+
+Created on / Creado : 23/05/2012, 10:39:10 AM
+
+Author / Desarrolladores:
+1. Raúl Lobo 04267711578 andrescerrada@gmail.com
+2. José Ruiz 04265752819 jruiz@cenditel.gob.ve joseph2283@gmail.com
+3. Jesús Becerra 04263779960 jbecerra@cenditel.gob.ve jesusignaciob@gmail.com
+4. Rodolfo Sumoza 04166342086 rsumoza@cenditel.gob.ve rsumoza@gmail.com
+
+Description / Comentarios:
+Este archivo genera las siguientes funciones:
+1- Obtiene Entes.
+2- Obtiene y ordena entes por el nombre.
+3- Obtiene Entes y Facilitadores
+3- Obtiene Entes por Estado.
+4- Obtiene Entes por Estado, Municipio y Parroquia.
+-->
 <?php
 
 /**
@@ -12,32 +31,33 @@ class EnteTable extends Doctrine_Table
      *
      * @return object EnteTable
      */
+//Función que Obtiene Entes.
     public static function getInstance()
     {
         return Doctrine_Core::getTable('Ente');
     }
-
+//Función que Obtiene y ordena entes por el nombre.
     public function getEntes() {
       $query = $this->getInstance()->createQuery()
                     ->orderBy('nombre_ente');
       return $query->execute();
     }
-
-
+//Función que Obtiene Entes y Facilitadores.
    public function obtenerfacilitadores() {
       $querystring = Doctrine_Query::create()->from('Identificacion i', 'Ente e')
 	->where('i.id = 1');
 
         return $querystring->execute();
     }
-    
+
+//Función que Obtiene Entes por Estado.    
     public function getEntesPorEstado($estado) {
       $query = $this->getInstance()->createQuery()
                     ->where('id_estado = ?', $estado)
                     ->orderBy('nombre_ente');
       return $query->execute();
     }
-
+//Función que Obtiene Entes por Estado, Municipio y Parroquia.    
     public function getEntesPorUbicacionGeografica($estado, $municipio, $parroquia) {
       $query = $this->getInstance()->createQuery();
       
