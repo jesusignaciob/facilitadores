@@ -20,11 +20,8 @@ Este archivo genera las siguientes funciones:
 <?php
 class formacionActions extends sfActions
 {
- /**
-  * Executes index action
-  *
-  * @param sfRequest $request A request object
-  */
+
+//Función que invoca a la vista (indexSuccess) del Módulo Formación
   public function executeIndex(sfWebRequest $request)
   {
   }
