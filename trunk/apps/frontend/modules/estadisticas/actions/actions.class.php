@@ -1,30 +1,40 @@
-<?php
+<!--
+Document / Documento: action.class del Módulo Estadísticas 
 
-/**
- * estadisticas actions.
- *
- * @package    facilitadores
- * @subpackage estadisticas
- * @author     Your name here
- * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
- */
+Created on / Creado : 23/05/2012, 10:39:10 AM
+
+Author / Desarrolladores:
+1. Raúl Lobo 04267711578 andrescerrada@gmail.com
+2. José Ruiz 04265752819 jruiz@cenditel.gob.ve joseph2283@gmail.com
+3. Jesús Becerra 04263779960 jbecerra@cenditel.gob.ve jesusignaciob@gmail.com
+4. Rodolfo Sumoza 04166342086 rsumoza@cenditel.gob.ve rsumoza@gmail.com
+
+Description / Comentarios:
+Este archivo genera las siguientes funciones:
+1- Insertar Datos de Configuración como:
+	1.1- Estudios.
+	1.2- Areas de Formación.
+	1.3- Entes.
+	1.4- Secciones.
+-->
+<?php
 class estadisticasActions extends sfActions
+
 {
- /**
-  * Executes index action
-  *
-  * @param sfRequest $request A request object
-  */
-  public function executeIndex(sfWebRequest $request)
+
+//Función que invoca a la vista (indexSuccess) del Módulo Estadísticas
+public function executeIndex(sfWebRequest $request)
   {
   }
 
+//Función que invoca a la vista (porEstadoSuccess) del Módulo Estadísticas
   public function executePorEstado(sfWebRequest $request)
   {
     $this->estatusValor = $request->getParameter('estatus');
     $this->tipo_grafico = $request->getParameter('tipo');
   }
 
+//Función que invoca a la vista (porEspecialidadSuccess) del Módulo Estadísticas
   public function executePorEspecialidad(sfWebRequest $request)
   {
     $this->estados = Doctrine_Core::getTable('Estado')->getEstados();
@@ -33,6 +43,7 @@ class estadisticasActions extends sfActions
     $this->estadoValor = $request->getParameter('estado');
   }
 
+//Función que invoca a la vista (porEnteSuccess) del Módulo Estadísticas
   public function executePorEnte(sfWebRequest $request)
   {
     $this->estados = Doctrine_Core::getTable('Estado')->getEstados();
@@ -42,8 +53,8 @@ class estadisticasActions extends sfActions
     $this->areaformacionValor = $request->getParameter('area_formacion');
   }
 
-  
-  public function executeGraficos(sfWebRequest $request)
+//Función que invoca a la vista de Estado, Especialidad y entes las Estadísticas de los Gráficos.  
+ public function executeGraficos(sfWebRequest $request)
   {
     $estatus = $request->getParameter('estatus');
     $tipo = $request->getParameter('tipografico');
@@ -136,6 +147,7 @@ class estadisticasActions extends sfActions
 
 }
 
+//Función que invoca a la vista de Estado, Especialidad y entes las Estadísticas de los Gráficos.
 public function executeGraficoLinea()
 {
   $chartData = array();
