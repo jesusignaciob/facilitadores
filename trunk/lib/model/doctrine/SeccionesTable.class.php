@@ -1,3 +1,22 @@
+<!--
+Document / Documento: SeccionesTable.class
+
+Created on / Creado : 23/05/2012, 10:39:10 AM
+
+Author / Desarrolladores:
+1. Raúl Lobo 04267711578 andrescerrada@gmail.com
+2. José Ruiz 04265752819 jruiz@cenditel.gob.ve joseph2283@gmail.com
+3. Jesús Becerra 04263779960 jbecerra@cenditel.gob.ve jesusignaciob@gmail.com
+4. Rodolfo Sumoza 04166342086 rsumoza@cenditel.gob.ve rsumoza@gmail.com
+
+Description / Comentarios:
+Este archivo genera las siguientes funciones:
+1- Obtiene Secciones.
+2- Obtiene y ordena secciones por nombre.
+3- Obtiene Secciones Por Ente.
+4- Obtiene Secciones Por Facilitador.
+5- Obtiene Secciones Por nombre, ente, area, estado, municipio, parroquia.
+-->
 <?php
 
 /**
@@ -12,24 +31,25 @@ class SeccionesTable extends Doctrine_Table
      *
      * @return object SeccionesTable
      */
+//Función que Obtiene Secciones.
     public static function getInstance()
     {
         return Doctrine_Core::getTable('Secciones');
     }
-
+//Función que Obtiene y ordena secciones por nombre.
     public function getSecciones() {
       $query = $this->getInstance()->createQuery()
                     ->orderBy('nombre_seccion');
       return $query->execute();
     }
-
+//Función que obtiene Secciones Por Ente
     public function getSeccionesForEnte($ente) {
       $query = $this->getInstance()->createQuery()
                     ->where('id_ente = ?', $ente)
                     ->orderBy('nombre_seccion');
       return $query->execute();
     }
-    
+//Función que obtiene Secciones Por Facilitador
     public function getSeccionesForFacilitador($id_facilitador){
       $query = Doctrine_Query::create()
               ->select('s.id as id, s.nombre_seccion as nombre')
@@ -48,7 +68,7 @@ class SeccionesTable extends Doctrine_Table
       return $query->execute();
     }
 
-
+//Función que obtiene Secciones Por nombre, ente, area, estado, municipio, parroquia
     public static function obtenerSecciones($nombre, $ente, $area, $estado, $municipio, $parroquia)
     {
 	    //$w = "sec.id_identificacion is NULL";

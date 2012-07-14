@@ -1,3 +1,21 @@
+<!--
+Document / Documento: TelefonosTable.class
+
+Created on / Creado : 23/05/2012, 10:39:10 AM
+
+Author / Desarrolladores:
+1. Raúl Lobo 04267711578 andrescerrada@gmail.com
+2. José Ruiz 04265752819 jruiz@cenditel.gob.ve joseph2283@gmail.com
+3. Jesús Becerra 04263779960 jbecerra@cenditel.gob.ve jesusignaciob@gmail.com
+4. Rodolfo Sumoza 04166342086 rsumoza@cenditel.gob.ve rsumoza@gmail.com
+
+Description / Comentarios:
+Este archivo genera las siguientes funciones:
+1- Obtiene Teléfonos.
+2- Obtiene Teléfonos por Facilitador. 
+3- Obtiene Teléfonos por (id).
+4- Elimina Teléfonos.
+-->
 <?php
 
 /**
@@ -12,18 +30,26 @@ class TelefonosTable extends Doctrine_Table
      *
      * @return object TelefonosTable
      */
+//Función que Obtiene Teléfonos.
     public static function getInstance()
     {
         return Doctrine_Core::getTable('Telefonos');
     }
-    
+//Función que Obtiene Teléfonos por Facilitador. 
     public static function obtenerTelefonosPorFacilitador($idFacilitador)
     {
       $querystring = Doctrine_Core::getTable('Telefonos')->createQuery()->where('id_identificacion=?',$idFacilitador);
 
         return $querystring->execute();
     }
+//Función que Obtiene Teléfonos por (id).
+     public static function obtenerTelefonos($ver_telefono)
+    {
+      $querystring = Doctrine_Core::getTable('Telefonos')->createQuery()->where('id=?',$ver_telefono);
 
+        return $querystring->execute();
+    }
+//Función que elimina Teléfonos.
 public static function eliminarTelefono($id_telefono)
     {
   $deleted = Doctrine_Query::create()

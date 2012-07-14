@@ -1,3 +1,20 @@
+<!--
+Document / Documento: CorreosTable.class
+
+Created on / Creado : 23/05/2012, 10:39:10 AM
+
+Author / Desarrolladores:
+1. Raúl Lobo 04267711578 andrescerrada@gmail.com
+2. José Ruiz 04265752819 jruiz@cenditel.gob.ve joseph2283@gmail.com
+3. Jesús Becerra 04263779960 jbecerra@cenditel.gob.ve jesusignaciob@gmail.com
+4. Rodolfo Sumoza 04166342086 rsumoza@cenditel.gob.ve rsumoza@gmail.com
+
+Description / Comentarios:
+Este archivo genera las siguientes funciones:
+1- Obtiene los Correos.
+2- Obtiene los Correos por Facilitador.
+3- Eliminar Correos.
+-->
 <?php
 
 /**
@@ -12,18 +29,19 @@ class CorreosTable extends Doctrine_Table
      *
      * @return object CorreosTable
      */
+//Función Obtiene los Correos.
     public static function getInstance()
     {
         return Doctrine_Core::getTable('Correos');
     }
-    
+//Función que Obtiene los Correos por Facilitador. 
     public static function obtenerCorreosPorFacilitador($idFacilitador)
     {
       $querystring = Doctrine_Core::getTable('Correos')->createQuery()->where('id_identificacion=?',$idFacilitador);
 
         return $querystring->execute();
     }
-    
+//Función Eliminar Correos.    
     public static function eliminarCorreo($id_correo)
     {
 	   $deleted = Doctrine_Query::create()

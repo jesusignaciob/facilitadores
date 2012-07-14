@@ -1,3 +1,19 @@
+<!--
+Document / Documento: AreasFormacionTable.class
+
+Created on / Creado : 23/05/2012, 10:39:10 AM
+
+Author / Desarrolladores:
+1. Raúl Lobo 04267711578 andrescerrada@gmail.com
+2. José Ruiz 04265752819 jruiz@cenditel.gob.ve joseph2283@gmail.com
+3. Jesús Becerra 04263779960 jbecerra@cenditel.gob.ve jesusignaciob@gmail.com
+4. Rodolfo Sumoza 04166342086 rsumoza@cenditel.gob.ve rsumoza@gmail.com
+
+Description / Comentarios:
+Este archivo genera las siguientes funciones:
+1- Obtiene las Áreas Formación.
+2- Búsca Áreas Formación y las ordena por nombre.
+-->
 <?php
 
 /**
@@ -12,11 +28,14 @@ class AreasFormacionTable extends Doctrine_Table
      *
      * @return object AreasFormacionTable
      */
+
+//Función que Obtiene las Áreas Formación.
     public static function getInstance()
     {
         return Doctrine_Core::getTable('AreasFormacion');
     }
 
+//Función que Búsca Áreas Formación y las ordena por nombre.
     public function getAreasFormacion() {
       $query = $this->getInstance()->createQuery()
                     ->orderBy('nombre_area');
