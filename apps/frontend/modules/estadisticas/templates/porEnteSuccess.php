@@ -1,3 +1,18 @@
+<!--
+Document / Documento: porEnteSuccess del Módulo Estadística 
+
+Created on / Creado : 23/05/2012, 10:39:10 AM
+
+Author / Desarrolladores:
+1. Raúl Lobo 04267711578 andrescerrada@gmail.com
+2. José Ruiz 04265752819 jruiz@cenditel.gob.ve joseph2283@gmail.com
+3. Jesús Becerra 04263779960 jbecerra@cenditel.gob.ve jesusignaciob@gmail.com
+4. Rodolfo Sumoza 04166342086 rsumoza@cenditel.gob.ve rsumoza@gmail.com
+
+Description / Comentarios:
+Este archivo genera las siguientes funciones:
+1- Generar las estadísticas por Gráfico de Barras ó Circular de la cantidad de facilitadores por Estado y Área de Formación.
+!-->
 <button class="home" onclick="javascript:parent.location='<?php echo url_for('principal/index'); ?>'">Ir al menú Principal</button>
 <button class="back-button" onclick="javascript:parent.location='<?php echo url_for('estadisticas/index'); ?>'">Regresar</button>
 
@@ -8,7 +23,7 @@
 <br>
 <br>
 <div id="sf_gmstv_container">
-  <h1>Estadisticas - Entes</h1>
+  <h1>Estadísticas - Entes</h1>
   
 <form action="<?php echo url_for('estadisticas/porEnte')?>" method="post">
   <table style="border: 0">
